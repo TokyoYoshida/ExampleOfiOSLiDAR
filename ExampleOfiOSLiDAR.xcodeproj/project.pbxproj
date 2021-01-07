@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
+		1EEE225C25A7039B00706DE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225B25A7039B00706DE8 /* ViewController.swift */; };
+		1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225D25A7039B00706DE8 /* Experience.rcproject */; };
+		1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE225F25A7039B00706DE8 /* Main.storyboard */; };
+		1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE226225A7039C00706DE8 /* Assets.xcassets */; };
+		1EEE226625A7039C00706DE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE226425A7039C00706DE8 /* LaunchScreen.storyboard */; };
+		1EEE227125A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227025A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift */; };
+		1EEE227C25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1EEE226D25A7039C00706DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EEE224E25A7039B00706DE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EEE225525A7039B00706DE8;
+			remoteInfo = ExampleOfiOSLiDAR;
+		};
+		1EEE227825A7039C00706DE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EEE224E25A7039B00706DE8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EEE225525A7039B00706DE8;
+			remoteInfo = ExampleOfiOSLiDAR;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EEE225925A7039B00706DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1EEE225B25A7039B00706DE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1EEE225D25A7039B00706DE8 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
+		1EEE226025A7039B00706DE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1EEE226225A7039C00706DE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EEE226525A7039C00706DE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1EEE226725A7039C00706DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EEE226C25A7039C00706DE8 /* ExampleOfiOSLiDARTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleOfiOSLiDARTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EEE227025A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOfiOSLiDARTests.swift; sourceTree = "<group>"; };
+		1EEE227225A7039C00706DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EEE227725A7039C00706DE8 /* ExampleOfiOSLiDARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleOfiOSLiDARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOfiOSLiDARUITests.swift; sourceTree = "<group>"; };
+		1EEE227D25A7039C00706DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EEE225325A7039B00706DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE226925A7039C00706DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE227425A7039C00706DE8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1EEE224D25A7039B00706DE8 = {
+			isa = PBXGroup;
+			children = (
+				1EEE225825A7039B00706DE8 /* ExampleOfiOSLiDAR */,
+				1EEE226F25A7039C00706DE8 /* ExampleOfiOSLiDARTests */,
+				1EEE227A25A7039C00706DE8 /* ExampleOfiOSLiDARUITests */,
+				1EEE225725A7039B00706DE8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EEE225725A7039B00706DE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */,
+				1EEE226C25A7039C00706DE8 /* ExampleOfiOSLiDARTests.xctest */,
+				1EEE227725A7039C00706DE8 /* ExampleOfiOSLiDARUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1EEE225825A7039B00706DE8 /* ExampleOfiOSLiDAR */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE225925A7039B00706DE8 /* AppDelegate.swift */,
+				1EEE225B25A7039B00706DE8 /* ViewController.swift */,
+				1EEE225D25A7039B00706DE8 /* Experience.rcproject */,
+				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
+				1EEE226225A7039C00706DE8 /* Assets.xcassets */,
+				1EEE226425A7039C00706DE8 /* LaunchScreen.storyboard */,
+				1EEE226725A7039C00706DE8 /* Info.plist */,
+			);
+			path = ExampleOfiOSLiDAR;
+			sourceTree = "<group>";
+		};
+		1EEE226F25A7039C00706DE8 /* ExampleOfiOSLiDARTests */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE227025A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift */,
+				1EEE227225A7039C00706DE8 /* Info.plist */,
+			);
+			path = ExampleOfiOSLiDARTests;
+			sourceTree = "<group>";
+		};
+		1EEE227A25A7039C00706DE8 /* ExampleOfiOSLiDARUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */,
+				1EEE227D25A7039C00706DE8 /* Info.plist */,
+			);
+			path = ExampleOfiOSLiDARUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EEE225525A7039B00706DE8 /* ExampleOfiOSLiDAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EEE228025A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDAR" */;
+			buildPhases = (
+				1EEE225225A7039B00706DE8 /* Sources */,
+				1EEE225325A7039B00706DE8 /* Frameworks */,
+				1EEE225425A7039B00706DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExampleOfiOSLiDAR;
+			productName = ExampleOfiOSLiDAR;
+			productReference = 1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EEE226B25A7039C00706DE8 /* ExampleOfiOSLiDARTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EEE228325A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDARTests" */;
+			buildPhases = (
+				1EEE226825A7039C00706DE8 /* Sources */,
+				1EEE226925A7039C00706DE8 /* Frameworks */,
+				1EEE226A25A7039C00706DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EEE226E25A7039C00706DE8 /* PBXTargetDependency */,
+			);
+			name = ExampleOfiOSLiDARTests;
+			productName = ExampleOfiOSLiDARTests;
+			productReference = 1EEE226C25A7039C00706DE8 /* ExampleOfiOSLiDARTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1EEE227625A7039C00706DE8 /* ExampleOfiOSLiDARUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EEE228625A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDARUITests" */;
+			buildPhases = (
+				1EEE227325A7039C00706DE8 /* Sources */,
+				1EEE227425A7039C00706DE8 /* Frameworks */,
+				1EEE227525A7039C00706DE8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EEE227925A7039C00706DE8 /* PBXTargetDependency */,
+			);
+			name = ExampleOfiOSLiDARUITests;
+			productName = ExampleOfiOSLiDARUITests;
+			productReference = 1EEE227725A7039C00706DE8 /* ExampleOfiOSLiDARUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EEE224E25A7039B00706DE8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					1EEE225525A7039B00706DE8 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					1EEE226B25A7039C00706DE8 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 1EEE225525A7039B00706DE8;
+					};
+					1EEE227625A7039C00706DE8 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 1EEE225525A7039B00706DE8;
+					};
+				};
+			};
+			buildConfigurationList = 1EEE225125A7039B00706DE8 /* Build configuration list for PBXProject "ExampleOfiOSLiDAR" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EEE224D25A7039B00706DE8;
+			productRefGroup = 1EEE225725A7039B00706DE8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EEE225525A7039B00706DE8 /* ExampleOfiOSLiDAR */,
+				1EEE226B25A7039C00706DE8 /* ExampleOfiOSLiDARTests */,
+				1EEE227625A7039C00706DE8 /* ExampleOfiOSLiDARUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EEE225425A7039B00706DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EEE226625A7039C00706DE8 /* LaunchScreen.storyboard in Resources */,
+				1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */,
+				1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE226A25A7039C00706DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE227525A7039C00706DE8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EEE225225A7039B00706DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EEE225C25A7039B00706DE8 /* ViewController.swift in Sources */,
+				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
+				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE226825A7039C00706DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EEE227125A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EEE227325A7039C00706DE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EEE227C25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1EEE226E25A7039C00706DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EEE225525A7039B00706DE8 /* ExampleOfiOSLiDAR */;
+			targetProxy = 1EEE226D25A7039C00706DE8 /* PBXContainerItemProxy */;
+		};
+		1EEE227925A7039C00706DE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EEE225525A7039B00706DE8 /* ExampleOfiOSLiDAR */;
+			targetProxy = 1EEE227825A7039C00706DE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1EEE225F25A7039B00706DE8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1EEE226025A7039B00706DE8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1EEE226425A7039C00706DE8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1EEE226525A7039C00706DE8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1EEE227E25A7039C00706DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EEE227F25A7039C00706DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EEE228125A7039C00706DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDAR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1EEE228225A7039C00706DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDAR/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1EEE228425A7039C00706DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDARTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDARTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleOfiOSLiDAR.app/ExampleOfiOSLiDAR";
+			};
+			name = Debug;
+		};
+		1EEE228525A7039C00706DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDARTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDARTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExampleOfiOSLiDAR.app/ExampleOfiOSLiDAR";
+			};
+			name = Release;
+		};
+		1EEE228725A7039C00706DE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDARUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDARUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ExampleOfiOSLiDAR;
+			};
+			name = Debug;
+		};
+		1EEE228825A7039C00706DE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P67QP7Z567;
+				INFOPLIST_FILE = ExampleOfiOSLiDARUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tokyoyoshida.app.ExampleOfiOSLiDARUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ExampleOfiOSLiDAR;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EEE225125A7039B00706DE8 /* Build configuration list for PBXProject "ExampleOfiOSLiDAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EEE227E25A7039C00706DE8 /* Debug */,
+				1EEE227F25A7039C00706DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EEE228025A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EEE228125A7039C00706DE8 /* Debug */,
+				1EEE228225A7039C00706DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EEE228325A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDARTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EEE228425A7039C00706DE8 /* Debug */,
+				1EEE228525A7039C00706DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EEE228625A7039C00706DE8 /* Build configuration list for PBXNativeTarget "ExampleOfiOSLiDARUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EEE228725A7039C00706DE8 /* Debug */,
+				1EEE228825A7039C00706DE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EEE224E25A7039B00706DE8 /* Project object */;
+}
