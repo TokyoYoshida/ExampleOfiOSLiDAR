@@ -23,7 +23,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         arView.environment.sceneUnderstanding.options = []
         arView.environment.sceneUnderstanding.options.insert(.occlusion)
         arView.environment.sceneUnderstanding.options.insert(.physics)
-        arView.debugOptions.insert(.showSceneUnderstanding)
+//        arView.debugOptions.insert(.showSceneUnderstanding)
         arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
         arView.automaticallyConfigureSession = false
 
