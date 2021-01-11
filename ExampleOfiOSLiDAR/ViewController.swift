@@ -31,6 +31,10 @@ class ViewController: UIViewController, ARSessionDelegate {
         configuration.sceneReconstruction = .meshWithClassification
 
         configuration.environmentTexturing = .automatic
+        if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+           // Activate sceneDepth
+           configuration.frameSemantics = .sceneDepth
+        }
         arView.session.run(configuration)
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
@@ -39,6 +43,16 @@ class ViewController: UIViewController, ARSessionDelegate {
         // Load the "Box" scene from the "Experience" Reality File
         let boxAnchor = try! Experience.loadBox()
         arView.scene.anchors.append(boxAnchor)
+    }
+
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+       guard let sceneDepth = frame.smoothedSceneDepth ?? frame.sceneDepth  else { return }
+        var pixelBuffer: CVPixelBuffer!
+        pixelBuffer = sceneDepth.depthMap
+
+//        var texturePixelFormat: MTLPixelFormat!
+//        setMTLPixelFormat(&texturePixelFormat, basedOn: pixelBuffer)
+//        depthTexture = createTexture(fromPixelBuffer: pixelBuffer, pixelFormat: texturePixelFormat, planeIndex: 0)
     }
 
     @objc
