@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,16 +12,32 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
-                    <arView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iaN-GJ-wQI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wc2-TI-Wax"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qff-L1-Bgy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arView>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" id="zrA-Ba-LPL">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                     <connections>
-                        <outlet property="arView" destination="8bC-Xf-vdC" id="TPV-4x-avp"/>
+                        <outlet property="arView" destination="zrA-Ba-LPL" id="kBj-4Y-fIa"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="138" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
