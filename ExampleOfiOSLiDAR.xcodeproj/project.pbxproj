@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
 		1EEE225C25A7039B00706DE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225B25A7039B00706DE8 /* ViewController.swift */; };
 		1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225D25A7039B00706DE8 /* Experience.rcproject */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARFrame+Ext.swift"; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEE225925A7039B00706DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EEE225B25A7039B00706DE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				1EEE225925A7039B00706DE8 /* AppDelegate.swift */,
 				1EEE225B25A7039B00706DE8 /* ViewController.swift */,
+				1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */,
 				1EEE225D25A7039B00706DE8 /* Experience.rcproject */,
 				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
 				1EEE226225A7039C00706DE8 /* Assets.xcassets */,
@@ -260,6 +263,7 @@
 			files = (
 				1EEE225C25A7039B00706DE8 /* ViewController.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
+				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
