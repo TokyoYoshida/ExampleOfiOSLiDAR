@@ -17,7 +17,7 @@ extension ARFrame {
         let flipTransform = (orientation.isPortrait) ? CGAffineTransform(scaleX: -1, y: -1).translatedBy(x: -1, y: -1) : .identity
 
         let displayTransform = self.displayTransform(for: orientation, viewportSize: size)
-        let toViewPortTransform = CGAffineTransform(scaleX: size.width, y: size.height)
+        let toViewPortTransform = CGAffineTransform(scaleX: size.width/2, y: size.height/2)
         let transform = normalizeTransform
                 .concatenating(flipTransform)
                 .concatenating(displayTransform)
