@@ -23,9 +23,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
                             </arView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-1Z-WnH">
-                                <rect key="frame" x="0.0" y="347" width="834" height="500"/>
+                                <rect key="frame" x="0.0" y="247" width="834" height="700"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="HFI-XX-r2V"/>
+                                    <constraint firstAttribute="height" constant="700" id="HFI-XX-r2V"/>
                                 </constraints>
                             </imageView>
                         </subviews>

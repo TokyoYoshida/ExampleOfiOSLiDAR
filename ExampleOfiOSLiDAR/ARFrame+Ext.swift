@@ -18,7 +18,10 @@ extension ARFrame {
 
         let displayTransform = self.displayTransform(for: orientation, viewportSize: size)
         let toViewPortTransform = CGAffineTransform(scaleX: size.width, y: size.height)
-        let transform = normalizeTransform.concatenating(flipTransform).concatenating(displayTransform).concatenating(toViewPortTransform)
+        let transform = normalizeTransform
+                .concatenating(flipTransform)
+                .concatenating(displayTransform)
+                .concatenating(toViewPortTransform)
         
 //        let scale = CGAffineTransform(scaleX: 2,y: 2)
 //        let transform = scale.concatenating(transform1)
