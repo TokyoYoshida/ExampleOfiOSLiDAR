@@ -11,6 +11,7 @@ import ARKit
 class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,8 @@ class ViewController: UIViewController, ARSessionDelegate {
        guard let sceneDepth = frame.smoothedSceneDepth ?? frame.sceneDepth  else { return }
         var pixelBuffer: CVPixelBuffer!
         pixelBuffer = sceneDepth.depthMap
+        
+        imageView.image = session.currentFrame?.depthMapImage
 
 //        var texturePixelFormat: MTLPixelFormat!
 //        setMTLPixelFormat(&texturePixelFormat, basedOn: pixelBuffer)

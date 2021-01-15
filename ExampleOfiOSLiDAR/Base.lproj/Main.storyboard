@@ -10,7 +10,6 @@
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iaN-GJ-wQI"/>
@@ -20,22 +19,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" id="zrA-Ba-LPL">
-                                <rect key="frame" x="11" y="67" width="383" height="763"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-Ba-LPL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </arView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-1Z-WnH">
+                                <rect key="frame" x="20" y="348" width="374" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="HFI-XX-r2V"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zrA-Ba-LPL" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" id="AsG-gc-Wwg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8MQ-1Z-WnH" secondAttribute="trailing" id="Cvd-dR-6Dh"/>
+                            <constraint firstItem="zrA-Ba-LPL" firstAttribute="top" secondItem="iaN-GJ-wQI" secondAttribute="bottom" id="J1O-Gm-Vb1"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="centerY" secondItem="Qff-L1-Bgy" secondAttribute="centerY" id="Rvk-ME-3UN"/>
+                            <constraint firstAttribute="trailing" secondItem="zrA-Ba-LPL" secondAttribute="trailing" id="eP3-3l-3YJ"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leadingMargin" id="q9i-DV-zou"/>
+                            <constraint firstItem="Wc2-TI-Wax" firstAttribute="top" secondItem="zrA-Ba-LPL" secondAttribute="bottom" id="x3B-lg-p2Y"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="arView" destination="zrA-Ba-LPL" id="kBj-4Y-fIa"/>
+                        <outlet property="arView" destination="zrA-Ba-LPL" id="0iB-kg-4B2"/>
+                        <outlet property="imageView" destination="8MQ-1Z-WnH" id="hqx-BM-XEV"/>
                     </connections>
                 </viewController>
-                <view contentMode="scaleToFill" id="pGA-Uq-kxK">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
