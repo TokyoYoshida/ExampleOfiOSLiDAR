@@ -52,7 +52,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         var pixelBuffer: CVPixelBuffer!
         pixelBuffer = sceneDepth.depthMap
         
-        imageView.image = session.currentFrame?.depthMapImage(orientation: orientation, size: self.view.bounds.size)
+        imageView.image = session.currentFrame?.depthMapImage(orientation: orientation, size: self.imageView.bounds.size)
         
 
 //        var texturePixelFormat: MTLPixelFormat!
