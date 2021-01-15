@@ -12,7 +12,8 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var imageView: UIImageView!
-    
+    let orientation = UIApplication.shared.statusBarOrientation
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +52,8 @@ class ViewController: UIViewController, ARSessionDelegate {
         var pixelBuffer: CVPixelBuffer!
         pixelBuffer = sceneDepth.depthMap
         
-        imageView.image = session.currentFrame?.depthMapImage
+        imageView.image = session.currentFrame?.depthMapImage(orientation: orientation, size: self.view.bounds.size)
+        
 
 //        var texturePixelFormat: MTLPixelFormat!
 //        setMTLPixelFormat(&texturePixelFormat, basedOn: pixelBuffer)
