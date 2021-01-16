@@ -43,6 +43,7 @@
                     <connections>
                         <outlet property="arView" destination="zrA-Ba-LPL" id="0iB-kg-4B2"/>
                         <outlet property="imageView" destination="8MQ-1Z-WnH" id="hqx-BM-XEV"/>
+                        <outlet property="imageViewHeight" destination="HFI-XX-r2V" id="FqD-MD-y6s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

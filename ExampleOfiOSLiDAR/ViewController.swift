@@ -12,7 +12,16 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var imageView: UIImageView!
-    let orientation = UIApplication.shared.statusBarOrientation
+    var orientation: UIInterfaceOrientation {
+        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
+            fatalError()
+        }
+        return orientation
+    }
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+    lazy var imageViewSize: CGSize = {
+        CGSize(width: view.bounds.size.width, height: imageViewHeight.constant)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +61,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         var pixelBuffer: CVPixelBuffer!
         pixelBuffer = sceneDepth.depthMap
         
-        imageView.image = session.currentFrame?.depthMapImage(orientation: orientation, size: self.imageView.bounds.size)
+        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, size: self.imageView.bounds.size)
         
 
 //        var texturePixelFormat: MTLPixelFormat!
