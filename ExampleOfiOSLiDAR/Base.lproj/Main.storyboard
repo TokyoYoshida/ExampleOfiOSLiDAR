@@ -35,16 +35,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycb-VC-BxN">
-                                <rect key="frame" x="379" y="285" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycb-VC-BxN">
+                                <rect key="frame" x="379" y="344" width="76" height="30"/>
                                 <state key="normal" title="Depth Map"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="Afg-65-0Tn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9C-LF-iaX">
+                                <rect key="frame" x="341" y="433" width="153" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Depth Map to Ploygon"/>
+                                <connections>
+                                    <segue destination="5iJ-Af-rlS" kind="show" id="CVM-f8-kjy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ycb-VC-BxN" firstAttribute="top" secondItem="T1y-A5-y1O" secondAttribute="bottom" constant="300" id="3Hx-9p-ffc"/>
+                            <constraint firstItem="ycb-VC-BxN" firstAttribute="centerX" secondItem="eNF-ja-ICd" secondAttribute="centerX" id="Mzi-zS-u0a"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LKC-4N-22E"/>
                 </viewController>
@@ -95,6 +106,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1010" y="-328"/>
+        </scene>
+        <!--ARView-->
+        <scene sceneID="XIX-7p-OWR">
+            <objects>
+                <viewController id="5iJ-Af-rlS" userLabel="ARView" customClass="DepthMapPolygonViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2kr-lw-v2n"/>
+                        <viewControllerLayoutGuide type="bottom" id="JlN-z5-4Ny"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CEY-st-LSB">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPn-AU-Afk">
+                                <rect key="frame" x="0.0" y="50" width="834" height="1124"/>
+                            </arView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6MZ-9g-sMZ">
+                                <rect key="frame" x="0.0" y="247" width="834" height="700"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="700" id="0xv-Vj-e8k"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pPn-AU-Afk" firstAttribute="top" secondItem="2kr-lw-v2n" secondAttribute="bottom" id="3qx-dq-jXk"/>
+                            <constraint firstItem="JlN-z5-4Ny" firstAttribute="top" secondItem="pPn-AU-Afk" secondAttribute="bottom" id="7dl-R6-vKv"/>
+                            <constraint firstItem="6MZ-9g-sMZ" firstAttribute="leading" secondItem="CEY-st-LSB" secondAttribute="leading" id="aw2-E3-LBJ"/>
+                            <constraint firstItem="pPn-AU-Afk" firstAttribute="leading" secondItem="CEY-st-LSB" secondAttribute="leading" id="cF5-MC-Wjl"/>
+                            <constraint firstAttribute="trailing" secondItem="6MZ-9g-sMZ" secondAttribute="trailing" id="eFM-EF-lQc"/>
+                            <constraint firstItem="6MZ-9g-sMZ" firstAttribute="centerY" secondItem="CEY-st-LSB" secondAttribute="centerY" id="g2N-vu-f8m"/>
+                            <constraint firstAttribute="trailing" secondItem="pPn-AU-Afk" secondAttribute="trailing" id="lOl-Bg-2nY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UXQ-Ei-Ggz"/>
+                    <connections>
+                        <outlet property="arView" destination="pPn-AU-Afk" id="jag-zc-t0g"/>
+                        <outlet property="imageView" destination="6MZ-9g-sMZ" id="odG-sl-nvj"/>
+                        <outlet property="imageViewHeight" destination="0xv-Vj-e8k" id="clF-uV-HUb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VwM-zk-IoW" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1147" y="478"/>
         </scene>
     </scenes>
     <resources>
