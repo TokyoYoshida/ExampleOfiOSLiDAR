@@ -16,7 +16,6 @@
 		1EEE226625A7039C00706DE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE226425A7039C00706DE8 /* LaunchScreen.storyboard */; };
 		1EEE227125A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227025A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift */; };
 		1EEE227C25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */; };
-		1EF96A4325B2CAA100933A6D /* DepthMapPolygonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF96A4225B2CAA100933A6D /* DepthMapPolygonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		1EEE227725A7039C00706DE8 /* ExampleOfiOSLiDARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleOfiOSLiDARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOfiOSLiDARUITests.swift; sourceTree = "<group>"; };
 		1EEE227D25A7039C00706DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1EF96A4225B2CAA100933A6D /* DepthMapPolygonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthMapPolygonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 			children = (
 				1EEE225925A7039B00706DE8 /* AppDelegate.swift */,
 				1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */,
-				1EF96A4225B2CAA100933A6D /* DepthMapPolygonViewController.swift */,
 				1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */,
 				1EEE225D25A7039B00706DE8 /* Experience.rcproject */,
 				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
@@ -266,7 +263,6 @@
 			files = (
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
-				1EF96A4325B2CAA100933A6D /* DepthMapPolygonViewController.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
 			);
