@@ -62,6 +62,10 @@
                                         <constraint firstAttribute="bottom" secondItem="3nG-AT-KAp" secondAttribute="bottom" constant="16" id="wQ5-Oe-pxC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="3nG-AT-KAp" id="cVf-Bl-B6K"/>
+                                    <outlet property="titleLabel" destination="D51-bp-eaM" id="aC0-gu-Xyd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

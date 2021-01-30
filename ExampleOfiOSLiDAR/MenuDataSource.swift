@@ -25,4 +25,8 @@ class MenuViewModel {
     var count: Int {
         dataSource.count
     }
+    
+    func item(row: Int) -> MenuItem {
+        dataSource[row]
+    }
 }
