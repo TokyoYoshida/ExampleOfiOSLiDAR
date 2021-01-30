@@ -5,12 +5,18 @@
 //  Created by TokyoYoshida on 2021/01/31.
 //
 
-import Foundation
+import UIKit
 
 struct MenuItem {
     let title: String
     let description: String
     let prefix: String
+    
+    func viewController() -> UIViewController {
+        let storyboard = UIStoryboard(name: prefix, bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()!
+        return vc
+    }
 }
 
 class MenuViewModel {
@@ -28,5 +34,9 @@ class MenuViewModel {
     
     func item(row: Int) -> MenuItem {
         dataSource[row]
+    }
+    
+    func viewController(row: Int) -> UIViewController {
+        dataSource[row].viewController()
     }
 }
