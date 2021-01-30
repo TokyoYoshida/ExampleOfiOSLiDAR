@@ -71,7 +71,7 @@
                                 <rect key="frame" x="0.0" y="50" width="834" height="1124"/>
                             </arView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-1Z-WnH">
-                                <rect key="frame" x="0.0" y="247" width="834" height="700"/>
+                                <rect key="frame" x="50" y="262" width="734" height="700"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="700" id="HFI-XX-r2V"/>
                                 </constraints>
@@ -80,11 +80,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zrA-Ba-LPL" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" id="AsG-gc-Wwg"/>
-                            <constraint firstAttribute="trailing" secondItem="8MQ-1Z-WnH" secondAttribute="trailing" id="Cvd-dR-6Dh"/>
+                            <constraint firstAttribute="trailing" secondItem="8MQ-1Z-WnH" secondAttribute="trailing" constant="50" id="Cvd-dR-6Dh"/>
                             <constraint firstItem="zrA-Ba-LPL" firstAttribute="top" secondItem="iaN-GJ-wQI" secondAttribute="bottom" id="J1O-Gm-Vb1"/>
-                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="centerY" secondItem="Qff-L1-Bgy" secondAttribute="centerY" id="Rvk-ME-3UN"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="centerY" secondItem="zrA-Ba-LPL" secondAttribute="centerY" id="Rvk-ME-3UN"/>
                             <constraint firstAttribute="trailing" secondItem="zrA-Ba-LPL" secondAttribute="trailing" id="eP3-3l-3YJ"/>
-                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" id="q9i-DV-zou"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" constant="50" id="q9i-DV-zou"/>
                             <constraint firstItem="Wc2-TI-Wax" firstAttribute="top" secondItem="zrA-Ba-LPL" secondAttribute="bottom" id="x3B-lg-p2Y"/>
                         </constraints>
                     </view>
