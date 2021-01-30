@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ARView-->
+        <scene sceneID="THD-wt-i9S">
+            <objects>
+                <viewController id="W4n-A3-q10" userLabel="ARView" customClass="DepthMapViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hUZ-jj-glX"/>
+                        <viewControllerLayoutGuide type="bottom" id="rfY-ck-SDk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fgl-um-TyF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFg-wj-2Ut">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </arView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOr-Xm-bJ8">
+                                <rect key="frame" x="50" y="103" width="314" height="700"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="700" id="aow-mc-PnD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8DE-zZ-g0N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OOr-Xm-bJ8" firstAttribute="centerY" secondItem="xFg-wj-2Ut" secondAttribute="centerY" id="0nv-VF-bwT"/>
+                            <constraint firstItem="rfY-ck-SDk" firstAttribute="top" secondItem="xFg-wj-2Ut" secondAttribute="bottom" id="9L2-dD-6t6"/>
+                            <constraint firstAttribute="trailing" secondItem="xFg-wj-2Ut" secondAttribute="trailing" id="9R5-bY-49Q"/>
+                            <constraint firstItem="OOr-Xm-bJ8" firstAttribute="leading" secondItem="fgl-um-TyF" secondAttribute="leading" constant="50" id="Chb-dB-mHv"/>
+                            <constraint firstAttribute="trailing" secondItem="OOr-Xm-bJ8" secondAttribute="trailing" constant="50" id="XZh-Ww-DRA"/>
+                            <constraint firstItem="xFg-wj-2Ut" firstAttribute="top" secondItem="hUZ-jj-glX" secondAttribute="bottom" id="e9P-49-poh"/>
+                            <constraint firstItem="xFg-wj-2Ut" firstAttribute="leading" secondItem="fgl-um-TyF" secondAttribute="leading" id="uCk-W2-RCT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="q2X-I5-NNA"/>
+                    <connections>
+                        <outlet property="arView" destination="xFg-wj-2Ut" id="kcs-Rm-F3g"/>
+                        <outlet property="imageView" destination="OOr-Xm-bJ8" id="U0z-LO-MT6"/>
+                        <outlet property="imageViewHeight" destination="aow-mc-PnD" id="ILO-uj-gSX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Vd-tT-k9R" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="-328"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
