@@ -32,21 +32,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bur-rr-7zV" customClass="MenuItemCell" customModule="ExampleOfiOSLiDAR" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="834" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="76" id="bur-rr-7zV" customClass="MenuItemCell" customModule="ExampleOfiOSLiDAR" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="834" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bur-rr-7zV" id="Su5-aN-pfh">
-                                    <rect key="frame" x="0.0" y="0.0" width="834" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="834" height="76"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D51-bp-eaM">
-                                            <rect key="frame" x="109" y="11" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D51-bp-eaM">
+                                            <rect key="frame" x="16" y="16" width="818" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nG-AT-KAp">
+                                            <rect key="frame" x="16" y="45" width="818" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="D51-bp-eaM" firstAttribute="leading" secondItem="Su5-aN-pfh" secondAttribute="leading" constant="16" id="F8N-gZ-fW8"/>
+                                        <constraint firstItem="3nG-AT-KAp" firstAttribute="leading" secondItem="Su5-aN-pfh" secondAttribute="leading" constant="16" id="Rbt-qV-bZv"/>
+                                        <constraint firstAttribute="trailing" secondItem="3nG-AT-KAp" secondAttribute="trailing" id="UWm-Rn-IEu"/>
+                                        <constraint firstItem="D51-bp-eaM" firstAttribute="top" secondItem="Su5-aN-pfh" secondAttribute="top" constant="16" id="Vh7-3I-I0X"/>
+                                        <constraint firstItem="3nG-AT-KAp" firstAttribute="top" secondItem="D51-bp-eaM" secondAttribute="bottom" constant="8" id="WhE-5C-fJo"/>
+                                        <constraint firstAttribute="trailing" secondItem="D51-bp-eaM" secondAttribute="trailing" id="vvD-5K-kc6"/>
+                                        <constraint firstAttribute="bottom" secondItem="3nG-AT-KAp" secondAttribute="bottom" constant="16" id="wQ5-Oe-pxC"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -59,7 +73,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYf-tU-aIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-85" y="-289"/>
+            <point key="canvasLocation" x="-85.611510791366911" y="-289.4472361809045"/>
         </scene>
     </scenes>
     <resources>
