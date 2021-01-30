@@ -28,22 +28,18 @@ extension ARFrame {
         return UIImage(cgImage: image)
     }
 
-    func depthMapTransformedImage(orientation: UIInterfaceOrientation, size: CGSize) -> UIImage? {
+    func depthMapTransformedImage(orientation: UIInterfaceOrientation, rect: CGRect) -> UIImage? {
+        let size = rect.size
         guard let pixelBuffer = self.sceneDepth?.depthMap else { return nil }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let imageSize = CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer))
         let normalizeTransform = CGAffineTransform(scaleX: 1.0/imageSize.width, y: 1.0/imageSize.height)
-        let flipTransform = (orientation.isPortrait) ? CGAffineTransform(rotationAngle: CGFloat.pi/2) : .identity
-
+        let flipTransform = (orientation.isPortrait) ? CGAffineTransform(scaleX: -1, y: -1).translatedBy(x: -1, y: -1) : .identity
         let displayTransform = self.displayTransform(for: orientation, viewportSize: size)
         let toViewPortTransform = CGAffineTransform(scaleX: size.width, y: size.height)
-        let midX = size.width / 2
-        let midY = size.height / 2
-        let transform = CGAffineTransform(translationX: midX, y: midY).rotated(by: cameraToDisplayRotationRadian(orientation: orientation)).translatedBy(x: -midX, y: -midY)
+        let transform = normalizeTransform.concatenating(flipTransform).concatenating(displayTransform).concatenating(toViewPortTransform)
         
-        let cgImage = CIContext().createCGImage(ciImage.transformed(by: transform), from: ciImage.extent)
-        guard let image = cgImage else { return nil }
-        return UIImage(cgImage: image)
+        return UIImage(ciImage: ciImage.transformed(by: transform).cropped(to: rect))
     }
 
     func depthMapRawImage() -> UIImage? {
