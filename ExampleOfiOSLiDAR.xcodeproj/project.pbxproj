@@ -102,10 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				1EEE225925A7039B00706DE8 /* AppDelegate.swift */,
-				1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */,
-				1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */,
 				1EEE225D25A7039B00706DE8 /* Experience.rcproject */,
-				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
+				1EF190F925C60405005064FC /* Samples */,
 				1EEE226225A7039C00706DE8 /* Assets.xcassets */,
 				1EEE226425A7039C00706DE8 /* LaunchScreen.storyboard */,
 				1EEE226725A7039C00706DE8 /* Info.plist */,
@@ -129,6 +127,32 @@
 				1EEE227D25A7039C00706DE8 /* Info.plist */,
 			);
 			path = ExampleOfiOSLiDARUITests;
+			sourceTree = "<group>";
+		};
+		1EF190F925C60405005064FC /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				1EF190FA25C60418005064FC /* Depth */,
+				1EF190FB25C60444005064FC /* Utility */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
+		1EF190FA25C60418005064FC /* Depth */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */,
+				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
+			);
+			path = Depth;
+			sourceTree = "<group>";
+		};
+		1EF190FB25C60444005064FC /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
