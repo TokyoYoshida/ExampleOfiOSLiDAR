@@ -17,9 +17,9 @@
 		1EEE227125A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227025A7039C00706DE8 /* ExampleOfiOSLiDARTests.swift */; };
 		1EEE227C25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */; };
 		1EF1910025C604C5005064FC /* DepthMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF190FF25C604C5005064FC /* DepthMap.storyboard */; };
-		1EF1910525C605A5005064FC /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1910425C605A5005064FC /* MenuTableViewController.swift */; };
+		1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1910425C605A5005064FC /* MenuViewController.swift */; };
 		1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1910925C605D2005064FC /* MenuDataSource.swift */; };
-		1EF1911225C607E3005064FC /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1911125C607E3005064FC /* MenuItemTableViewCell.swift */; };
+		1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1911125C607E3005064FC /* MenuItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +56,9 @@
 		1EEE227B25A7039C00706DE8 /* ExampleOfiOSLiDARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOfiOSLiDARUITests.swift; sourceTree = "<group>"; };
 		1EEE227D25A7039C00706DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EF190FF25C604C5005064FC /* DepthMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DepthMap.storyboard; sourceTree = "<group>"; };
-		1EF1910425C605A5005064FC /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		1EF1910425C605A5005064FC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		1EF1910925C605D2005064FC /* MenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataSource.swift; sourceTree = "<group>"; };
-		1EF1911125C607E3005064FC /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		1EF1911125C607E3005064FC /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +112,8 @@
 				1EEE225925A7039B00706DE8 /* AppDelegate.swift */,
 				1EEE225D25A7039B00706DE8 /* Experience.rcproject */,
 				1EEE225F25A7039B00706DE8 /* Main.storyboard */,
-				1EF1910425C605A5005064FC /* MenuTableViewController.swift */,
-				1EF1911125C607E3005064FC /* MenuItemTableViewCell.swift */,
+				1EF1910425C605A5005064FC /* MenuViewController.swift */,
+				1EF1911125C607E3005064FC /* MenuItemCell.swift */,
 				1EF1910925C605D2005064FC /* MenuDataSource.swift */,
 				1EF190F925C60405005064FC /* Samples */,
 				1EEE226225A7039C00706DE8 /* Assets.xcassets */,
@@ -300,9 +300,9 @@
 			files = (
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
-				1EF1910525C605A5005064FC /* MenuTableViewController.swift in Sources */,
+				1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */,
 				1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */,
-				1EF1911225C607E3005064FC /* MenuItemTableViewCell.swift in Sources */,
+				1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
 			);

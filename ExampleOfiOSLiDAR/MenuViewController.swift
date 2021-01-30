@@ -1,5 +1,5 @@
 //
-//  MenuTableViewController.swift
+//  MenuViewController.swift
 //  ExampleOfiOSLiDAR
 //
 //  Created by TokyoYoshida on 2021/01/31.
@@ -25,8 +25,8 @@ class MenuViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MenuItemTableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MenuItemCell
+        
         return cell
     }
 
