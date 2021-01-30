@@ -15,6 +15,8 @@ struct MenuItem {
     func viewController() -> UIViewController {
         let storyboard = UIStoryboard(name: prefix, bundle: nil)
         let vc = storyboard.instantiateInitialViewController()!
+        vc.title = title
+
         return vc
     }
 }
