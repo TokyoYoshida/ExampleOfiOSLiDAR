@@ -8,7 +8,7 @@
 import RealityKit
 import ARKit
 
-class ViewController: UIViewController, ARSessionDelegate {
+class DepthMapViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var imageView: UIImageView!

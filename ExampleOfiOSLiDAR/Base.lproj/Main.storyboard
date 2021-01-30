@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EYg-H9-K84">
     <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -7,10 +7,58 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="HDp-HT-V3I">
+            <objects>
+                <navigationController id="EYg-H9-K84" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lgc-Zg-43G">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4O2-e7-ABG" kind="relationship" relationship="rootViewController" id="bee-u0-na2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fbX-ty-2cW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-806" y="-289"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mXx-z5-gnC">
+            <objects>
+                <viewController id="4O2-e7-ABG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T1y-A5-y1O"/>
+                        <viewControllerLayoutGuide type="bottom" id="wiX-ji-hiW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eNF-ja-ICd">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycb-VC-BxN">
+                                <rect key="frame" x="379" y="350" width="76" height="30"/>
+                                <state key="normal" title="Depth Map"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Afg-65-0Tn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ycb-VC-BxN" firstAttribute="top" secondItem="T1y-A5-y1O" secondAttribute="bottom" constant="300" id="3Hx-9p-ffc"/>
+                            <constraint firstItem="ycb-VC-BxN" firstAttribute="centerX" secondItem="eNF-ja-ICd" secondAttribute="centerX" id="Mzi-zS-u0a"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LKC-4N-22E"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rGk-8c-LaH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-67" y="-286"/>
+        </scene>
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="DepthMapViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iaN-GJ-wQI"/>
                         <viewControllerLayoutGuide type="bottom" id="Wc2-TI-Wax"/>
@@ -20,10 +68,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-Ba-LPL">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1174"/>
+                                <rect key="frame" x="0.0" y="50" width="834" height="1124"/>
                             </arView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8MQ-1Z-WnH">
-                                <rect key="frame" x="0.0" y="247" width="834" height="700"/>
+                                <rect key="frame" x="50" y="262" width="734" height="700"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="700" id="HFI-XX-r2V"/>
                                 </constraints>
@@ -32,14 +80,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zrA-Ba-LPL" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" id="AsG-gc-Wwg"/>
-                            <constraint firstAttribute="trailing" secondItem="8MQ-1Z-WnH" secondAttribute="trailing" id="Cvd-dR-6Dh"/>
+                            <constraint firstAttribute="trailing" secondItem="8MQ-1Z-WnH" secondAttribute="trailing" constant="50" id="Cvd-dR-6Dh"/>
                             <constraint firstItem="zrA-Ba-LPL" firstAttribute="top" secondItem="iaN-GJ-wQI" secondAttribute="bottom" id="J1O-Gm-Vb1"/>
-                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="centerY" secondItem="Qff-L1-Bgy" secondAttribute="centerY" id="Rvk-ME-3UN"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="centerY" secondItem="zrA-Ba-LPL" secondAttribute="centerY" id="Rvk-ME-3UN"/>
                             <constraint firstAttribute="trailing" secondItem="zrA-Ba-LPL" secondAttribute="trailing" id="eP3-3l-3YJ"/>
-                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" id="q9i-DV-zou"/>
+                            <constraint firstItem="8MQ-1Z-WnH" firstAttribute="leading" secondItem="Qff-L1-Bgy" secondAttribute="leading" constant="50" id="q9i-DV-zou"/>
                             <constraint firstItem="Wc2-TI-Wax" firstAttribute="top" secondItem="zrA-Ba-LPL" secondAttribute="bottom" id="x3B-lg-p2Y"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sEg-pg-Xfn"/>
                     <connections>
                         <outlet property="arView" destination="zrA-Ba-LPL" id="0iB-kg-4B2"/>
                         <outlet property="imageView" destination="8MQ-1Z-WnH" id="hqx-BM-XEV"/>
@@ -48,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+            <point key="canvasLocation" x="1010" y="-328"/>
         </scene>
     </scenes>
     <resources>
