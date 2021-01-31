@@ -14,4 +14,4 @@ Open `ExampleOfiOSLiDAR.xcodeproj` and build it.
 
 ### License
 
-MIT.
+MIT
