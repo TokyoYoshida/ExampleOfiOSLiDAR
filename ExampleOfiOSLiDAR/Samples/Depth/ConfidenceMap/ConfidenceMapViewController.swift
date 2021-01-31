@@ -42,6 +42,6 @@ class ConfidenceMapViewController: UIViewController, ARSessionDelegate {
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
+        imageView.image = session.currentFrame?.ConfidenceMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
     }
 }

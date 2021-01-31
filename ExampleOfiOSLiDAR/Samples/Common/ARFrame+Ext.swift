@@ -23,6 +23,12 @@ extension ARFrame {
         return UIImage(ciImage: screenTransformed(ciImage: ciImage, orientation: orientation, viewPort: viewPort))
     }
 
+    func ConfidenceMapTransformedImage(orientation: UIInterfaceOrientation, viewPort: CGRect) -> UIImage? {
+        guard let pixelBuffer = self.sceneDepth?.confidenceMap else { return nil }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        return UIImage(ciImage: screenTransformed(ciImage: ciImage, orientation: orientation, viewPort: viewPort))
+    }
+
     func screenTransformed(ciImage: CIImage, orientation: UIInterfaceOrientation, viewPort: CGRect) -> CIImage {
         let transform = screenTransform(orientation: orientation, viewPortSize: viewPort.size, captureSize: ciImage.extent.size)
         return ciImage.transformed(by: transform).cropped(to: viewPort)
