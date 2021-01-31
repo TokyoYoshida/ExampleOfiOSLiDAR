@@ -31,12 +31,14 @@ extension ARFrame {
         guard let base = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
         let height = CVPixelBufferGetHeight(pixelBuffer)
         let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+
         for i in stride(from: 0, to: bytesPerRow*height, by: MemoryLayout<UInt8>.stride) {
             let data = base.load(fromByteOffset: i, as: UInt8.self)
             let pixcelValue = confienceValueToPixcelValue(confidenceValue: data)
             base.storeBytes(of: pixcelValue, toByteOffset: i, as: UInt8.self)
         }
         CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+
         return CIImage(cvPixelBuffer: pixelBuffer)
     }
 
