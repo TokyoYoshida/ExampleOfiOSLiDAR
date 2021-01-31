@@ -158,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				1EF190FA25C60418005064FC /* Depth */,
+				1E2B6D5525C68D0800F76D8C /* ConfidenceMap */,
 				1EF190FB25C60444005064FC /* Common */,
 			);
 			path = Samples;
@@ -168,7 +169,6 @@
 			children = (
 				1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */,
 				1EF190FF25C604C5005064FC /* DepthMap.storyboard */,
-				1E2B6D5525C68D0800F76D8C /* ConfidenceMap */,
 			);
 			path = Depth;
 			sourceTree = "<group>";
