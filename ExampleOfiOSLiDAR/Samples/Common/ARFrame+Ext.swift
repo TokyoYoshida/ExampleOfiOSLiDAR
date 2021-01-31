@@ -20,18 +20,22 @@ extension ARFrame {
             guard confidenceValue <= ARConfidenceLevel.high.rawValue else {return 0}
             return UInt8(floor(Float(confidenceValue) / Float(ARConfidenceLevel.high.rawValue) * 255))
         }
-        guard let pixelBuffer = self.sceneDepth?.confidenceMap else { return nil }
-        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        guard let base = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
-        let height = CVPixelBufferGetHeight(pixelBuffer)
-        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
-        for i in stride(from: 0, to: bytesPerRow*height, by: MemoryLayout<UInt8>.stride) {
-            let data = base.load(fromByteOffset: i, as: UInt8.self)
-            let pixcelValue = confienceValueToPixcelValue(confidenceValue: data)
-            base.storeBytes(of: pixcelValue, toByteOffset: i, as: UInt8.self)
+        func ConfidenceMaptoCIImage(pixelBuffer: CVPixelBuffer) -> CIImage? {
+            CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+            guard let base = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
+            let height = CVPixelBufferGetHeight(pixelBuffer)
+            let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+            for i in stride(from: 0, to: bytesPerRow*height, by: MemoryLayout<UInt8>.stride) {
+                let data = base.load(fromByteOffset: i, as: UInt8.self)
+                let pixcelValue = confienceValueToPixcelValue(confidenceValue: data)
+                base.storeBytes(of: pixcelValue, toByteOffset: i, as: UInt8.self)
+            }
+            CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+            return CIImage(cvPixelBuffer: pixelBuffer)
         }
-        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        guard let pixelBuffer = self.sceneDepth?.confidenceMap,
+              let ciImage = ConfidenceMaptoCIImage(pixelBuffer: pixelBuffer) else { return nil }
+        
         return UIImage(ciImage: screenTransformed(ciImage: ciImage, orientation: orientation, viewPort: viewPort))
     }
 
