@@ -9,14 +9,6 @@ import ARKit
 import UIKit
 
 extension ARFrame {
-    func depthMapRawImage() -> UIImage? {
-        guard let pixelBuffer = self.sceneDepth?.depthMap else { return nil }
-        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-        let cgImage = CIContext().createCGImage(ciImage, from: ciImage.extent)
-        guard let image = cgImage else { return nil }
-        return UIImage(cgImage: image)
-    }
-
     func depthMapTransformedImage(orientation: UIInterfaceOrientation, viewPort: CGRect) -> UIImage? {
         guard let pixelBuffer = self.sceneDepth?.depthMap else { return nil }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
