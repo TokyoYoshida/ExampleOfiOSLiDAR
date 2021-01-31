@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YjT-ty-QA7">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ARView-->
+        <scene sceneID="Ibi-50-bd7">
+            <objects>
+                <viewController id="YjT-ty-QA7" userLabel="ARView" customClass="ConfidenceMapViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RXz-wU-k4F"/>
+                        <viewControllerLayoutGuide type="bottom" id="bg5-vm-W6Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sOf-W8-5DP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08M-9e-Scj">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </arView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JOs-pb-phS">
+                                <rect key="frame" x="50" y="103" width="314" height="700"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="700" id="4iy-wq-htd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eWn-Xg-Vi5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JOs-pb-phS" firstAttribute="leading" secondItem="sOf-W8-5DP" secondAttribute="leading" constant="50" id="7Dx-4q-Dy6"/>
+                            <constraint firstItem="JOs-pb-phS" firstAttribute="centerY" secondItem="08M-9e-Scj" secondAttribute="centerY" id="LvY-4z-PUw"/>
+                            <constraint firstItem="bg5-vm-W6Z" firstAttribute="top" secondItem="08M-9e-Scj" secondAttribute="bottom" id="XxZ-Ej-ia6"/>
+                            <constraint firstAttribute="trailing" secondItem="JOs-pb-phS" secondAttribute="trailing" constant="50" id="YXb-dR-LCT"/>
+                            <constraint firstItem="08M-9e-Scj" firstAttribute="top" secondItem="RXz-wU-k4F" secondAttribute="bottom" id="awG-Db-jNc"/>
+                            <constraint firstItem="08M-9e-Scj" firstAttribute="leading" secondItem="sOf-W8-5DP" secondAttribute="leading" id="kqN-BA-GzP"/>
+                            <constraint firstAttribute="trailing" secondItem="08M-9e-Scj" secondAttribute="trailing" id="uhO-bE-jp1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jZz-Kp-MEe"/>
+                    <connections>
+                        <outlet property="arView" destination="08M-9e-Scj" id="XZp-MT-mBf"/>
+                        <outlet property="imageView" destination="JOs-pb-phS" id="oVG-AC-lcf"/>
+                        <outlet property="imageViewHeight" destination="4iy-wq-htd" id="5Cx-pi-YUj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ju6-6G-5ZC" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="-328"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

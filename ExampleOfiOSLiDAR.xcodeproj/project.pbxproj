@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */; };
+		1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */; };
 		1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
 		1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceMapViewController.swift; sourceTree = "<group>"; };
+		1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConfidenceMap.storyboard; sourceTree = "<group>"; };
 		1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARFrame+Ext.swift"; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEE225925A7039B00706DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E2B6D5525C68D0800F76D8C /* ConfidenceMap */ = {
+			isa = PBXGroup;
+			children = (
+				1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */,
+				1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */,
+			);
+			path = ConfidenceMap;
+			sourceTree = "<group>";
+		};
 		1EEE224D25A7039B00706DE8 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				1EF190FA25C60418005064FC /* Depth */,
+				1E2B6D5525C68D0800F76D8C /* ConfidenceMap */,
 				1EF190FB25C60444005064FC /* Common */,
 			);
 			path = Samples;
@@ -272,6 +286,7 @@
 			files = (
 				1EEE226625A7039C00706DE8 /* LaunchScreen.storyboard in Resources */,
 				1EF1910025C604C5005064FC /* DepthMap.storyboard in Resources */,
+				1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */,
 				1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */,
 				1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */,
 			);
@@ -303,6 +318,7 @@
 				1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */,
 				1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */,
 				1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */,
+				1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
 			);
