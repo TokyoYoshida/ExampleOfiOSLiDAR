@@ -24,6 +24,10 @@ extension ARFrame {
     }
 
     func ConfidenceMapTransformedImage(orientation: UIInterfaceOrientation, viewPort: CGRect) -> UIImage? {
+        func confienceValueToPixcelValue(confidenceValue: UInt8) -> UInt8 {
+            guard confidenceValue <= ARConfidenceLevel.high.rawValue else {return 0}
+            return UInt8(floor(Float(confidenceValue) / Float(ARConfidenceLevel.high.rawValue) * 255))
+        }
         guard let pixelBuffer = self.sceneDepth?.confidenceMap else { return nil }
         CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
         guard let base = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
@@ -31,8 +35,8 @@ extension ARFrame {
         let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
         for i in stride(from: 0, to: bytesPerRow*height, by: MemoryLayout<UInt8>.stride) {
             let data = base.load(fromByteOffset: i, as: UInt8.self)
-            let v = UInt8(floor(Float(data) / Float(ARConfidenceLevel.high.rawValue) * 255))
-            base.storeBytes(of: v, toByteOffset: i, as: UInt8.self)
+            let pixcelValue = confienceValueToPixcelValue(confidenceValue: data)
+            base.storeBytes(of: pixcelValue, toByteOffset: i, as: UInt8.self)
         }
         CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
