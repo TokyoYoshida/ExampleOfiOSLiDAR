@@ -25,6 +25,16 @@ extension ARFrame {
 
     func ConfidenceMapTransformedImage(orientation: UIInterfaceOrientation, viewPort: CGRect) -> UIImage? {
         guard let pixelBuffer = self.sceneDepth?.confidenceMap else { return nil }
+        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
+        guard let base = CVPixelBufferGetBaseAddress(pixelBuffer) else { return nil }
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+        for i in stride(from: 0, to: bytesPerRow*height, by: MemoryLayout<UInt8>.stride) {
+            let data = base.load(fromByteOffset: i, as: UInt8.self)
+            let v = UInt8(floor(Float(data) / Float(ARConfidenceLevel.high.rawValue) * 255))
+            base.storeBytes(of: v, toByteOffset: i, as: UInt8.self)
+        }
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         return UIImage(ciImage: screenTransformed(ciImage: ciImage, orientation: orientation, viewPort: viewPort))
     }
