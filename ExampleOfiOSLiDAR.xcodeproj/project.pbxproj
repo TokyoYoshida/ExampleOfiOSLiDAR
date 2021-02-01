@@ -10,6 +10,8 @@
 		1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */; };
 		1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */; };
 		1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */; };
+		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
+		1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
 		1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */; };
 		1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225D25A7039B00706DE8 /* Experience.rcproject */; };
@@ -45,6 +47,8 @@
 		1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceMapViewController.swift; sourceTree = "<group>"; };
 		1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConfidenceMap.storyboard; sourceTree = "<group>"; };
 		1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARFrame+Ext.swift"; sourceTree = "<group>"; };
+		1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collision.storyboard; sourceTree = "<group>"; };
+		1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionViewController.swift; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEE225925A7039B00706DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EEE225B25A7039B00706DE8 /* DepthMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthMapViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,15 @@
 				1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */,
 			);
 			path = ConfidenceMap;
+			sourceTree = "<group>";
+		};
+		1ED25C3925C7EC5000CDB5AE /* Collision */ = {
+			isa = PBXGroup;
+			children = (
+				1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */,
+				1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */,
+			);
+			path = Collision;
 			sourceTree = "<group>";
 		};
 		1EEE224D25A7039B00706DE8 = {
@@ -159,6 +172,7 @@
 			children = (
 				1EF190FA25C60418005064FC /* Depth */,
 				1E2B6D5525C68D0800F76D8C /* ConfidenceMap */,
+				1ED25C3925C7EC5000CDB5AE /* Collision */,
 				1EF190FB25C60444005064FC /* Common */,
 			);
 			path = Samples;
@@ -289,6 +303,7 @@
 				1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */,
 				1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */,
 				1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */,
+				1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */,
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
 				1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */,
