@@ -25,20 +25,13 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     }()
 
     override func viewDidLoad() {
-        func buildConfigure() -> ARWorldTrackingConfiguration {
-            let configuration = ARWorldTrackingConfiguration()
-
-            configuration.environmentTexturing = .automatic
-            if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
-               configuration.frameSemantics = .sceneDepth
-            }
-
-            return configuration
-        }
         super.viewDidLoad()
         
         arView.session.delegate = self
-        let configuration = buildConfigure()
+
+        
+        // Add the box anchor to the scene
+
         arView.environment.sceneUnderstanding.options = []
         arView.environment.sceneUnderstanding.options.insert(.occlusion)
         arView.environment.sceneUnderstanding.options.insert(.physics)
@@ -46,7 +39,14 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
         arView.automaticallyConfigureSession = false
 
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.sceneReconstruction = .meshWithClassification
 
+        configuration.environmentTexturing = .automatic
+        if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+           // Activate sceneDepth
+           configuration.frameSemantics = .sceneDepth
+        }
         arView.session.run(configuration)
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
