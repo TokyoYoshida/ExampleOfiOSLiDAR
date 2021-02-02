@@ -25,36 +25,43 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     }()
 
     override func viewDidLoad() {
+        func setARViewOptions() {
+            arView.environment.sceneUnderstanding.options = []
+            arView.environment.sceneUnderstanding.options.insert(.occlusion)
+            arView.environment.sceneUnderstanding.options.insert(.physics)
+            arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
+            arView.automaticallyConfigureSession = false
+        }
+        func buildConfigure() -> ARWorldTrackingConfiguration {
+            let configuration = ARWorldTrackingConfiguration()
+
+            configuration.sceneReconstruction = .meshWithClassification
+            configuration.environmentTexturing = .automatic
+            if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+               configuration.frameSemantics = .sceneDepth
+            }
+
+            return configuration
+        }
+        func initARView() {
+            setARViewOptions()
+            let configuration = buildConfigure()
+            arView.session.run(configuration)
+        }
+        func addGesture() {
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            arView.addGestureRecognizer(tapRecognizer)
+        }
+        func loadAnchor() {
+            let boxAnchor = try! Experience.loadBox()
+            arView.scene.anchors.append(boxAnchor)
+        }
         super.viewDidLoad()
         
         arView.session.delegate = self
-
-        
-        // Add the box anchor to the scene
-
-        arView.environment.sceneUnderstanding.options = []
-        arView.environment.sceneUnderstanding.options.insert(.occlusion)
-        arView.environment.sceneUnderstanding.options.insert(.physics)
-//        arView.debugOptions.insert(.showSceneUnderstanding)
-        arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
-        arView.automaticallyConfigureSession = false
-
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.sceneReconstruction = .meshWithClassification
-
-        configuration.environmentTexturing = .automatic
-        if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
-           // Activate sceneDepth
-           configuration.frameSemantics = .sceneDepth
-        }
-        arView.session.run(configuration)
-
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        arView.addGestureRecognizer(tapRecognizer)
-
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
-        arView.scene.anchors.append(boxAnchor)
+        initARView()
+        addGesture()
+        loadAnchor()
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
