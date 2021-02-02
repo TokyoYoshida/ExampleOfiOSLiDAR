@@ -39,10 +39,41 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         
         arView.session.delegate = self
         let configuration = buildConfigure()
+        arView.environment.sceneUnderstanding.options = []
+        arView.environment.sceneUnderstanding.options.insert(.occlusion)
+        arView.environment.sceneUnderstanding.options.insert(.physics)
+//        arView.debugOptions.insert(.showSceneUnderstanding)
+        arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
+        arView.automaticallyConfigureSession = false
+
+
         arView.session.run(configuration)
+
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        arView.addGestureRecognizer(tapRecognizer)
+
+        // Load the "Box" scene from the "Experience" Reality File
+        let boxAnchor = try! Experience.loadBox()
+        arView.scene.anchors.append(boxAnchor)
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
+//        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
+    }
+
+    @objc
+    func handleTap(_ sender: UITapGestureRecognizer) {
+        func sphere(radius: Float, color: UIColor) -> ModelEntity {
+            let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
+            // Move sphere up by half its diameter so that it does not intersect with the mesh
+            sphere.position.y = radius
+            return sphere
+        }
+        let tapLocation = sender.location(in: arView)
+        if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .any).first {
+            let resultAnchor = AnchorEntity(world: result.worldTransform)
+            resultAnchor.addChild(sphere(radius: 0.1, color: .lightGray))
+            arView.scene.addAnchor(resultAnchor)
+        }
     }
 }
