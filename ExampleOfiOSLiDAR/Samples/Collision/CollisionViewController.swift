@@ -70,17 +70,29 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
 
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
-        func sphere(radius: Float, color: UIColor) -> ModelEntity {
+        func getTapPositionInWorld() -> SIMD3<Float> {
+            let screenPos = sender.location(in: nil)
+            let worldPos = arView.unproject(screenPos, viewport: arView.bounds)!
+            return worldPos
+        }
+        func buildSphere(radius: Float, color: UIColor) -> ModelEntity {
             let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
-            // Move sphere up by half its diameter so that it does not intersect with the mesh
             sphere.position.y = radius
             return sphere
         }
-        let tapLocation = sender.location(in: arView)
-        if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .any).first {
-            let resultAnchor = AnchorEntity(world: result.worldTransform)
-            resultAnchor.addChild(sphere(radius: 0.1, color: .lightGray))
-            arView.scene.addAnchor(resultAnchor)
-        }
+        let tapLocation = getTapPositionInWorld()
+        let sphere = buildSphere(radius: 0.1, color: .lightGray)
+//        sphere.position = tapLocation
+        let transform: simd_float4x4(tapLocation.x, tapLocation.y, tapLocation.z, 1)
+        let anchor = ARAnchor(name:"sphere",
+                              toransform: transform)
+        arView.scene.anchors.append(anchor)
+
+//        let transform = simd
+//        if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .any).first {
+//            let resultAnchor = AnchorEntity(world: result.worldTransform)
+//            resultAnchor.addChild(buildSphere(radius: 0.1, color: .lightGray))
+//            arView.scene.addAnchor(resultAnchor)
+//        }
     }
 }
