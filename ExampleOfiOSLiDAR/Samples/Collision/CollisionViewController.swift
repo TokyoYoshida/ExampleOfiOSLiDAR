@@ -71,20 +71,12 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         func loadAnchor() {
             arView.scene.anchors.append(boxAnchor)
         }
-        func setPlaneAnchor() {
-            let entity = CustomBox()
-            let anchorEntity = AnchorEntity(plane: .horizontal)
-            anchorEntity.setScale(SIMD3<Float>(1, 1, 1), relativeTo: anchorEntity)
-            anchorEntity.addChild(entity)
-            arView.scene.anchors.append(anchorEntity)
-        }
         super.viewDidLoad()
         
         arView.session.delegate = self
         initARView()
         addGesture()
         loadAnchor()
-        setPlaneAnchor()
     }
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
