@@ -8,11 +8,25 @@
 import RealityKit
 import ARKit
 
+class CustomBox: Entity, HasModel {
+  required init() {
+    super.init()
+    self.components[ModelComponent] = ModelComponent(
+      mesh: .generateBox(size: [1, 0.2, 1]),
+      materials: [SimpleMaterial(
+                    color: .red,
+        isMetallic: false)
+      ]
+    )
+  }
+}
+
 class CollisionViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     @IBOutlet weak var imageView: UIImageView!
-    
+    let boxAnchor = try! Experience.loadBox()
+
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
             fatalError()
@@ -37,6 +51,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
 
             configuration.sceneReconstruction = .meshWithClassification
             configuration.environmentTexturing = .automatic
+            configuration.planeDetection = [.horizontal]
             if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
                configuration.frameSemantics = .sceneDepth
             }
@@ -53,8 +68,13 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             arView.addGestureRecognizer(tapRecognizer)
         }
         func loadAnchor() {
-            let boxAnchor = try! Experience.loadBox()
             arView.scene.anchors.append(boxAnchor)
+        }
+        func setPlaneAnchor() {
+            let entity = CustomBox()
+            let anchorEntity = AnchorEntity(plane: .horizontal)
+            anchorEntity.setScale(SIMD3<Float>(1, 1, 1), relativeTo: anchorEntity)
+            anchorEntity.addChild(entity)
         }
         super.viewDidLoad()
         
@@ -62,12 +82,17 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         initARView()
         addGesture()
         loadAnchor()
+        setPlaneAnchor()
     }
 
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-//        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        for anchor in anchors {
+            guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
+            boxAnchor.setTransformMatrix(planeAnchor.transform, relativeTo: nil)
+        }
     }
 
+    
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
         func sphere(radius: Float, color: UIColor) -> ModelEntity {
