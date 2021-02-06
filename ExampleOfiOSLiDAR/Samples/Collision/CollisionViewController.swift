@@ -72,10 +72,11 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             arView.scene.anchors.append(boxAnchor)
         }
         func setPlaneAnchor() {
-//            let entity = CustomBox()
+            let entity = CustomBox()
             let anchorEntity = AnchorEntity(plane: .horizontal)
             anchorEntity.setScale(SIMD3<Float>(1, 1, 1), relativeTo: anchorEntity)
-            anchorEntity.addChild(plane)
+            anchorEntity.addChild(entity)
+            arView.scene.anchors.append(anchorEntity)
         }
         super.viewDidLoad()
         
@@ -94,7 +95,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
                 planeAnchor.transform.columns.3.x,
                 planeAnchor.transform.columns.3.y,
                 planeAnchor.transform.columns.3.z)
-            boxAnchor.addChild(box)
+//            boxAnchor.addChild(box)
         }
     }
     
