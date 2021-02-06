@@ -26,6 +26,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     @IBOutlet var arView: ARView!
     @IBOutlet weak var imageView: UIImageView!
     let boxAnchor = try! Experience.loadBox()
+    let plane = CustomBox()
 
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -71,10 +72,10 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             arView.scene.anchors.append(boxAnchor)
         }
         func setPlaneAnchor() {
-            let entity = CustomBox()
+//            let entity = CustomBox()
             let anchorEntity = AnchorEntity(plane: .horizontal)
             anchorEntity.setScale(SIMD3<Float>(1, 1, 1), relativeTo: anchorEntity)
-            anchorEntity.addChild(entity)
+            anchorEntity.addChild(plane)
         }
         super.viewDidLoad()
         
@@ -84,11 +85,27 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         loadAnchor()
         setPlaneAnchor()
     }
-
+    
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        for anchor in anchors {
+            guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
+            let box = CustomBox()
+            box.position = simd_make_float3(
+                planeAnchor.transform.columns.3.x,
+                planeAnchor.transform.columns.3.y,
+                planeAnchor.transform.columns.3.z)
+            boxAnchor.addChild(box)
+        }
+    }
+    
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         for anchor in anchors {
             guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
-            boxAnchor.setTransformMatrix(planeAnchor.transform, relativeTo: nil)
+//            boxAnchor.setTransformMatrix(planeAnchor.transform, relativeTo: nil)
+            plane.position = simd_make_float3(
+                planeAnchor.transform.columns.3.x,
+                planeAnchor.transform.columns.3.y,
+                planeAnchor.transform.columns.3.z)
         }
     }
 
