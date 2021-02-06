@@ -107,15 +107,19 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     func handleTap(_ sender: UITapGestureRecognizer) {
         func sphere(radius: Float, color: UIColor) -> ModelEntity {
             let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
-            // Move sphere up by half its diameter so that it does not intersect with the mesh
+
             sphere.position.y = radius
             return sphere
         }
-        let tapLocation = sender.location(in: arView)
-        if let result = arView.raycast(from: tapLocation, allowing: .estimatedPlane, alignment: .any).first {
-            let resultAnchor = AnchorEntity(world: result.worldTransform)
+        func addObjectOnTappedPoint() {
+            let tappedLocation = sender.location(in: arView)
+            
+            let tappedWorld = arView.unproject(tappedLocation, viewport: arView.bounds)
+            let resultAnchor = AnchorEntity()
             resultAnchor.addChild(sphere(radius: 0.1, color: .lightGray))
             arView.scene.addAnchor(resultAnchor)
+            resultAnchor.position = tappedWorld!
         }
+        addObjectOnTappedPoint()
     }
 }
