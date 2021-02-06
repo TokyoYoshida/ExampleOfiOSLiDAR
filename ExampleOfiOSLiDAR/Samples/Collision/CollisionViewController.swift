@@ -7,6 +7,7 @@
 
 import RealityKit
 import ARKit
+import Combine
 
 class CustomBox: Entity, HasModel {
   required init() {
@@ -27,6 +28,8 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     @IBOutlet weak var imageView: UIImageView!
     let boxAnchor = try! Experience.loadBox()
     let plane = CustomBox()
+    var sceneObserver: Cancellable?
+    let anchorName = "ball"
 
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -79,6 +82,21 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         loadAnchor()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        sceneObserver = arView.scene.subscribe(to: SceneEvents.Update.self, {event in
+                self.updateLoop(deltaTimeInterval: event.deltaTime)
+        })
+    }
+    
+    func updateLoop(deltaTimeInterval: TimeInterval) {
+        let anchors = arView.scene.anchors.filter {
+            $0.name == anchorName
+        }
+        for anchor in anchors {
+            anchor.position.z -= 0.1
+        }
+    }
+
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
             guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
@@ -116,6 +134,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             
             let tappedWorld = arView.unproject(tappedLocation, viewport: arView.bounds)
             let resultAnchor = AnchorEntity()
+            resultAnchor.name = anchorName
             resultAnchor.addChild(sphere(radius: 0.1, color: .lightGray))
             arView.scene.addAnchor(resultAnchor)
             resultAnchor.position = tappedWorld!
