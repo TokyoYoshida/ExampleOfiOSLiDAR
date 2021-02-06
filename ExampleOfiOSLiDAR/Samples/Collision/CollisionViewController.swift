@@ -88,13 +88,20 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         })
     }
     
+    // main loop for each frame
     func updateLoop(deltaTimeInterval: TimeInterval) {
+        func getZForward(transform: simd_float4x4) -> SIMD3<Float> {
+            return SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
+        }
+        guard let camera = arView.session.currentFrame?.camera else {return}
+        let foward = getZForward(transform: camera.transform)
         let anchors = arView.scene.anchors.filter {
             $0.name == anchorName
         }
         for anchor in anchors {
-            anchor.position.z -= 0.1
+            anchor.position -= foward*0.1
         }
+        
     }
 
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
