@@ -99,7 +99,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             $0.name == anchorName
         }
         for anchor in anchors {
-            anchor.position -= foward*0.1
+//            anchor.position -= foward*0.1
         }
         
     }
@@ -131,9 +131,12 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
         func sphere(radius: Float, color: UIColor) -> ModelEntity {
-            let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
+            let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: true)])
 
-            sphere.position.y = radius
+            sphere.generateCollisionShapes(recursive: true)
+            sphere.physicsBody = .init()
+            sphere.physicsBody?.mode = .dynamic
+
             return sphere
         }
         func addObjectOnTappedPoint() {
@@ -142,7 +145,7 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             let tappedWorld = arView.unproject(tappedLocation, viewport: arView.bounds)
             let resultAnchor = AnchorEntity()
             resultAnchor.name = anchorName
-            resultAnchor.addChild(sphere(radius: 0.1, color: .lightGray))
+            resultAnchor.addChild(sphere(radius: 0.01, color: .lightGray))
             arView.scene.addAnchor(resultAnchor)
             resultAnchor.position = tappedWorld!
         }
