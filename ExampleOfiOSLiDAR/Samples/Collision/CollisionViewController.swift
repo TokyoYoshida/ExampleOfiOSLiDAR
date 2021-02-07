@@ -88,11 +88,12 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
         })
     }
     
+    func getZForward(transform: simd_float4x4) -> SIMD3<Float> {
+        return SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
+    }
+
     // main loop for each frame
     func updateLoop(deltaTimeInterval: TimeInterval) {
-        func getZForward(transform: simd_float4x4) -> SIMD3<Float> {
-            return SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
-        }
         guard let camera = arView.session.currentFrame?.camera else {return}
         let foward = getZForward(transform: camera.transform)
         let anchors = arView.scene.anchors.filter {
@@ -130,24 +131,35 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
-        func sphere(radius: Float, color: UIColor) -> ModelEntity {
+        func sphere(radius: Float, color: UIColor, foward: SIMD3<Float>) -> ModelEntity {
             let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: true)])
 
             sphere.generateCollisionShapes(recursive: true)
             sphere.physicsBody = .init()
             sphere.physicsBody?.mode = .dynamic
+            sphere.physicsMotion =  PhysicsMotionComponent(linearVelocity: foward,
+                                                           angularVelocity: [0, 0, 0])
 
             return sphere
         }
+        func calcBallDirection(cameraTransform: simd_float4x4) -> SIMD3<Float> {
+//            let rotation = simd_float4(1, 0, 0, -.pi/2)
+//            let trans = simd_mul(cameraTransform, rotation)
+            return -getZForward(transform: cameraTransform)
+        }
         func addObjectOnTappedPoint() {
-            let tappedLocation = sender.location(in: arView)
-            
-            let tappedWorld = arView.unproject(tappedLocation, viewport: arView.bounds)
-            let resultAnchor = AnchorEntity()
+            guard let currentFrame = arView.session.currentFrame else {return}
+            var translation = matrix_identity_float4x4
+           translation.columns.3.z = -0.1
+           let transform = simd_mul(currentFrame.camera.transform, translation)
+
+            let forward = calcBallDirection(cameraTransform: transform)
+            let resultAnchor = AnchorEntity(world: transform)
             resultAnchor.name = anchorName
-            resultAnchor.addChild(sphere(radius: 0.01, color: .lightGray))
+            resultAnchor.addChild(sphere(radius: 0.01, color: .lightGray, foward: forward))
             arView.scene.addAnchor(resultAnchor)
-            resultAnchor.position = tappedWorld!
+//            resultAnchor.transform = arView.cameraTransform
+//            resultAnchor.position += getZForward(transform: arView.cameraTransform.matrix)*1
         }
         addObjectOnTappedPoint()
     }
