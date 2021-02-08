@@ -30,8 +30,13 @@ class MenuViewModel {
         ),
         MenuItem (
             title: "Confidence Map",
-            description: "Display the confi confidence on the screen.",
+            description: "Display the confidence on the screen.",
             prefix: "ConfidenceMap"
+        ),
+        MenuItem (
+            title: "Collision",
+            description: "Collision detection of objects using LiDAR.",
+            prefix: "Collision"
         )
     ]
     
