@@ -143,9 +143,16 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             return sphere
         }
         func calcBallDirection(cameraTransform: simd_float4x4) -> SIMD3<Float> {
-//            let rotation = simd_float4(1, 0, 0, -.pi/2)
-//            let trans = simd_mul(cameraTransform, rotation)
-            return -getZForward(transform: cameraTransform)
+            var moveTrans = matrix_identity_float4x4
+            moveTrans.columns.3.z = -0.1
+            var rotateXTrans = matrix_identity_float4x4
+            let rad = Float.pi/4
+            rotateXTrans.columns.1.y = cos(rad)
+            rotateXTrans.columns.1.z = sin(rad)
+            rotateXTrans.columns.2.y = -sin(rad)
+            rotateXTrans.columns.2.z = cos(rad)
+            let transform = cameraTransform * moveTrans * rotateXTrans
+            return -getZForward(transform: transform)
         }
         func addObjectOnTappedPoint() {
             guard let currentFrame = arView.session.currentFrame else {return}
