@@ -131,42 +131,50 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
     
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
-        func sphere(radius: Float, color: UIColor, foward: SIMD3<Float>) -> ModelEntity {
+        func buildBall(radius: Float, color: UIColor, linearVelocity: SIMD3<Float>) -> ModelEntity {
             let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: true)])
 
             sphere.generateCollisionShapes(recursive: true)
             sphere.physicsBody = .init()
             sphere.physicsBody?.mode = .dynamic
-            sphere.physicsMotion =  PhysicsMotionComponent(linearVelocity: foward,
+            sphere.physicsMotion =  PhysicsMotionComponent(linearVelocity: linearVelocity,
                                                            angularVelocity: [0, 0, 0])
 
             return sphere
         }
+        func calcBallPosition(cameraTransform: simd_float4x4) -> simd_float4x4 {
+           var translation = matrix_identity_float4x4
+           translation.columns.3.z = -0.1
+           return simd_mul(cameraTransform, translation)
+        }
         func calcBallDirection(cameraTransform: simd_float4x4) -> SIMD3<Float> {
             var moveTrans = matrix_identity_float4x4
             moveTrans.columns.3.z = -0.1
+
             var rotateXTrans = matrix_identity_float4x4
             let rad = Float.pi/4
             rotateXTrans.columns.1.y = cos(rad)
             rotateXTrans.columns.1.z = sin(rad)
             rotateXTrans.columns.2.y = -sin(rad)
             rotateXTrans.columns.2.z = cos(rad)
+
             let transform = cameraTransform * moveTrans * rotateXTrans
+
             return -getZForward(transform: transform)
         }
         func addObjectOnTappedPoint() {
             guard let currentFrame = arView.session.currentFrame else {return}
-            var translation = matrix_identity_float4x4
-           translation.columns.3.z = -0.1
-           let transform = simd_mul(currentFrame.camera.transform, translation)
+            let cameraTransform = currentFrame.camera.transform
 
-            let forward = calcBallDirection(cameraTransform: transform)
-            let resultAnchor = AnchorEntity(world: transform)
+            let ballPosition = calcBallPosition(cameraTransform: cameraTransform)
+            let ballVelocity = calcBallDirection(cameraTransform: cameraTransform)
+
+            let resultAnchor = AnchorEntity(world: ballPosition)
             resultAnchor.name = anchorName
-            resultAnchor.addChild(sphere(radius: 0.01, color: .lightGray, foward: forward))
+            let ball = buildBall(radius: 0.01, color: .lightGray, linearVelocity: ballVelocity)
+
+            resultAnchor.addChild(ball)
             arView.scene.addAnchor(resultAnchor)
-//            resultAnchor.transform = arView.cameraTransform
-//            resultAnchor.position += getZForward(transform: arView.cameraTransform.matrix)*1
         }
         addObjectOnTappedPoint()
     }
