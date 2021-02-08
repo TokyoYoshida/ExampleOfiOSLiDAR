@@ -9,26 +9,9 @@ import RealityKit
 import ARKit
 import Combine
 
-class CustomBox: Entity, HasModel {
-  required init() {
-    super.init()
-    self.components[ModelComponent] = ModelComponent(
-      mesh: .generateBox(size: [1, 0.2, 1]),
-      materials: [SimpleMaterial(
-                    color: .red,
-        isMetallic: false)
-      ]
-    )
-  }
-}
-
 class CollisionViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
-    @IBOutlet weak var imageView: UIImageView!
-    let boxAnchor = try! Experience.loadBox()
-    let plane = CustomBox()
-    var sceneObserver: Cancellable?
     let anchorName = "ball"
 
     var orientation: UIInterfaceOrientation {
@@ -71,64 +54,17 @@ class CollisionViewController: UIViewController, ARSessionDelegate {
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
             arView.addGestureRecognizer(tapRecognizer)
         }
-        func loadAnchor() {
-            arView.scene.anchors.append(boxAnchor)
-        }
         super.viewDidLoad()
         
         arView.session.delegate = self
         initARView()
         addGesture()
-        loadAnchor()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        sceneObserver = arView.scene.subscribe(to: SceneEvents.Update.self, {event in
-                self.updateLoop(deltaTimeInterval: event.deltaTime)
-        })
     }
     
     func getZForward(transform: simd_float4x4) -> SIMD3<Float> {
         return SIMD3<Float>(transform.columns.2.x, transform.columns.2.y, transform.columns.2.z)
     }
 
-    // main loop for each frame
-    func updateLoop(deltaTimeInterval: TimeInterval) {
-        guard let camera = arView.session.currentFrame?.camera else {return}
-        let foward = getZForward(transform: camera.transform)
-        let anchors = arView.scene.anchors.filter {
-            $0.name == anchorName
-        }
-        for anchor in anchors {
-//            anchor.position -= foward*0.1
-        }
-        
-    }
-
-    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-        for anchor in anchors {
-            guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
-            let box = CustomBox()
-            box.position = simd_make_float3(
-                planeAnchor.transform.columns.3.x,
-                planeAnchor.transform.columns.3.y,
-                planeAnchor.transform.columns.3.z)
-//            boxAnchor.addChild(box)
-        }
-    }
-    
-    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        for anchor in anchors {
-            guard let planeAnchor = anchor as? ARPlaneAnchor else { continue }
-//            boxAnchor.setTransformMatrix(planeAnchor.transform, relativeTo: nil)
-            plane.position = simd_make_float3(
-                planeAnchor.transform.columns.3.x,
-                planeAnchor.transform.columns.3.y,
-                planeAnchor.transform.columns.3.z)
-        }
-    }
-
-    
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
         func buildBall(radius: Float, color: UIColor, linearVelocity: SIMD3<Float>) -> ModelEntity {
