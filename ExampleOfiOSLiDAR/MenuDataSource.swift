@@ -37,6 +37,11 @@ class MenuViewModel {
             title: "Collision",
             description: "Collision detection of objects using LiDAR.",
             prefix: "Collision"
+        ),
+        MenuItem (
+            title: "Capture",
+            description: "Capture object.",
+            prefix: "Capture"
         )
     ]
     
