@@ -11,7 +11,6 @@ import ARKit
 class CaptureViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
-    @IBOutlet weak var imageView: UIImageView!
     
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -43,6 +42,5 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        imageView.image = session.currentFrame?.depthMapTransformedImage(orientation: orientation, viewPort: self.imageView.bounds)
     }
 }

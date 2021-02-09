@@ -23,30 +23,19 @@
                             <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLf-qS-Ymx">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </arView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPd-nq-TXb">
-                                <rect key="frame" x="50" y="103" width="314" height="700"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="700" id="5Og-Bf-XEk"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qxu-PL-Kq3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CLf-qS-Ymx" secondAttribute="trailing" id="9sG-9o-SIr"/>
                             <constraint firstItem="CLf-qS-Ymx" firstAttribute="top" secondItem="enk-7a-iqY" secondAttribute="bottom" id="EEC-ye-VgR"/>
-                            <constraint firstItem="iPd-nq-TXb" firstAttribute="leading" secondItem="Mzy-3B-0VO" secondAttribute="leading" constant="50" id="JtO-bd-bci"/>
                             <constraint firstItem="ctR-zU-xIe" firstAttribute="top" secondItem="CLf-qS-Ymx" secondAttribute="bottom" id="PfC-rV-T6S"/>
-                            <constraint firstItem="iPd-nq-TXb" firstAttribute="centerY" secondItem="CLf-qS-Ymx" secondAttribute="centerY" id="QuJ-JA-0EO"/>
-                            <constraint firstAttribute="trailing" secondItem="iPd-nq-TXb" secondAttribute="trailing" constant="50" id="iyc-1b-adM"/>
                             <constraint firstItem="CLf-qS-Ymx" firstAttribute="leading" secondItem="Mzy-3B-0VO" secondAttribute="leading" id="sPl-uM-oAH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nwV-uc-PXW"/>
                     <connections>
                         <outlet property="arView" destination="CLf-qS-Ymx" id="dBB-Wm-lMR"/>
-                        <outlet property="imageView" destination="iPd-nq-TXb" id="Lnq-6g-l6a"/>
-                        <outlet property="imageViewHeight" destination="5Og-Bf-XEk" id="TlU-3x-abg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fml-4v-v6m" sceneMemberID="firstResponder"/>
