@@ -24,21 +24,27 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     }()
 
     override func viewDidLoad() {
+        func setARViewOptions() {
+            arView.debugOptions.insert(.showSceneUnderstanding)
+        }
         func buildConfigure() -> ARWorldTrackingConfiguration {
             let configuration = ARWorldTrackingConfiguration()
 
             configuration.environmentTexturing = .automatic
+            configuration.sceneReconstruction = .mesh
             if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
                configuration.frameSemantics = .sceneDepth
             }
 
             return configuration
         }
+        func initARView() {
+            setARViewOptions()
+            let configuration = buildConfigure()
+            arView.session.run(configuration)
+        }
         super.viewDidLoad()
-        
-        arView.session.delegate = self
-        let configuration = buildConfigure()
-        arView.session.run(configuration)
+        initARView()
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
