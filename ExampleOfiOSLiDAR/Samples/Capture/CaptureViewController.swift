@@ -43,10 +43,21 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
             let configuration = buildConfigure()
             arView.session.run(configuration)
         }
+        func addGesture() {
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            arView.addGestureRecognizer(tapRecognizer)
+        }
+        arView.session.delegate = self
         super.viewDidLoad()
         initARView()
+        addGesture()
     }
 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
+    }
+    
+    @objc
+    func handleTap(_ sender: UITapGestureRecognizer) {
+        
     }
 }
