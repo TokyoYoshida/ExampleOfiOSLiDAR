@@ -25,7 +25,7 @@
                             </arView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmq-bK-grk" userLabel="Export">
                                 <rect key="frame" x="184" y="782" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Export"/>
                                 <connections>
                                     <action selector="tappedExportButton:" destination="dhU-6M-ITv" eventType="touchUpInside" id="3BH-Np-6e5"/>
                                 </connections>

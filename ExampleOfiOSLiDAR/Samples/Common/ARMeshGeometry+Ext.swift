@@ -10,6 +10,8 @@ import ARKit
 import MetalKit
 
 extension ARMeshGeometry {
+    // helps from StackOverflow:
+    // https://stackoverflow.com/questions/61063571/arkit-3-5-how-to-export-obj-from-new-ipad-pro-with-lidar
     func toMDLMesh(device: MTLDevice) -> MDLMesh {
         let allocator = MTKMeshBufferAllocator(device: device);
 
