@@ -16,9 +16,9 @@ extension MDLMesh {
             return nil
         }
         let base = vertexBuffers.first!.map().bytes
-        let verticles = (0..<vertexCount).map {i in
+        let vertices = (0..<vertexCount).map {i in
             base.load(fromByteOffset: stride*i, as: SIMD3<Float>.self)
         }
-        return verticles
+        return vertices
     }
 }
