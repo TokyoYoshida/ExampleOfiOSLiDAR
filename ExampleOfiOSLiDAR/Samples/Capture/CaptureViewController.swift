@@ -57,7 +57,7 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
             let asset = MDLAsset()
 
             for anchor in meshAnchors {
-                let mdlMesh = anchor.geometry.toMDLMesh(device: device, camera: camera)
+                let mdlMesh = anchor.geometry.toMDLMesh(device: device, camera: camera, modelMatrix: anchor.transform)
                 asset.add(mdlMesh)
             }
             
