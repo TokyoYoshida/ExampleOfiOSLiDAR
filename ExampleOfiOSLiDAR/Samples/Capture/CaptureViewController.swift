@@ -71,27 +71,27 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     func exportMesh() {
         let meshAnchors = arView.session.currentFrame?.anchors.compactMap({ $0 as? ARMeshAnchor });
 
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
 
-            let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0];
-            let filename = directory.appendingPathComponent("MyFirstMesh.obj");
+            let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let url = directory.appendingPathComponent("scaned.obj")
 
-            guard let device = MTLCreateSystemDefaultDevice() else {
-                print("metal device could not be created");
-                return;
-            };
+            guard let device = MTLCreateSystemDefaultDevice() else {return}
 
-            let asset = MDLAsset();
+            let asset = MDLAsset()
 
             for anchor in meshAnchors! {
-                let mdlMesh = anchor.geometry.toMDLMesh(device: device);
-                asset.add(mdlMesh);
+                let mdlMesh = anchor.geometry.toMDLMesh(device: device)
+                asset.add(mdlMesh)
             }
 
             do {
-                try asset.export(to: filename);
+                try asset.export(to: url)
+                let vc = UIActivityViewController(activityItems: [url],applicationActivities: nil)
+                vc.popoverPresentationController?.sourceView = self.view
+                self.present(vc, animated: true, completion: nil)
             } catch {
-                print("failed to write to file");
+                print("failed")
             }
         }
     }
