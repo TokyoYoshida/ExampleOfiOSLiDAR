@@ -49,13 +49,15 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     }
 
     @IBAction func tappedExportButton(_ sender: UIButton) {
+        guard let camera = arView.session.currentFrame?.camera else {return}
+
         func convertToAsset(meshAnchors: [ARMeshAnchor]) -> MDLAsset? {
             guard let device = MTLCreateSystemDefaultDevice() else {return nil}
 
             let asset = MDLAsset()
 
             for anchor in meshAnchors {
-                let mdlMesh = anchor.geometry.toMDLMesh(device: device)
+                let mdlMesh = anchor.geometry.toMDLMesh(device: device, camera: camera)
                 asset.add(mdlMesh)
             }
             
