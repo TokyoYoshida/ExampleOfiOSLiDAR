@@ -17,7 +17,7 @@ extension ARMeshGeometry {
         return vertex
     }
     func calcTextureCoordinates(mesh: MDLMesh, camera: ARCamera, modelMatrix: simd_float4x4) -> [vector_float2]? {
-        guard let vertices = mesh.vertices() else {return nil}
+//        guard let vertices = mesh.vertices() else {return nil}
         let size = camera.imageResolution
         let arr = (0..<vertices.count).map {i in vertex(at: UInt32(i))}
         let textureCoordinates = arr.map { vertex -> vector_float2 in
