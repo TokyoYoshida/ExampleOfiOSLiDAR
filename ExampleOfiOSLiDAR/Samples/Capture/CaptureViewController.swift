@@ -58,6 +58,12 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
-        
+        guard let frame = arView.session.currentFrame else {return}
+        guard let device = MTLCreateSystemDefaultDevice() else {
+                    return
+                }
+                
+        let meshAnchors = frame.anchors.compactMap({ $0 as? ARMeshAnchor }) as [ARMeshAnchor]
+        print(meshAnchors[0].geometry.toMDLMesh(device: device))
     }
 }
