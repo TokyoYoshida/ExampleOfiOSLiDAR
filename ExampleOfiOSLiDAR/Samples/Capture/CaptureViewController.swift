@@ -58,7 +58,7 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
     
     @objc
     func handleTap(_ sender: UITapGestureRecognizer) {
-        exportMesh()
+//        exportMesh()
 //        guard let frame = arView.session.currentFrame else {return}
 //        guard let device = MTLCreateSystemDefaultDevice() else {
 //                    return
@@ -68,7 +68,7 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
 //        print(meshAnchors[0].geometry.toMDLMesh(device: device))
     }
     
-    func exportMesh() {
+    @IBAction func exportMesh(_ sender: UIButton) {
         let meshAnchors = arView.session.currentFrame?.anchors.compactMap({ $0 as? ARMeshAnchor });
 
         DispatchQueue.main.async {
@@ -88,7 +88,7 @@ class CaptureViewController: UIViewController, ARSessionDelegate {
             do {
                 try asset.export(to: url)
                 let vc = UIActivityViewController(activityItems: [url],applicationActivities: nil)
-                vc.popoverPresentationController?.sourceView = self.view
+                vc.popoverPresentationController?.sourceView = sender
                 self.present(vc, animated: true, completion: nil)
             } catch {
                 print("failed")
