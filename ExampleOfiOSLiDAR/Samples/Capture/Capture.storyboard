@@ -27,7 +27,7 @@
                                 <rect key="frame" x="184" y="782" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="exportMesh:" destination="dhU-6M-ITv" eventType="touchUpInside" id="3BH-Np-6e5"/>
+                                    <action selector="tappedExportButton:" destination="dhU-6M-ITv" eventType="touchUpInside" id="3BH-Np-6e5"/>
                                 </connections>
                             </button>
                         </subviews>
