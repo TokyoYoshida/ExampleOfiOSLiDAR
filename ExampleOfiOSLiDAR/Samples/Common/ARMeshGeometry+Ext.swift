@@ -65,6 +65,9 @@ extension ARMeshGeometry {
                        descriptor: vertexDescriptor,
                        submeshes: [submesh])
         
+        let t = calcTextureCoordinates(mesh: mesh, camera: camera, modelMatrix: modelMatrix)
+        print(t)
+        
         return mesh
     }
 }
