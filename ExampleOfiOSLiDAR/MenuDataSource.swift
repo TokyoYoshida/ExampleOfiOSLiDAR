@@ -39,9 +39,9 @@ class MenuViewModel {
             prefix: "Collision"
         ),
         MenuItem (
-            title: "Capture",
-            description: "Capture object.",
-            prefix: "Capture"
+            title: "Export",
+            description: "Export scaned object to .obj file.",
+            prefix: "Export"
         )
     ]
     

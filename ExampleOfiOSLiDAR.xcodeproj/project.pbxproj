@@ -10,8 +10,8 @@
 		1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12889B25D50CDB00661E0D /* MDLMesh+Ext.swift */; };
 		1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */; };
 		1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */; };
-		1E34C94525D3239E00800E8D /* Capture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E34C94425D3239E00800E8D /* Capture.storyboard */; };
-		1E34C94A25D323A700800E8D /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E34C94925D323A700800E8D /* CaptureViewController.swift */; };
+		1E34C94525D3239E00800E8D /* Export.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E34C94425D3239E00800E8D /* Export.storyboard */; };
+		1E34C94A25D323A700800E8D /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E34C94925D323A700800E8D /* ExportViewController.swift */; };
 		1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */; };
 		1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */; };
 		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
@@ -51,8 +51,8 @@
 		1E12889B25D50CDB00661E0D /* MDLMesh+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MDLMesh+Ext.swift"; sourceTree = "<group>"; };
 		1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceMapViewController.swift; sourceTree = "<group>"; };
 		1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConfidenceMap.storyboard; sourceTree = "<group>"; };
-		1E34C94425D3239E00800E8D /* Capture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Capture.storyboard; sourceTree = "<group>"; };
-		1E34C94925D323A700800E8D /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		1E34C94425D3239E00800E8D /* Export.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Export.storyboard; sourceTree = "<group>"; };
+		1E34C94925D323A700800E8D /* ExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARFrame+Ext.swift"; sourceTree = "<group>"; };
 		1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARMeshGeometry+Ext.swift"; sourceTree = "<group>"; };
 		1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collision.storyboard; sourceTree = "<group>"; };
@@ -111,13 +111,13 @@
 			path = ConfidenceMap;
 			sourceTree = "<group>";
 		};
-		1E34C94325D3237E00800E8D /* Capture */ = {
+		1E34C94325D3237E00800E8D /* Export */ = {
 			isa = PBXGroup;
 			children = (
-				1E34C94425D3239E00800E8D /* Capture.storyboard */,
-				1E34C94925D323A700800E8D /* CaptureViewController.swift */,
+				1E34C94425D3239E00800E8D /* Export.storyboard */,
+				1E34C94925D323A700800E8D /* ExportViewController.swift */,
 			);
-			path = Capture;
+			path = Export;
 			sourceTree = "<group>";
 		};
 		1ED25C3925C7EC5000CDB5AE /* Collision */ = {
@@ -190,7 +190,7 @@
 				1EF190FA25C60418005064FC /* Depth */,
 				1E2B6D5525C68D0800F76D8C /* ConfidenceMap */,
 				1ED25C3925C7EC5000CDB5AE /* Collision */,
-				1E34C94325D3237E00800E8D /* Capture */,
+				1E34C94325D3237E00800E8D /* Export */,
 				1EF190FB25C60444005064FC /* Common */,
 			);
 			path = Samples;
@@ -318,7 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E34C94525D3239E00800E8D /* Capture.storyboard in Resources */,
+				1E34C94525D3239E00800E8D /* Export.storyboard in Resources */,
 				1EEE226625A7039C00706DE8 /* LaunchScreen.storyboard in Resources */,
 				1EF1910025C604C5005064FC /* DepthMap.storyboard in Resources */,
 				1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */,
@@ -360,7 +360,7 @@
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
 				1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */,
-				1E34C94A25D323A700800E8D /* CaptureViewController.swift in Sources */,
+				1E34C94A25D323A700800E8D /* ExportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

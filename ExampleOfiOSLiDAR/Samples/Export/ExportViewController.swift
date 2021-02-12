@@ -1,5 +1,5 @@
 //
-//  CaptureViewController.swift
+//  ExportViewController.swift
 //  ExampleOfiOSLiDAR
 //
 //  Created by TokyoYoshida on 2021/02/10.
@@ -8,7 +8,7 @@
 import RealityKit
 import ARKit
 
-class CaptureViewController: UIViewController, ARSessionDelegate {
+class ExportViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     
