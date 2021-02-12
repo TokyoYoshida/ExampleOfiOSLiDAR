@@ -11,7 +11,7 @@
         <!--ARView-->
         <scene sceneID="fha-S1-oH6">
             <objects>
-                <viewController id="dhU-6M-ITv" userLabel="ARView" customClass="ExportViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dhU-6M-ITv" userLabel="ARView" customClass="CaptureViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="enk-7a-iqY"/>
                         <viewControllerLayoutGuide type="bottom" id="ctR-zU-xIe"/>

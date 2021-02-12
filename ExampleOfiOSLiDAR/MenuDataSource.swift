@@ -42,6 +42,11 @@ class MenuViewModel {
             title: "Export",
             description: "Export scaned object to .obj file.",
             prefix: "Export"
+        ),
+        MenuItem (
+            title: "Capture",
+            description: "Capture scaned object.",
+            prefix: "Capture"
         )
     ]
     
