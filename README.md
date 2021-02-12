@@ -22,7 +22,10 @@ Collision detection of objects using LiDAR.<BR>
 ### Export
 Export scaned object to .obj file.<BR>
 [(Document)](ExampleOfiOSLiDAR/Samples/Collision/Export.md)<BR>
-<img width="400px" src="https://user-images.githubusercontent.com/16970578/107285075-ff462c80-6aa1-11eb-8423-3186c5599037.gif">
+<img width="400px" src="https://user-images.githubusercontent.com/16970578/107829530-46e3f580-6dcd-11eb-83f5-267881acf370.gif">
+👇
+<img width="400px" src="https://user-images.githubusercontent.com/16970578/107829679-94606280-6dcd-11eb-8bbf-c574b9127296.gif">
+
 ### License
 
 MIT
