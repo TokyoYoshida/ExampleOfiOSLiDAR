@@ -37,6 +37,11 @@ class MenuViewModel {
             title: "Collision",
             description: "Collision detection of objects using LiDAR.",
             prefix: "Collision"
+        ),
+        MenuItem (
+            title: "Export",
+            description: "Export scaned object to .obj file.",
+            prefix: "Export"
         )
     ]
     

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dhU-6M-ITv">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ARView-->
+        <scene sceneID="fha-S1-oH6">
+            <objects>
+                <viewController id="dhU-6M-ITv" userLabel="ARView" customClass="ExportViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="enk-7a-iqY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ctR-zU-xIe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mzy-3B-0VO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLf-qS-Ymx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </arView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmq-bK-grk" userLabel="Export">
+                                <rect key="frame" x="184" y="782" width="46" height="30"/>
+                                <state key="normal" title="Export"/>
+                                <connections>
+                                    <action selector="tappedExportButton:" destination="dhU-6M-ITv" eventType="touchUpInside" id="3BH-Np-6e5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qxu-PL-Kq3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CLf-qS-Ymx" secondAttribute="trailing" id="9sG-9o-SIr"/>
+                            <constraint firstItem="Hmq-bK-grk" firstAttribute="centerX" secondItem="Mzy-3B-0VO" secondAttribute="centerX" id="AcN-0v-fSr"/>
+                            <constraint firstItem="CLf-qS-Ymx" firstAttribute="top" secondItem="enk-7a-iqY" secondAttribute="bottom" id="EEC-ye-VgR"/>
+                            <constraint firstItem="qxu-PL-Kq3" firstAttribute="bottom" secondItem="Hmq-bK-grk" secondAttribute="bottom" constant="50" id="GnT-mk-89Z"/>
+                            <constraint firstItem="ctR-zU-xIe" firstAttribute="top" secondItem="CLf-qS-Ymx" secondAttribute="bottom" id="PfC-rV-T6S"/>
+                            <constraint firstItem="CLf-qS-Ymx" firstAttribute="leading" secondItem="Mzy-3B-0VO" secondAttribute="leading" id="sPl-uM-oAH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nwV-uc-PXW"/>
+                    <connections>
+                        <outlet property="arView" destination="CLf-qS-Ymx" id="dBB-Wm-lMR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fml-4v-v6m" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1010" y="-328"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
