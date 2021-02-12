@@ -1,15 +1,12 @@
 ## Export
 
-You can add physical behavior by using generateCollisionShapes of ModelEntity.
+You can convert it to MDLMesh using the ARMeshAnchor geometory property. 
 
-You can also use PhysicsMotionComponent to give speed to an object.
+MDLMesh can then be exported to an .obj file.
 
 ```swift
-let sphere = ModelEntity(mesh: .generateSphere(radius: 0.01), materials: [SimpleMaterial(color: .red, isMetallic: true)])
-
-sphere.generateCollisionShapes(recursive: true)
-sphere.physicsBody = .init()
-sphere.physicsBody?.mode = .dynamic
-sphere.physicsMotion =  PhysicsMotionComponent(linearVelocity: [0, 0, -0.1],
-angularVelocity: [0, 0, 0])
+// get all mesh anchors
+let meshAnchors = arView.session.currentFrame?.anchors.compactMap({ $0 as? ARMeshAnchor }
 ```
+
+tanks to Stack Overflow answer: https://stackoverflow.com/questions/61063571/arkit-3-5-how-to-export-obj-from-new-ipad-pro-with-lidar
