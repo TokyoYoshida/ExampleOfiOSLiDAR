@@ -39,6 +39,25 @@ extension ARMeshGeometry {
     // helps from StackOverflow:
     // https://stackoverflow.com/questions/61063571/arkit-3-5-how-to-export-obj-from-new-ipad-pro-with-lidar
     func toMDLMesh(device: MTLDevice, camera: ARCamera, modelMatrix: simd_float4x4) -> MDLMesh {
+        func convertVertexLocalToWorld() {
+            let verticesPointer = vertices.buffer.contents()
+
+            for vertexIndex in 0..<vertices.count {
+                let vertex = self.vertex(at: UInt32(vertexIndex))
+                
+                var vertexLocalTransform = matrix_identity_float4x4
+                vertexLocalTransform.columns.3 = SIMD4<Float>(x: vertex.x, y: vertex.y, z: vertex.z, w: 1)
+                let vertexWorldPosition = (modelMatrix * vertexLocalTransform).columns.3
+                
+                let vertexOffset = vertices.offset + vertices.stride * vertexIndex
+                let componentStride = vertices.stride / 3
+                verticesPointer.storeBytes(of: vertexWorldPosition.x, toByteOffset: vertexOffset, as: Float.self)
+                verticesPointer.storeBytes(of: vertexWorldPosition.y, toByteOffset: vertexOffset + componentStride, as: Float.self)
+                verticesPointer.storeBytes(of: vertexWorldPosition.z, toByteOffset: vertexOffset + (2 * componentStride), as: Float.self)
+            }
+        }
+        convertVertexLocalToWorld()
+        
         let allocator = MTKMeshBufferAllocator(device: device);
 
         let data = Data.init(bytes: vertices.buffer.contents(), count: vertices.stride * vertices.count);
