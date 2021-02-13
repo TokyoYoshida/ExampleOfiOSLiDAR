@@ -8,9 +8,10 @@
 import RealityKit
 import ARKit
 
-class CaptureViewController: UIViewController, ARSCNViewDelegate {
+class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
+    var capturedImage: UIImage?
     
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -40,9 +41,14 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
         }
         super.viewDidLoad()
         sceneView.delegate = self
+        sceneView.session.delegate = self
         setARViewOptions()
         let configuration = buildConfigure()
         sceneView.session.run(configuration)
+    }
+    
+    func session(_ session: ARSession, didUpdate: ARFrame){
+        capturedImage = sceneView.snapshot()
     }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
@@ -52,7 +58,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
 
         let camera = frame.camera
         let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-        let texture = sceneView.snapshot()
+        let texture = capturedImage
         let imageMaterial = SCNMaterial()
         imageMaterial.isDoubleSided = false
         imageMaterial.diffuse.contents = texture
@@ -62,19 +68,19 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
     
-//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-//        guard let anchor = anchor as? ARMeshAnchor ,
-//              let frame = sceneView.session.currentFrame else { return }
-//
-//        let camera = frame.camera
-//
-//        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-//        node.geometry = geometory
-//
-//        let texture = UIImage(ciImage: CIImage(cvImageBuffer: frame.capturedImage))
-//        let imageMaterial = SCNMaterial()
-//        imageMaterial.isDoubleSided = false
-//        imageMaterial.diffuse.contents = texture
-//        geometory.materials = [imageMaterial]
-//    }
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let anchor = anchor as? ARMeshAnchor ,
+              let frame = sceneView.session.currentFrame else { return }
+
+        let camera = frame.camera
+
+        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
+        node.geometry = geometory
+
+        let texture = capturedImage
+        let imageMaterial = SCNMaterial()
+        imageMaterial.isDoubleSided = false
+        imageMaterial.diffuse.contents = texture
+        geometory.materials = [imageMaterial]
+    }
 }
