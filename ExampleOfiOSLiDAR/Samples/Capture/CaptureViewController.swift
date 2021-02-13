@@ -53,4 +53,11 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
         
         return node
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard let anchor = anchor as? ARMeshAnchor else { return }
+
+        let geometory = SCNGeometry(geometry: anchor.geometry)
+        node.geometry = geometory
+    }
 }
