@@ -20,9 +20,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLf-qS-Ymx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </arView>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2l-hd-sFO">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmq-bK-grk" userLabel="Export">
                                 <rect key="frame" x="184" y="782" width="46" height="30"/>
                                 <state key="normal" title="Export"/>
@@ -34,17 +35,13 @@
                         <viewLayoutGuide key="safeArea" id="qxu-PL-Kq3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CLf-qS-Ymx" secondAttribute="trailing" id="9sG-9o-SIr"/>
                             <constraint firstItem="Hmq-bK-grk" firstAttribute="centerX" secondItem="Mzy-3B-0VO" secondAttribute="centerX" id="AcN-0v-fSr"/>
-                            <constraint firstItem="CLf-qS-Ymx" firstAttribute="top" secondItem="enk-7a-iqY" secondAttribute="bottom" id="EEC-ye-VgR"/>
                             <constraint firstItem="qxu-PL-Kq3" firstAttribute="bottom" secondItem="Hmq-bK-grk" secondAttribute="bottom" constant="50" id="GnT-mk-89Z"/>
-                            <constraint firstItem="ctR-zU-xIe" firstAttribute="top" secondItem="CLf-qS-Ymx" secondAttribute="bottom" id="PfC-rV-T6S"/>
-                            <constraint firstItem="CLf-qS-Ymx" firstAttribute="leading" secondItem="Mzy-3B-0VO" secondAttribute="leading" id="sPl-uM-oAH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nwV-uc-PXW"/>
                     <connections>
-                        <outlet property="arView" destination="CLf-qS-Ymx" id="dBB-Wm-lMR"/>
+                        <outlet property="sceneView" destination="Y2l-hd-sFO" id="wfW-E8-6JI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fml-4v-v6m" sceneMemberID="firstResponder"/>
