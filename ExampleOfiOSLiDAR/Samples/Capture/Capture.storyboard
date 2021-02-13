@@ -20,23 +20,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y2l-hd-sFO">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2l-hd-sFO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hmq-bK-grk" userLabel="Export">
-                                <rect key="frame" x="184" y="782" width="46" height="30"/>
-                                <state key="normal" title="Export"/>
-                                <connections>
-                                    <action selector="tappedExportButton:" destination="dhU-6M-ITv" eventType="touchUpInside" id="3BH-Np-6e5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qxu-PL-Kq3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Hmq-bK-grk" firstAttribute="centerX" secondItem="Mzy-3B-0VO" secondAttribute="centerX" id="AcN-0v-fSr"/>
-                            <constraint firstItem="qxu-PL-Kq3" firstAttribute="bottom" secondItem="Hmq-bK-grk" secondAttribute="bottom" constant="50" id="GnT-mk-89Z"/>
+                            <constraint firstAttribute="bottom" secondItem="Y2l-hd-sFO" secondAttribute="bottom" id="B5O-yz-fao"/>
+                            <constraint firstItem="Y2l-hd-sFO" firstAttribute="top" secondItem="Mzy-3B-0VO" secondAttribute="top" id="hnX-Xb-BgC"/>
+                            <constraint firstItem="Y2l-hd-sFO" firstAttribute="trailing" secondItem="qxu-PL-Kq3" secondAttribute="trailing" id="mjC-0V-Pf9"/>
+                            <constraint firstItem="Y2l-hd-sFO" firstAttribute="leading" secondItem="qxu-PL-Kq3" secondAttribute="leading" id="yv7-Ja-oCa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nwV-uc-PXW"/>
@@ -46,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fml-4v-v6m" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1010" y="-328"/>
+            <point key="canvasLocation" x="1008.6956521739131" y="-328.125"/>
         </scene>
     </scenes>
     <resources>
