@@ -46,12 +46,13 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
     }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        
         guard let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
         let camera = frame.camera
         let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-        let texture = UIImage(ciImage: CIImage(cvImageBuffer: frame.capturedImage))
+        let texture = sceneView.snapshot()
         let imageMaterial = SCNMaterial()
         imageMaterial.isDoubleSided = false
         imageMaterial.diffuse.contents = texture
@@ -61,19 +62,19 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let anchor = anchor as? ARMeshAnchor ,
-              let frame = sceneView.session.currentFrame else { return }
-
-        let camera = frame.camera
-
-        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-        node.geometry = geometory
-
-        let texture = UIImage(ciImage: CIImage(cvImageBuffer: frame.capturedImage))
-        let imageMaterial = SCNMaterial()
-        imageMaterial.isDoubleSided = false
-        imageMaterial.diffuse.contents = texture
-        geometory.materials = [imageMaterial]
-    }
+//    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        guard let anchor = anchor as? ARMeshAnchor ,
+//              let frame = sceneView.session.currentFrame else { return }
+//
+//        let camera = frame.camera
+//
+//        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
+//        node.geometry = geometory
+//
+//        let texture = UIImage(ciImage: CIImage(cvImageBuffer: frame.capturedImage))
+//        let imageMaterial = SCNMaterial()
+//        imageMaterial.isDoubleSided = false
+//        imageMaterial.diffuse.contents = texture
+//        geometory.materials = [imageMaterial]
+//    }
 }
