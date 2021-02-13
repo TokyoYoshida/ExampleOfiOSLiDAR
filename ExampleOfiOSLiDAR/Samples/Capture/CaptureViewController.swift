@@ -11,7 +11,7 @@ import ARKit
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
-    var capturedImage: UIImage?
+    var cameraImage: CGImage?
     
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -19,6 +19,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         return orientation
     }
+    lazy var viewportSize: CGSize = sceneView.bounds.size
+
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     lazy var imageViewSize: CGSize = {
         CGSize(width: view.bounds.size.width, height: imageViewHeight.constant)
@@ -48,11 +50,10 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func session(_ session: ARSession, didUpdate: ARFrame){
-        guard let image = session.currentFrame?.capturedImage else {
-            return
+        DispatchQueue.main.async {
+            self.cameraImage = self.captureCamera()
         }
-        capturedImage = UIImage(ciImage: CIImage(cvImageBuffer: image))
-    }
+   }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
@@ -61,7 +62,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
         let camera = frame.camera
         let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-        let texture = capturedImage
+        let texture = cameraImage
         let imageMaterial = SCNMaterial()
         imageMaterial.isDoubleSided = false
         imageMaterial.diffuse.contents = texture
@@ -80,10 +81,26 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
         node.geometry = geometory
 
-        let texture = capturedImage
+        let texture = cameraImage
         let imageMaterial = SCNMaterial()
         imageMaterial.isDoubleSided = false
         imageMaterial.diffuse.contents = texture
         geometory.materials = [imageMaterial]
+    }
+    
+    func captureCamera() -> CGImage?{
+        guard let frame = sceneView.session.currentFrame else {return nil}
+
+        let pixelBuffer = frame.capturedImage
+
+        var image = CIImage(cvPixelBuffer: pixelBuffer)
+
+        let transform = frame.displayTransform(for: orientation, viewportSize: viewportSize).inverted()
+        image = image.transformed(by: transform)
+
+        let context = CIContext(options:nil)
+        guard let cameraImage = context.createCGImage(image, from: image.extent) else {return nil}
+
+        return cameraImage
     }
 }
