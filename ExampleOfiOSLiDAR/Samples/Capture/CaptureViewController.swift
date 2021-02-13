@@ -45,6 +45,12 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
 
-    @IBAction func tappedExportButton(_ sender: UIButton) {
+    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard let anchor = anchor as? ARMeshAnchor else { return nil }
+
+        let geometory = SCNGeometry(geometry: anchor.geometry)
+        let node = SCNNode(geometry: geometory)
+        
+        return node
     }
 }

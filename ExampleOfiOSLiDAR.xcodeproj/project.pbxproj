@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E12889B25D50CDB00661E0D /* MDLMesh+Ext.swift */; };
+		1E1875B425D7A89500C09A98 /* SCNGeometry+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1875B325D7A89500C09A98 /* SCNGeometry+Ext.swift */; };
 		1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */; };
 		1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */; };
 		1E34C94525D3239E00800E8D /* Export.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E34C94425D3239E00800E8D /* Export.storyboard */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		1E12889B25D50CDB00661E0D /* MDLMesh+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MDLMesh+Ext.swift"; sourceTree = "<group>"; };
+		1E1875B325D7A89500C09A98 /* SCNGeometry+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SCNGeometry+Ext.swift"; sourceTree = "<group>"; };
 		1E2B6D5625C68D3700F76D8C /* ConfidenceMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfidenceMapViewController.swift; sourceTree = "<group>"; };
 		1E2B6D5E25C68D4100F76D8C /* ConfidenceMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConfidenceMap.storyboard; sourceTree = "<group>"; };
 		1E34C94425D3239E00800E8D /* Export.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Export.storyboard; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				1E470F9025AF932000D8D918 /* ARFrame+Ext.swift */,
 				1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */,
 				1E12889B25D50CDB00661E0D /* MDLMesh+Ext.swift */,
+				1E1875B325D7A89500C09A98 /* SCNGeometry+Ext.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E1875B425D7A89500C09A98 /* SCNGeometry+Ext.swift in Sources */,
 				1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */,
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */,
