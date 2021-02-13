@@ -48,7 +48,10 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func session(_ session: ARSession, didUpdate: ARFrame){
-        capturedImage = sceneView.snapshot()
+        guard let image = session.currentFrame?.capturedImage else {
+            return
+        }
+        capturedImage = UIImage(ciImage: CIImage(cvImageBuffer: image))
     }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
