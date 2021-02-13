@@ -26,7 +26,9 @@ extension SCNGeometry {
         let faces = geometry.faces
         let verticesSource = SCNGeometrySource(buffer: verticles.buffer, vertexFormat: verticles.format, semantic: .vertex, vertexCount: verticles.count, dataOffset: verticles.offset, dataStride: verticles.stride)
         let normalsSource = SCNGeometrySource(buffer: normals.buffer, vertexFormat: normals.format, semantic: .normal, vertexCount: normals.count, dataOffset: normals.offset, dataStride: normals.stride)
-        let facesElement = SCNGeometryElement(buffer: faces.buffer, primitiveType: convertType(type: faces.primitiveType), primitiveCount: faces.count, bytesPerIndex: faces.bytesPerIndex)
+        let bytes = faces.count * faces.indexCountPerPrimitive * faces.bytesPerIndex
+        let data = Data(bytesNoCopy: faces.buffer.contents(), count: bytes, deallocator: .none)
+        let facesElement = SCNGeometryElement(data: data, primitiveType: convertType(type: faces.primitiveType), primitiveCount: faces.count, bytesPerIndex: faces.bytesPerIndex)
         self.init(sources: [verticesSource, normalsSource], elements: [facesElement])
     }
 }
