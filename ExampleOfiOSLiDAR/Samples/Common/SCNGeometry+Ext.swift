@@ -23,11 +23,15 @@ extension SCNGeometry {
         }
         func calcTextureCoordinates(verticles: ARGeometrySource, camera: ARCamera, modelMatrix: simd_float4x4) -> [vector_float2]? {
     //        guard let vertices = mesh.vertices() else {return nil}
+            func getVertex(at index: UInt32) -> SIMD3<Float> {
+                    assert(verticles.format == MTLVertexFormat.float3, "Expected three floats (twelve bytes) per vertex.")
+                    let vertexPointer = verticles.buffer.contents().advanced(by: verticles.offset + (verticles.stride * Int(index)))
+                    let vertex = vertexPointer.assumingMemoryBound(to: SIMD3<Float>.self).pointee
+                    return vertex
+                }
             let size = camera.imageResolution
-            let base = verticles.buffer.contents()
-            let stride = verticles.stride
             let textureCoordinates = (0..<verticles.count).map { i -> vector_float2 in
-                let vertex = base.load(fromByteOffset: i*stride, as: SIMD3<Float>.self)
+                let vertex = getVertex(at: UInt32(i))
                 let vertex4 = vector_float4(vertex.x, vertex.y, vertex.z, 1)
                 let world_vertex4 = simd_mul(modelMatrix, vertex4)
                 let world_vector3 = simd_float3(x: world_vertex4.x, y: world_vertex4.y, z: world_vertex4.z)
