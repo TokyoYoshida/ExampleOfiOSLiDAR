@@ -50,9 +50,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func session(_ session: ARSession, didUpdate: ARFrame){
-        DispatchQueue.main.async {
-            self.cameraImage = self.captureCamera()
-        }
+        self.cameraImage = self.captureCamera()
    }
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
