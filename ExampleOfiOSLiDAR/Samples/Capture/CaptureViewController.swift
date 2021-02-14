@@ -105,10 +105,12 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         guard captureMode == .noneed else {
             return
         }
+        SCNTransaction.begin()
         guard let frame = sceneView.session.currentFrame else { return }
         guard let anchor = anchor as? ARMeshAnchor else { return }
         let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
         node.geometry = geometry
+        SCNTransaction.commit()
     }
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
