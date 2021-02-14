@@ -40,18 +40,18 @@ class LabelScene: SKScene {
     }
 }
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+    enum CaptureMode {
+        case noneed
+        case doing
+        case done
+    }
     
     @IBOutlet weak var sceneView: ARSCNView!
     var cameraImage: UIImage?
-    var captureingFlg = false
+    var captureMode: CaptureMode = .noneed
     
-    var orientation: UIInterfaceOrientation {
-        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
-            fatalError()
-        }
-        return orientation
-    }
-    lazy var viewportSize: CGSize = sceneView.bounds.size
+    var orientation: UIInterfaceOrientation?
+    var viewportSize: CGSize?
 
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     lazy var imageViewSize: CGSize = {
@@ -75,7 +75,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         func setControls() {
             sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size) { [weak self] in
-                self?.tappedCaptureButton()
+                self?.captureMode = .done
             }
         }
         super.viewDidLoad()
@@ -88,9 +88,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        
-        guard captureingFlg == false,
-              let anchor = anchor as? ARMeshAnchor ,
+        guard let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
         let node = SCNNode()
@@ -101,13 +99,26 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard captureingFlg == false,
-              let frame = sceneView.session.currentFrame else { return }
+        guard let frame = sceneView.session.currentFrame else { return }
         guard let anchor = anchor as? ARMeshAnchor else { return }
         let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
         node.geometry = geometry
     }
-    
+
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        func updateViewInfomation() {
+            DispatchQueue.main.async {
+                self.orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
+                self.viewportSize = self.sceneView.bounds.size
+            }
+        }
+        updateViewInfomation()
+        if (self.captureMode == .doing) {
+            captureColor()
+            captureMode = .done
+        }
+    }
+
     func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false, cameraImage: UIImage? = nil) -> SCNGeometry {
 
         let camera = frame.camera
@@ -125,27 +136,24 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         return geometory
     }
     
-    func tappedCaptureButton() {
-        func captureColor() {
-            guard let frame = sceneView.session.currentFrame else { return }
-            guard let cameraImage = captureCamera() else {return}
-            self.cameraImage = cameraImage
-            guard let anchors = sceneView.session.currentFrame?.anchors else { return }
-            let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
-            for anchor in meshAnchors {
-                guard let node = sceneView.node(for: anchor) else { continue }
-                let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true, cameraImage: cameraImage)
-                node.geometry = geometory
-            }
-        }
-        captureingFlg = true
-        DispatchQueue.main.async {
-            captureColor()
-            self.captureingFlg = false
+    func captureColor() {
+        guard let frame = sceneView.session.currentFrame else { return }
+        guard let cameraImage = captureCamera() else {return}
+        self.cameraImage = cameraImage
+        guard let anchors = sceneView.session.currentFrame?.anchors else { return }
+        let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
+        for anchor in meshAnchors {
+            guard let node = sceneView.node(for: anchor) else { continue }
+            let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true, cameraImage: cameraImage)
+            node.geometry = geometory
         }
     }
+
     func captureCamera() -> UIImage? {
-        guard let frame = sceneView.session.currentFrame else {return nil}
+        guard let frame = sceneView.session.currentFrame,
+              let orientation = self.orientation,
+              let viewportSize = self.viewportSize
+              else {return nil}
 
         let pixelBuffer = frame.capturedImage
 
