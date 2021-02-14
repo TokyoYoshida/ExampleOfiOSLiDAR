@@ -87,10 +87,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         setControls()
     }
     
-    func session(_ session: ARSession, didUpdate: ARFrame){
-        self.cameraImage = self.captureCamera()
-   }
-
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
         guard captureingFlg == false,
@@ -112,7 +108,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         node.geometry = geometry
     }
     
-    func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false) -> SCNGeometry {
+    func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false, cameraImage: UIImage? = nil) -> SCNGeometry {
 
         let camera = frame.camera
 
@@ -120,10 +116,9 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         node.geometry = geometory
 
         if needTexture {
-            let texture = cameraImage
             let imageMaterial = SCNMaterial()
             imageMaterial.isDoubleSided = false
-            imageMaterial.diffuse.contents = texture
+            imageMaterial.diffuse.contents = cameraImage
             geometory.materials = [imageMaterial]
         }
         
@@ -133,12 +128,12 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     func tappedCaptureButton() {
         func captureColor() {
             guard let frame = sceneView.session.currentFrame else { return }
-            let camera = frame.camera
+            guard let cameraImage = captureCamera() else {return}
             guard let anchors = sceneView.session.currentFrame?.anchors else { return }
             let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
             for anchor in meshAnchors {
                 guard let node = sceneView.node(for: anchor) else { continue }
-                let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true)
+                let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true, cameraImage: cameraImage)
                 node.geometry = geometory
             }
         }
@@ -148,7 +143,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             self.captureingFlg = false
         }
     }
-    func captureCamera() -> CGImage?{
+    func captureCamera() -> UIImage? {
         guard let frame = sceneView.session.currentFrame else {return nil}
 
         let pixelBuffer = frame.capturedImage
@@ -161,6 +156,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let context = CIContext(options:nil)
         guard let cameraImage = context.createCGImage(image, from: image.extent) else {return nil}
 
-        return cameraImage
+        return UIImage(cgImage: cameraImage)
     }
 }
