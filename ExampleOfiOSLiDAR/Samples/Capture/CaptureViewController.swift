@@ -43,6 +43,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     @IBOutlet weak var sceneView: ARSCNView!
     var cameraImage: CGImage?
+    var captureingFlg = false
     
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
@@ -92,7 +93,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
-        guard let anchor = anchor as? ARMeshAnchor ,
+        guard captureingFlg == false,
+              let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
         let node = SCNNode()
@@ -103,7 +105,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let frame = sceneView.session.currentFrame else { return }
+        guard captureingFlg == false,
+              let frame = sceneView.session.currentFrame else { return }
         guard let anchor = anchor as? ARMeshAnchor else { return }
         let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
         node.geometry = geometry
@@ -134,14 +137,16 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             guard let anchors = sceneView.session.currentFrame?.anchors else { return }
             let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
             for anchor in meshAnchors {
-                let node = sceneView.node(for: anchor)
-                let geometory = captureGeometory(frame: frame, anchor: anchor.transform, node: node, needTexture: true)
-                node?.geometry = geometory
+                guard let node = sceneView.node(for: anchor) else { continue }
+                let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true)
+                node.geometry = geometory
             }
-            
-            
         }
-        captureColor()
+        captureingFlg = true
+        DispatchQueue.main.async {
+            captureColor()
+            self.captureingFlg = false
+        }
     }
     func captureCamera() -> CGImage?{
         guard let frame = sceneView.session.currentFrame else {return nil}
