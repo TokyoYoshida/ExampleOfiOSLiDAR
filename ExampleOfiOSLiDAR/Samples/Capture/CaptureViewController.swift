@@ -42,7 +42,7 @@ class LabelScene: SKScene {
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
-    var cameraImage: CGImage?
+    var cameraImage: UIImage?
     var captureingFlg = false
     
     var orientation: UIInterfaceOrientation {
@@ -129,6 +129,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         func captureColor() {
             guard let frame = sceneView.session.currentFrame else { return }
             guard let cameraImage = captureCamera() else {return}
+            self.cameraImage = cameraImage
             guard let anchors = sceneView.session.currentFrame?.anchors else { return }
             let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
             for anchor in meshAnchors {
