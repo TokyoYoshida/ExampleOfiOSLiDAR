@@ -88,6 +88,9 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        guard captureMode == .noneed else {
+            return nil
+        }
         guard let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
@@ -99,6 +102,9 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        guard captureMode == .noneed else {
+            return
+        }
         guard let frame = sceneView.session.currentFrame else { return }
         guard let anchor = anchor as? ARMeshAnchor else { return }
         let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
