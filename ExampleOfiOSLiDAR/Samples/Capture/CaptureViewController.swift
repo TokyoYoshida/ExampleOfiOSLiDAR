@@ -75,7 +75,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         func setControls() {
             sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size) { [weak self] in
-                self?.captureMode = .done
+                self?.captureMode = .doing
             }
         }
         super.viewDidLoad()
