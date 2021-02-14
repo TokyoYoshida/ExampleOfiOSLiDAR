@@ -9,7 +9,7 @@ import SceneKit
 import ARKit
 
 extension SCNGeometry {
-    convenience init(geometry: ARMeshGeometry, camera: ARCamera, modelMatrix: simd_float4x4) {
+    convenience init(geometry: ARMeshGeometry, camera: ARCamera, modelMatrix: simd_float4x4, needTexture: Bool = false) {
         func convertType(type: ARGeometryPrimitiveType) -> SCNGeometryPrimitiveType {
             switch type {
             case .line:
@@ -60,8 +60,12 @@ extension SCNGeometry {
         let bytes = faces.count * faces.indexCountPerPrimitive * faces.bytesPerIndex
         let data = Data(bytesNoCopy: faces.buffer.contents(), count: bytes, deallocator: .none)
         let facesElement = SCNGeometryElement(data: data, primitiveType: convertType(type: faces.primitiveType), primitiveCount: faces.count, bytesPerIndex: faces.bytesPerIndex)
-        let textureCoordinates = calcTextureCoordinates(verticles: verticles, camera: camera, modelMatrix: modelMatrix)!
-        self.init(sources: [verticesSource, textureCoordinates, normalsSource], elements: [facesElement])
+        var sources = [verticesSource, normalsSource]
+        if needTexture {
+            let textureCoordinates = calcTextureCoordinates(verticles: verticles, camera: camera, modelMatrix: modelMatrix)!
+            sources.append(textureCoordinates)
+        }
+        self.init(sources: sources, elements: [facesElement])
     }
 }
 

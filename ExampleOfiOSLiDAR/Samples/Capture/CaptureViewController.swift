@@ -122,8 +122,10 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         updateViewInfomation()
         if (self.captureMode == .doing) {
-            captureColor()
-            captureMode = .done
+            DispatchQueue.main.async {
+                self.captureColor()
+                self.captureMode = .done
+            }
         }
     }
 
@@ -131,14 +133,11 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
         let camera = frame.camera
 
-        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
+        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform, needTexture: needTexture)
         node.geometry = geometory
 
-        if needTexture {
-            let imageMaterial = SCNMaterial()
-            imageMaterial.isDoubleSided = false
-            imageMaterial.diffuse.contents = cameraImage
-            geometory.materials = [imageMaterial]
+        if let image = cameraImage, needTexture {
+            geometory.firstMaterial?.diffuse.contents = image
         }
         
         return geometory
@@ -146,6 +145,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     func captureColor() {
         SCNTransaction.begin()
+        guard let frame = sceneView.session.currentFrame else { return }
         guard let cameraImage = captureCamera() else {return}
         self.cameraImage = cameraImage
 
@@ -153,7 +153,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
         for anchor in meshAnchors {
             guard let node = sceneView.node(for: anchor) else { continue }
-            node.geometry?.firstMaterial?.diffuse.contents = cameraImage
+            let geometry = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true, cameraImage: cameraImage)
+            node.geometry = geometry
         }
         
         SCNTransaction.commit()
