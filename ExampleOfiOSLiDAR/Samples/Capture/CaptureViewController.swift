@@ -58,34 +58,54 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         guard let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
-        let camera = frame.camera
-        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
-        let texture = cameraImage
-        let imageMaterial = SCNMaterial()
-        imageMaterial.isDoubleSided = false
-        imageMaterial.diffuse.contents = texture
-        geometory.materials = [imageMaterial]
-        let node = SCNNode(geometry: geometory)
+        let node = SCNNode()
+        let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
+        node.geometry = geometry
 
         return node
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard let anchor = anchor as? ARMeshAnchor ,
-              let frame = sceneView.session.currentFrame else { return }
+        guard let frame = sceneView.session.currentFrame else { return }
+        guard let anchor = anchor as? ARMeshAnchor else { return }
+        let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
+        node.geometry = geometry
+    }
+    
+    func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false) -> SCNGeometry {
 
         let camera = frame.camera
 
         let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
         node.geometry = geometory
 
-        let texture = cameraImage
-        let imageMaterial = SCNMaterial()
-        imageMaterial.isDoubleSided = false
-        imageMaterial.diffuse.contents = texture
-        geometory.materials = [imageMaterial]
+        if needTexture {
+            let texture = cameraImage
+            let imageMaterial = SCNMaterial()
+            imageMaterial.isDoubleSided = false
+            imageMaterial.diffuse.contents = texture
+            geometory.materials = [imageMaterial]
+        }
+        
+        return geometory
     }
     
+    @IBAction func tappedCaptureButton(_ sender: Any) {
+        func captureColor() {
+            guard let frame = sceneView.session.currentFrame else { return }
+            let camera = frame.camera
+            guard let anchors = sceneView.session.currentFrame?.anchors else { return }
+            let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
+            for anchor in meshAnchors {
+                let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
+                let node = sceneView.node(for: anchor)
+                node?.geometry = geometory
+            }
+            
+            
+        }
+        captureColor()
+    }
     func captureCamera() -> CGImage?{
         guard let frame = sceneView.session.currentFrame else {return nil}
 
