@@ -8,6 +8,29 @@
 import RealityKit
 import ARKit
 
+class LabelScene: SKScene {
+    override public init(size: CGSize){
+        super.init(size: size)
+
+        self.scaleMode = SKSceneScaleMode.resizeFill
+
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        label.text = "Capture"
+        label.fontSize = 65
+        label.fontColor = .blue
+        label.position = CGPoint(x:frame.midX, y: label.frame.size.height)
+
+        self.addChild(label)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not been implemented")
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print( #file + #function )
+    }
+}
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
@@ -41,12 +64,16 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
             return configuration
         }
+        func setControls() {
+            sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size)
+        }
         super.viewDidLoad()
         sceneView.delegate = self
         sceneView.session.delegate = self
         setARViewOptions()
         let configuration = buildConfigure()
         sceneView.session.run(configuration)
+        setControls()
     }
     
     func session(_ session: ARSession, didUpdate: ARFrame){
