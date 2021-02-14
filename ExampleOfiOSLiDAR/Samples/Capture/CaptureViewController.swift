@@ -143,16 +143,18 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func captureColor() {
-        guard let frame = sceneView.session.currentFrame else { return }
+        SCNTransaction.begin()
         guard let cameraImage = captureCamera() else {return}
         self.cameraImage = cameraImage
+
         guard let anchors = sceneView.session.currentFrame?.anchors else { return }
         let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
         for anchor in meshAnchors {
             guard let node = sceneView.node(for: anchor) else { continue }
-            let geometory = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: true, cameraImage: cameraImage)
-            node.geometry = geometory
+            node.geometry?.firstMaterial?.diffuse.contents = cameraImage
         }
+        
+        SCNTransaction.commit()
     }
 
     func captureCamera() -> UIImage? {
