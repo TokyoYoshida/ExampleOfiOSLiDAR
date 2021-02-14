@@ -134,8 +134,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             guard let anchors = sceneView.session.currentFrame?.anchors else { return }
             let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
             for anchor in meshAnchors {
-                let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform)
                 let node = sceneView.node(for: anchor)
+                let geometory = captureGeometory(frame: frame, anchor: anchor.transform, node: node, needTexture: true)
                 node?.geometry = geometory
             }
             
