@@ -9,6 +9,7 @@ import RealityKit
 import ARKit
 
 class LabelScene: SKScene {
+    var onTapped: (() -> Void)? = nil
     override public init(size: CGSize){
         super.init(size: size)
 
@@ -26,9 +27,16 @@ class LabelScene: SKScene {
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not been implemented")
     }
+    
+    convenience init(size: CGSize, onTapped: @escaping () -> Void) {
+        self.init(size: size)
+        self.onTapped = onTapped
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print( #file + #function )
+        if let onTapped = self.onTapped {
+            onTapped()
+        }
     }
 }
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
@@ -65,7 +73,9 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             return configuration
         }
         func setControls() {
-            sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size)
+            sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size) { [weak self] in
+                self?.tappedCaptureButton()
+            }
         }
         super.viewDidLoad()
         sceneView.delegate = self
@@ -117,7 +127,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         return geometory
     }
     
-    @IBAction func tappedCaptureButton(_ sender: Any) {
+    func tappedCaptureButton() {
         func captureColor() {
             guard let frame = sceneView.session.currentFrame else { return }
             let camera = frame.camera

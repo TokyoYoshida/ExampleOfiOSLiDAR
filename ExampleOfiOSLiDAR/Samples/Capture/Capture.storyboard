@@ -20,13 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1B-uX-kDb" userLabel="Capture">
-                                <rect key="frame" x="179.5" y="782" width="55" height="30"/>
-                                <state key="normal" title="Capture"/>
-                                <connections>
-                                    <action selector="tappedCaptureButton:" destination="dhU-6M-ITv" eventType="touchUpInside" id="Ste-Gk-l3Z"/>
-                                </connections>
-                            </button>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2l-hd-sFO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
@@ -34,9 +27,7 @@
                         <viewLayoutGuide key="safeArea" id="qxu-PL-Kq3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="v1B-uX-kDb" firstAttribute="centerX" secondItem="Mzy-3B-0VO" secondAttribute="centerX" id="4kF-6o-OtS"/>
                             <constraint firstAttribute="bottom" secondItem="Y2l-hd-sFO" secondAttribute="bottom" id="B5O-yz-fao"/>
-                            <constraint firstItem="qxu-PL-Kq3" firstAttribute="bottom" secondItem="v1B-uX-kDb" secondAttribute="bottom" constant="50" id="PN6-0L-gRZ"/>
                             <constraint firstItem="Y2l-hd-sFO" firstAttribute="top" secondItem="Mzy-3B-0VO" secondAttribute="top" id="hnX-Xb-BgC"/>
                             <constraint firstItem="Y2l-hd-sFO" firstAttribute="trailing" secondItem="qxu-PL-Kq3" secondAttribute="trailing" id="mjC-0V-Pf9"/>
                             <constraint firstItem="Y2l-hd-sFO" firstAttribute="leading" secondItem="qxu-PL-Kq3" secondAttribute="leading" id="yv7-Ja-oCa"/>
