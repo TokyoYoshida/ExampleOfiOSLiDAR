@@ -9,13 +9,14 @@ import RealityKit
 import ARKit
 
 class LabelScene: SKScene {
+    let label = SKLabelNode(fontNamed: "Chalkduster")
     var onTapped: (() -> Void)? = nil
+
     override public init(size: CGSize){
         super.init(size: size)
 
         self.scaleMode = SKSceneScaleMode.resizeFill
 
-        let label = SKLabelNode(fontNamed: "Chalkduster")
         label.text = "Capture"
         label.fontSize = 65
         label.fontColor = .blue
@@ -38,6 +39,10 @@ class LabelScene: SKScene {
             onTapped()
         }
     }
+    
+    func setText(text: String) {
+        label.text = text
+    }
 }
 class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     enum CaptureMode {
@@ -52,10 +57,9 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     var orientation: UIInterfaceOrientation?
     var viewportSize: CGSize?
 
-    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    lazy var imageViewSize: CGSize = {
-        CGSize(width: view.bounds.size.width, height: imageViewHeight.constant)
-    }()
+    lazy var label = LabelScene(size:sceneView.bounds.size) { [weak self] in
+        self?.rotateMode()
+    }
 
     override func viewDidLoad() {
         func setARViewOptions() {
@@ -73,9 +77,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             return configuration
         }
         func setControls() {
-            sceneView.overlaySKScene = LabelScene(size:sceneView.bounds.size) { [weak self] in
-                self?.rotateMode()
-            }
+            sceneView.overlaySKScene = label
         }
         super.viewDidLoad()
         sceneView.delegate = self
@@ -90,11 +92,13 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         switch self.captureMode {
         case .noneed:
             self.captureMode = .doing
+            label.setText(text: "Reset")
         case .doing:
             break
         case .done:
             captureAllGeometry(needTexture: false)
             self.captureMode = .noneed
+            label.setText(text: "Capture")
         }
     }
     
