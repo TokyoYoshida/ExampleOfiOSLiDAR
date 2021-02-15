@@ -149,14 +149,14 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
 
         let camera = frame.camera
 
-        let geometory = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform, needTexture: needTexture)
-        node.geometry = geometory
+        let geometry = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform, needTexture: needTexture)
+        node.geometry = geometry
 
         if let image = cameraImage, needTexture {
-            geometory.firstMaterial?.diffuse.contents = image
+            geometry.firstMaterial?.diffuse.contents = image
         }
         
-        return geometory
+        return geometry
     }
     
     func captureAllGeometry(needTexture: Bool) {
