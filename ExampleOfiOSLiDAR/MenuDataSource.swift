@@ -44,8 +44,8 @@ class MenuViewModel {
             prefix: "Export"
         ),
         MenuItem (
-            title: "Capture",
-            description: "Capture scaned object.",
+            title: "Color Capture",
+            description: "Color capture scaned object.",
             prefix: "Capture"
         )
     ]

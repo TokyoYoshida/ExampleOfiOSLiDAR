@@ -1,13 +1,8 @@
-//
-//  SCNGeometry+Ext.swift
-//  ExampleOfiOSLiDAR
-//
-//  Created by TokyoYoshida on 2021/02/13.
-//
+## Color Capture
 
-import SceneKit
-import ARKit
+You can convert it to SCNGeometry using the ARMeshAnchor geometory property. 
 
+```swift
 extension SCNGeometry {
     convenience init(geometry: ARMeshGeometry, camera: ARCamera, modelMatrix: simd_float4x4, needTexture: Bool = false) {
         func convertType(type: ARGeometryPrimitiveType) -> SCNGeometryPrimitiveType {
@@ -21,7 +16,6 @@ extension SCNGeometry {
             }
             
         }
-        // helps from: https://stackoverflow.com/questions/61538799/ipad-pro-lidar-export-geometry-texture
         func calcTextureCoordinates(verticles: ARGeometrySource, camera: ARCamera, modelMatrix: simd_float4x4) ->  SCNGeometrySource? {
             func getVertex(at index: UInt32) -> SIMD3<Float> {
                     assert(verticles.format == MTLVertexFormat.float3, "Expected three floats (twelve bytes) per vertex.")
@@ -67,12 +61,6 @@ extension SCNGeometry {
         self.init(sources: sources, elements: [facesElement])
     }
 }
+```
 
-extension SCNGeometrySource {
-    convenience init(textureCoordinates texcoord: [vector_float2]) {
-        let stride = MemoryLayout<vector_float2>.stride
-        let bytePerComponent = MemoryLayout<Float>.stride
-        let data = Data(bytes: texcoord, count: stride * texcoord.count)
-        self.init(data: data, semantic: SCNGeometrySource.Semantic.texcoord, vectorCount: texcoord.count, usesFloatComponents: true, componentsPerVector: 2, bytesPerComponent: bytePerComponent, dataOffset: 0, dataStride: stride)
-    }
-}
+tanks to Stack Overflow answer: https://stackoverflow.com/questions/61538799/ipad-pro-lidar-export-geometry-texture
