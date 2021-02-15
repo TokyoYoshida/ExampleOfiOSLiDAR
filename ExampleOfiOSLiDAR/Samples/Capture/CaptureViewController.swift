@@ -119,14 +119,14 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         guard captureMode == .noneed else {
             return
         }
-        DispatchQueue.main.async {
-            SCNTransaction.begin()
+//        DispatchQueue.main.async {
+//            SCNTransaction.begin()
             guard let frame = self.sceneView.session.currentFrame else { return }
             guard let anchor = anchor as? ARMeshAnchor else { return }
             let geometry = self.captureGeometory(frame: frame, anchor: anchor, node: node)
             node.geometry = geometry
-            SCNTransaction.commit()
-        }
+//            SCNTransaction.commit()
+//        }
     }
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -138,10 +138,10 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         updateViewInfomation()
         if (self.captureMode == .doing) {
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 self.captureAllGeometry(needTexture: true)
                 self.captureMode = .done
-            }
+//            }
         }
     }
 
@@ -150,12 +150,14 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         let camera = frame.camera
 
         let geometry = SCNGeometry(geometry: anchor.geometry, camera: camera, modelMatrix: anchor.transform, needTexture: needTexture)
-        node.geometry = geometry
 
         if let image = cameraImage, needTexture {
             geometry.firstMaterial?.diffuse.contents = image
+        } else {
+            geometry.firstMaterial?.diffuse.contents = UIColor(red: 0.5, green: 1.0, blue: 0.0, alpha: 0.7)
         }
-        
+        node.geometry = geometry
+
         return geometry
     }
     
