@@ -87,18 +87,15 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func rotateMode() {
-        // waiting to avoid race condition.
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            switch self.captureMode {
-            case .noneed:
-                self.captureMode = .doing
-            case .doing:
-                break
-            case .done:
-                captureAllGeometry(needTexture: false)
-                self.captureMode = .noneed
-            }
-//        }
+        switch self.captureMode {
+        case .noneed:
+            self.captureMode = .doing
+        case .doing:
+            break
+        case .done:
+            captureAllGeometry(needTexture: false)
+            self.captureMode = .noneed
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
@@ -119,14 +116,10 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         guard captureMode == .noneed else {
             return
         }
-//        DispatchQueue.main.async {
-//            SCNTransaction.begin()
-            guard let frame = self.sceneView.session.currentFrame else { return }
-            guard let anchor = anchor as? ARMeshAnchor else { return }
-            let geometry = self.captureGeometory(frame: frame, anchor: anchor, node: node)
-            node.geometry = geometry
-//            SCNTransaction.commit()
-//        }
+        guard let frame = self.sceneView.session.currentFrame else { return }
+        guard let anchor = anchor as? ARMeshAnchor else { return }
+        let geometry = self.captureGeometory(frame: frame, anchor: anchor, node: node)
+        node.geometry = geometry
     }
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -138,10 +131,8 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         }
         updateViewInfomation()
         if (self.captureMode == .doing) {
-//            DispatchQueue.main.async {
-                self.captureAllGeometry(needTexture: true)
-                self.captureMode = .done
-//            }
+            self.captureAllGeometry(needTexture: true)
+            self.captureMode = .done
         }
     }
 
@@ -162,7 +153,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
     
     func captureAllGeometry(needTexture: Bool) {
-        SCNTransaction.begin()
         guard let frame = sceneView.session.currentFrame else { return }
         guard let cameraImage = captureCamera() else {return}
 
@@ -173,8 +163,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             let geometry = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: needTexture, cameraImage: cameraImage)
             node.geometry = geometry
         }
-        
-        SCNTransaction.commit()
     }
 
     func captureCamera() -> UIImage? {
