@@ -9,7 +9,7 @@ import RealityKit
 import ARKit
 
 class LabelScene: SKScene {
-    let label = SKLabelNode(fontNamed: "Chalkduster")
+    let label = SKLabelNode()
     var onTapped: (() -> Void)? = nil
 
     override public init(size: CGSize){
@@ -53,6 +53,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     
     @IBOutlet weak var sceneView: ARSCNView!
     var captureMode: CaptureMode = .noneed
+    var originalSource: Any? = nil
     
     var orientation: UIInterfaceOrientation?
     var viewportSize: CGSize?
@@ -93,12 +94,15 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
         case .noneed:
             self.captureMode = .doing
             label.setText(text: "Reset")
+            originalSource = sceneView.scene.background.contents
+            sceneView.scene.background.contents = UIColor.black
         case .doing:
             break
         case .done:
             captureAllGeometry(needTexture: false)
             self.captureMode = .noneed
             label.setText(text: "Capture")
+            sceneView.scene.background.contents = originalSource
         }
     }
     
@@ -139,7 +143,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             self.captureMode = .done
         }
     }
-
+    
     func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false, cameraImage: UIImage? = nil) -> SCNGeometry {
 
         let camera = frame.camera
