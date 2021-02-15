@@ -22,7 +22,6 @@ extension SCNGeometry {
             
         }
         func calcTextureCoordinates(verticles: ARGeometrySource, camera: ARCamera, modelMatrix: simd_float4x4) ->  SCNGeometrySource? {
-    //        guard let vertices = mesh.vertices() else {return nil}
             func getVertex(at index: UInt32) -> SIMD3<Float> {
                     assert(verticles.format == MTLVertexFormat.float3, "Expected three floats (twelve bytes) per vertex.")
                     let vertexPointer = verticles.buffer.contents().advanced(by: verticles.offset + (verticles.stride * Int(index)))

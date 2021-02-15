@@ -17,10 +17,9 @@ class LabelScene: SKScene {
 
         self.scaleMode = SKSceneScaleMode.resizeFill
 
-        label.text = "Capture"
         label.fontSize = 65
         label.fontColor = .blue
-        label.position = CGPoint(x:frame.midX, y: label.frame.size.height)
+        label.position = CGPoint(x:frame.midX, y: label.frame.size.height + 50)
 
         self.addChild(label)
     }
@@ -55,9 +54,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     var captureMode: CaptureMode = .noneed
     var originalSource: Any? = nil
     
-    var orientation: UIInterfaceOrientation?
-    var viewportSize: CGSize?
-
     lazy var label = LabelScene(size:sceneView.bounds.size) { [weak self] in
         self?.rotateMode()
     }
@@ -78,6 +74,7 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
             return configuration
         }
         func setControls() {
+            label.setText(text: "Capture")
             sceneView.overlaySKScene = label
         }
         super.viewDidLoad()
@@ -131,13 +128,6 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        func updateViewInfomation() {
-            DispatchQueue.main.async {
-                self.orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
-                self.viewportSize = self.sceneView.bounds.size
-            }
-        }
-        updateViewInfomation()
         if (self.captureMode == .doing) {
             self.captureAllGeometry(needTexture: true)
             self.captureMode = .done
@@ -174,17 +164,11 @@ class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDeleg
     }
 
     func captureCamera() -> UIImage? {
-        guard let frame = sceneView.session.currentFrame,
-              let orientation = self.orientation,
-              let viewportSize = self.viewportSize
-              else {return nil}
+        guard let frame = sceneView.session.currentFrame else {return nil}
 
         let pixelBuffer = frame.capturedImage
 
-        var image = CIImage(cvPixelBuffer: pixelBuffer)
-
-        let transform = frame.displayTransform(for: orientation, viewportSize: viewportSize).inverted()
-        image = image.transformed(by: transform)
+        let image = CIImage(cvPixelBuffer: pixelBuffer)
 
         let context = CIContext(options:nil)
         guard let cameraImage = context.createCGImage(image, from: image.extent) else {return nil}
