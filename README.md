@@ -26,7 +26,7 @@ Export scaned object to .obj file.<BR>
 TO
 <img width="400px" src="https://user-images.githubusercontent.com/16970578/107829679-94606280-6dcd-11eb-8bbf-c574b9127296.gif">
 
-### Color Captgure
+### Color Capture
 Calor Capture scaned object.<BR>
 [(Document)](ExampleOfiOSLiDAR/Samples/Capture/Capture.md)<BR>
 <img width="400px" src="https://user-images.githubusercontent.com/16970578/107829530-46e3f580-6dcd-11eb-83f5-267881acf370.gif">
