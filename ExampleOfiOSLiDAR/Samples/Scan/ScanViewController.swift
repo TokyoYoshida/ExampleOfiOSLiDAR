@@ -1,5 +1,5 @@
 //
-//  CaptureViewController.swift
+//  ScanViewController.swift
 //  ExampleOfiOSLiDAR
 //
 //  Created by TokyoYoshida on 2021/02/10.
@@ -43,7 +43,7 @@ class LabelScene: SKScene {
         label.text = text
     }
 }
-class CaptureViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
+class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     enum CaptureMode {
         case noneed
         case doing
