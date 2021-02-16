@@ -44,14 +44,14 @@ class LabelScene: SKScene {
     }
 }
 class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
-    enum CaptureMode {
+    enum ScanMode {
         case noneed
         case doing
         case done
     }
     
     @IBOutlet weak var sceneView: ARSCNView!
-    var captureMode: CaptureMode = .noneed
+    var scanMode: ScanMode = .noneed
     var originalSource: Any? = nil
     
     lazy var label = LabelScene(size:sceneView.bounds.size) { [weak self] in
@@ -74,7 +74,7 @@ class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate
             return configuration
         }
         func setControls() {
-            label.setText(text: "Capture")
+            label.setText(text: "Scan")
             sceneView.overlaySKScene = label
         }
         super.viewDidLoad()
@@ -87,54 +87,54 @@ class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate
     }
     
     func rotateMode() {
-        switch self.captureMode {
+        switch self.scanMode {
         case .noneed:
-            self.captureMode = .doing
+            self.scanMode = .doing
             label.setText(text: "Reset")
             originalSource = sceneView.scene.background.contents
             sceneView.scene.background.contents = UIColor.black
         case .doing:
             break
         case .done:
-            captureAllGeometry(needTexture: false)
-            self.captureMode = .noneed
-            label.setText(text: "Capture")
+            scanAllGeometry(needTexture: false)
+            self.scanMode = .noneed
+            label.setText(text: "Scan")
             sceneView.scene.background.contents = originalSource
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        guard captureMode == .noneed else {
+        guard scanMode == .noneed else {
             return nil
         }
         guard let anchor = anchor as? ARMeshAnchor ,
               let frame = sceneView.session.currentFrame else { return nil }
 
         let node = SCNNode()
-        let geometry = captureGeometory(frame: frame, anchor: anchor, node: node)
+        let geometry = scanGeometory(frame: frame, anchor: anchor, node: node)
         node.geometry = geometry
 
         return node
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        guard captureMode == .noneed else {
+        guard scanMode == .noneed else {
             return
         }
         guard let frame = self.sceneView.session.currentFrame else { return }
         guard let anchor = anchor as? ARMeshAnchor else { return }
-        let geometry = self.captureGeometory(frame: frame, anchor: anchor, node: node)
+        let geometry = self.scanGeometory(frame: frame, anchor: anchor, node: node)
         node.geometry = geometry
     }
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        if (self.captureMode == .doing) {
-            self.captureAllGeometry(needTexture: true)
-            self.captureMode = .done
+        if (self.scanMode == .doing) {
+            self.scanAllGeometry(needTexture: true)
+            self.scanMode = .done
         }
     }
     
-    func captureGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false, cameraImage: UIImage? = nil) -> SCNGeometry {
+    func scanGeometory(frame: ARFrame, anchor: ARMeshAnchor, node: SCNNode, needTexture: Bool = false, cameraImage: UIImage? = nil) -> SCNGeometry {
 
         let camera = frame.camera
 
@@ -150,7 +150,7 @@ class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate
         return geometry
     }
     
-    func captureAllGeometry(needTexture: Bool) {
+    func scanAllGeometry(needTexture: Bool) {
         guard let frame = sceneView.session.currentFrame else { return }
         guard let cameraImage = captureCamera() else {return}
 
@@ -158,7 +158,7 @@ class ScanViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate
         let meshAnchors = anchors.compactMap { $0 as? ARMeshAnchor}
         for anchor in meshAnchors {
             guard let node = sceneView.node(for: anchor) else { continue }
-            let geometry = captureGeometory(frame: frame, anchor: anchor, node: node, needTexture: needTexture, cameraImage: cameraImage)
+            let geometry = scanGeometory(frame: frame, anchor: anchor, node: node, needTexture: needTexture, cameraImage: cameraImage)
             node.geometry = geometry
         }
     }
