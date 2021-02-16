@@ -1,4 +1,4 @@
-## Color Capture
+## Color Scan
 
 You can convert it to SCNGeometry using the ARMeshAnchor geometory property. 
 
