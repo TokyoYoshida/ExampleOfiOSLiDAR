@@ -5,6 +5,7 @@ This is a exsample code using a LiDAR scanner on iOS.
 ### How to Build
 
 Open `ExampleOfiOSLiDAR.xcodeproj` and build it.
+**iOS device with a LiDAR sensor is required for this sample to work.**
 ### Depth Map
 
 Display the depth map on the screen.<BR>
