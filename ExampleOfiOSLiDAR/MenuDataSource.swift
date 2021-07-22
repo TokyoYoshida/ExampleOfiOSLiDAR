@@ -50,7 +50,7 @@ class MenuViewModel {
         ),
         MenuItem (
             title: "Point Cloud",
-            description: "Display the depth map on the screen.",
+            description: "Point cloud.",
             prefix: "PointCloud"
         )
     ]
