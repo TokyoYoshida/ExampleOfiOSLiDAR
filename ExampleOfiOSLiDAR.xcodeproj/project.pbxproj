@@ -33,7 +33,7 @@
 		1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1911125C607E3005064FC /* MenuItemCell.swift */; };
 		1EF5A0D026AA1D6600E49415 /* PointCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */; };
 		1EF5A0D126AA1D6600E49415 /* PointCloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */; };
-		1EF5A0D326AA1DA900E49415 /* SimpleShaderRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */; };
+		1EF5A0D326AA1DA900E49415 /* PointCloudRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */; };
 		1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +87,7 @@
 		1EF1911125C607E3005064FC /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudViewController.swift; sourceTree = "<group>"; };
 		1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCloud.storyboard; sourceTree = "<group>"; };
-		1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleShaderRenderer.swift; sourceTree = "<group>"; };
+		1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudRenderer.swift; sourceTree = "<group>"; };
 		1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = SimpleShader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */,
-				1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */,
+				1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */,
 				1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */,
 				1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */,
 			);
@@ -402,7 +402,7 @@
 				1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
-				1EF5A0D326AA1DA900E49415 /* SimpleShaderRenderer.swift in Sources */,
+				1EF5A0D326AA1DA900E49415 /* PointCloudRenderer.swift in Sources */,
 				1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */,
 				1E34C94A25D323A700800E8D /* ExportViewController.swift in Sources */,
 			);

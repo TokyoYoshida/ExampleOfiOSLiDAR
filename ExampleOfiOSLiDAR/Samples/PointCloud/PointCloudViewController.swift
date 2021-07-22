@@ -28,7 +28,7 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
 
     private var texture: MTLTexture!
-    lazy private var renderer = SimpleShaderRenderer(device: device)
+    lazy private var renderer = PointCloudRenderer(device: device)
 
 
     var orientation: UIInterfaceOrientation {

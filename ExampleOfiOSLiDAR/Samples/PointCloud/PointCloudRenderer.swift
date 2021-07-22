@@ -10,7 +10,7 @@ import Metal
 import MetalKit
 import CoreImage
 
-class SimpleShaderRenderer {
+class PointCloudRenderer {
     private let device: MTLDevice
     private var renderPipeline: MTLRenderPipelineState!
 
