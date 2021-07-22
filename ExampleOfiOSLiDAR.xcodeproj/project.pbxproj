@@ -17,8 +17,6 @@
 		1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */; };
 		1E758FB725D74127001F6BA2 /* Scan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E758FB625D74127001F6BA2 /* Scan.storyboard */; };
 		1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */; };
-		1EC9F09326A96E2F001E955F /* PointCloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC9F09226A96E04001E955F /* PointCloud.storyboard */; };
-		1EC9F09426A96E32001E955F /* PointCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC9F09126A96E04001E955F /* PointCloudViewController.swift */; };
 		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
 		1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
@@ -33,6 +31,10 @@
 		1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1910425C605A5005064FC /* MenuViewController.swift */; };
 		1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1910925C605D2005064FC /* MenuDataSource.swift */; };
 		1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1911125C607E3005064FC /* MenuItemCell.swift */; };
+		1EF5A0D026AA1D6600E49415 /* PointCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */; };
+		1EF5A0D126AA1D6600E49415 /* PointCloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */; };
+		1EF5A0D326AA1DA900E49415 /* SimpleShaderRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */; };
+		1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +65,6 @@
 		1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARMeshGeometry+Ext.swift"; sourceTree = "<group>"; };
 		1E758FB625D74127001F6BA2 /* Scan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scan.storyboard; sourceTree = "<group>"; };
 		1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		1EC9F09126A96E04001E955F /* PointCloudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudViewController.swift; sourceTree = "<group>"; };
-		1EC9F09226A96E04001E955F /* PointCloud.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PointCloud.storyboard; sourceTree = "<group>"; };
 		1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collision.storyboard; sourceTree = "<group>"; };
 		1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionViewController.swift; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +85,10 @@
 		1EF1910425C605A5005064FC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		1EF1910925C605D2005064FC /* MenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataSource.swift; sourceTree = "<group>"; };
 		1EF1911125C607E3005064FC /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
+		1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudViewController.swift; sourceTree = "<group>"; };
+		1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCloud.storyboard; sourceTree = "<group>"; };
+		1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleShaderRenderer.swift; sourceTree = "<group>"; };
+		1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = SimpleShader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +146,10 @@
 		1EC9F09026A96DF5001E955F /* PointCloud */ = {
 			isa = PBXGroup;
 			children = (
-				1EC9F09126A96E04001E955F /* PointCloudViewController.swift */,
-				1EC9F09226A96E04001E955F /* PointCloud.storyboard */,
+				1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */,
+				1EF5A0D226AA1DA800E49415 /* SimpleShaderRenderer.swift */,
+				1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */,
+				1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */,
 			);
 			path = PointCloud;
 			sourceTree = "<group>";
@@ -354,8 +360,8 @@
 				1EF1910025C604C5005064FC /* DepthMap.storyboard in Resources */,
 				1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */,
 				1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */,
+				1EF5A0D126AA1D6600E49415 /* PointCloud.storyboard in Resources */,
 				1E758FB725D74127001F6BA2 /* Scan.storyboard in Resources */,
-				1EC9F09326A96E2F001E955F /* PointCloud.storyboard in Resources */,
 				1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */,
 				1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */,
 			);
@@ -384,10 +390,11 @@
 			files = (
 				1E1875B425D7A89500C09A98 /* SCNGeometry+Ext.swift in Sources */,
 				1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */,
-				1EC9F09426A96E32001E955F /* PointCloudViewController.swift in Sources */,
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
+				1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */,
+				1EF5A0D026AA1D6600E49415 /* PointCloudViewController.swift in Sources */,
 				1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */,
 				1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */,
 				1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */,
@@ -395,6 +402,7 @@
 				1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
+				1EF5A0D326AA1DA900E49415 /* SimpleShaderRenderer.swift in Sources */,
 				1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */,
 				1E34C94A25D323A700800E8D /* ExportViewController.swift in Sources */,
 			);
