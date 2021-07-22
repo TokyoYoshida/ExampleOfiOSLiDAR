@@ -17,6 +17,8 @@
 		1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */; };
 		1E758FB725D74127001F6BA2 /* Scan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E758FB625D74127001F6BA2 /* Scan.storyboard */; };
 		1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */; };
+		1EC9F09326A96E2F001E955F /* PointCloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EC9F09226A96E04001E955F /* PointCloud.storyboard */; };
+		1EC9F09426A96E32001E955F /* PointCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC9F09126A96E04001E955F /* PointCloudViewController.swift */; };
 		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
 		1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
@@ -61,6 +63,8 @@
 		1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARMeshGeometry+Ext.swift"; sourceTree = "<group>"; };
 		1E758FB625D74127001F6BA2 /* Scan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scan.storyboard; sourceTree = "<group>"; };
 		1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		1EC9F09126A96E04001E955F /* PointCloudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudViewController.swift; sourceTree = "<group>"; };
+		1EC9F09226A96E04001E955F /* PointCloud.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PointCloud.storyboard; sourceTree = "<group>"; };
 		1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collision.storyboard; sourceTree = "<group>"; };
 		1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionViewController.swift; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +139,15 @@
 			path = Scan;
 			sourceTree = "<group>";
 		};
+		1EC9F09026A96DF5001E955F /* PointCloud */ = {
+			isa = PBXGroup;
+			children = (
+				1EC9F09126A96E04001E955F /* PointCloudViewController.swift */,
+				1EC9F09226A96E04001E955F /* PointCloud.storyboard */,
+			);
+			path = PointCloud;
+			sourceTree = "<group>";
+		};
 		1ED25C3925C7EC5000CDB5AE /* Collision */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +220,7 @@
 				1ED25C3925C7EC5000CDB5AE /* Collision */,
 				1E34C94325D3237E00800E8D /* Export */,
 				1E758FB525D74113001F6BA2 /* Scan */,
+				1EC9F09026A96DF5001E955F /* PointCloud */,
 				1EF190FB25C60444005064FC /* Common */,
 			);
 			path = Samples;
@@ -341,6 +355,7 @@
 				1E2B6D5F25C68D4100F76D8C /* ConfidenceMap.storyboard in Resources */,
 				1EEE226325A7039C00706DE8 /* Assets.xcassets in Resources */,
 				1E758FB725D74127001F6BA2 /* Scan.storyboard in Resources */,
+				1EC9F09326A96E2F001E955F /* PointCloud.storyboard in Resources */,
 				1EEE226125A7039B00706DE8 /* Main.storyboard in Resources */,
 				1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */,
 			);
@@ -369,6 +384,7 @@
 			files = (
 				1E1875B425D7A89500C09A98 /* SCNGeometry+Ext.swift in Sources */,
 				1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */,
+				1EC9F09426A96E32001E955F /* PointCloudViewController.swift in Sources */,
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
 				1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
