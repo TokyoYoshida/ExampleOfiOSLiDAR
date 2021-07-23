@@ -107,9 +107,11 @@ extension PointCloudViewController: MTKViewDelegate {
         
         guard let (textureY, textureCbCr) = session.currentFrame?.buildCapturedImageTextures(textureCache: textureCache) else {return}
 
-        let encoder = buildRenderEncoder(commandBuffer)
+        guard let (depthTexture, confidenceTexture) = session.currentFrame?.buildDepthTextures(textureCache: textureCache) else {return}
 
-        renderer.update(commandBuffer, renderEncoder: encoder, capturedImageTextureY: textureY, capturedImageTextureCbCr: textureCbCr, depthTexture: <#T##CVMetalTexture#>, confidenceTexture: <#T##CVMetalTexture#>)
+        guard let encoder = buildRenderEncoder(commandBuffer) else {return}
+
+        renderer.update(commandBuffer, renderEncoder: encoder, capturedImageTextureY: textureY, capturedImageTextureCbCr: textureCbCr, depthTexture: depthTexture, confidenceTexture: confidenceTexture)
                 
         commandBuffer.present(drawable)
         
