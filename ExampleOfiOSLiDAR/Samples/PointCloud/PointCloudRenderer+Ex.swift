@@ -126,6 +126,8 @@ class PointCloudRenderer {
                 self.semaphore.signal()
             }
         }
+        
+        updateUniforms()
 
         var retainingTextures = [capturedImageTextureY, capturedImageTextureCbCr, depthTexture, confidenceTexture]
         commandBuffer.addCompletedHandler { buffer in
