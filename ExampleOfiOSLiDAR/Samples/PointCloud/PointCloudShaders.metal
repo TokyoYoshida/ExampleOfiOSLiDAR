@@ -148,7 +148,7 @@ fragment float4 particleFragment(ParticleVertexOut in [[stage_in]],
     return in.color;
 }
 
-fragment float4 simpleFragmentShader2(ParticleVertexOut in [[ stage_in ]],
+fragment float4 simpleFragmentShader(ParticleVertexOut in [[ stage_in ]],
                                       const float2 coords [[point_coord]]) {
     // we draw within a circle
     const float distSquared = length_squared(coords - float2(0.5));

@@ -17,7 +17,7 @@
 		1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */; };
 		1E758FB725D74127001F6BA2 /* Scan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E758FB625D74127001F6BA2 /* Scan.storyboard */; };
 		1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */; };
-		1E9A572226AAA0990083CFDD /* PointCloudRenderer+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */; };
+		1E9A572226AAA0990083CFDD /* PointCloudRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572126AAA0990083CFDD /* PointCloudRenderer.swift */; };
 		1E9A572426AAA1180083CFDD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572326AAA1180083CFDD /* Helpers.swift */; };
 		1E9A572626AAA5A80083CFDD /* PointCloudShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */; };
 		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
@@ -36,8 +36,6 @@
 		1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1911125C607E3005064FC /* MenuItemCell.swift */; };
 		1EF5A0D026AA1D6600E49415 /* PointCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */; };
 		1EF5A0D126AA1D6600E49415 /* PointCloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */; };
-		1EF5A0D326AA1DA900E49415 /* PointCloudRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */; };
-		1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +66,7 @@
 		1E59318925D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARMeshGeometry+Ext.swift"; sourceTree = "<group>"; };
 		1E758FB625D74127001F6BA2 /* Scan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scan.storyboard; sourceTree = "<group>"; };
 		1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
-		1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointCloudRenderer+Ex.swift"; sourceTree = "<group>"; };
+		1E9A572126AAA0990083CFDD /* PointCloudRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloudRenderer.swift; sourceTree = "<group>"; };
 		1E9A572326AAA1180083CFDD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PointCloudShaders.metal; sourceTree = "<group>"; };
 		1E9A572726AAA5B40083CFDD /* PointCloudShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointCloudShaderTypes.h; sourceTree = "<group>"; };
@@ -94,8 +92,6 @@
 		1EF1911125C607E3005064FC /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudViewController.swift; sourceTree = "<group>"; };
 		1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PointCloud.storyboard; sourceTree = "<group>"; };
-		1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudRenderer.swift; sourceTree = "<group>"; };
-		1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = SimpleShader.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,9 +151,7 @@
 			children = (
 				1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */,
 				1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */,
-				1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */,
-				1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */,
-				1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */,
+				1E9A572126AAA0990083CFDD /* PointCloudRenderer.swift */,
 				1E9A572726AAA5B40083CFDD /* PointCloudShaderTypes.h */,
 				1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */,
 			);
@@ -406,17 +400,15 @@
 				1E9A572626AAA5A80083CFDD /* PointCloudShaders.metal in Sources */,
 				1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
-				1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */,
 				1EF5A0D026AA1D6600E49415 /* PointCloudViewController.swift in Sources */,
 				1EF1910525C605A5005064FC /* MenuViewController.swift in Sources */,
-				1E9A572226AAA0990083CFDD /* PointCloudRenderer+Ex.swift in Sources */,
+				1E9A572226AAA0990083CFDD /* PointCloudRenderer.swift in Sources */,
 				1EF1910A25C605D2005064FC /* MenuDataSource.swift in Sources */,
 				1EF1911225C607E3005064FC /* MenuItemCell.swift in Sources */,
 				1E2B6D5725C68D3700F76D8C /* ConfidenceMapViewController.swift in Sources */,
 				1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */,
 				1E470F9125AF932000D8D918 /* ARFrame+Ext.swift in Sources */,
 				1EEE225E25A7039B00706DE8 /* Experience.rcproject in Sources */,
-				1EF5A0D326AA1DA900E49415 /* PointCloudRenderer.swift in Sources */,
 				1E59318A25D48BD2002CCCC9 /* ARMeshGeometry+Ext.swift in Sources */,
 				1E34C94A25D323A700800E8D /* ExportViewController.swift in Sources */,
 			);
