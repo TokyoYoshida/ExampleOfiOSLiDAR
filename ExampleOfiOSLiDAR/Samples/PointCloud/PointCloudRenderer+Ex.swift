@@ -10,7 +10,9 @@ import MetalKit
 import ARKit
 
 class PointCloudRenderer {
+    private let maxPoints = 500_000
     private let numGridPoints = 500
+    private let particleSize: Float = 10
 
     private let device: MTLDevice
     private lazy var library: MTLLibrary = device.makeDefaultLibrary()!
@@ -24,6 +26,16 @@ class PointCloudRenderer {
 
     private var relaxedStencilState: MTLDepthStencilState!
     private lazy var unprojectPipelineState = makeUnprojectionPipelineState()!
+    let confidenceThreshold = 1
+
+    private lazy var pointCloudUniforms: PointCloudUniforms = {
+        var uniforms = PointCloudUniforms()
+        uniforms.maxPoints = Int32(maxPoints)
+        uniforms.confidenceThreshold = Int32(confidenceThreshold)
+        uniforms.particleSize = particleSize
+        uniforms.cameraResolution = cameraResolution
+        return uniforms
+    }()
 
     init(device: MTLDevice, session: ARSession, mtkView: MTKView) {
         func makeGridPoints() -> [Float2] {
@@ -86,7 +98,8 @@ class PointCloudRenderer {
         
         renderEncoder.setDepthStencilState(relaxedStencilState)
         renderEncoder.setRenderPipelineState(unprojectPipelineState)
-        renderEncoder.setVertexBuffer(gridPointsBuffer, offset: 0, index: 0)
+        renderEncoder.setVertexBytes(&pointCloudUniforms, length: MemoryLayout<PointCloudUniforms>.stride, index: 0)
+        renderEncoder.setVertexBuffer(gridPointsBuffer, offset: 0, index: 1)
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(capturedImageTextureY), index: 0)
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(capturedImageTextureCbCr), index: 1)
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(depthTexture), index: 2)

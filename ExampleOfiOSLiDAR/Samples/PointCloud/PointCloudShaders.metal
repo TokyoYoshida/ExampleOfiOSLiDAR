@@ -43,7 +43,8 @@ static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float
 ///  Vertex shader that takes in a 2D grid-point and infers its 3D position in world-space, along with RGB and confidence
 // 2Dグリッドポイントを取り込み、RGBと信頼性とともに、ワールド空間での3D位置を推測する頂点シェーダー
 vertex void unprojectVertex(uint vertexID [[vertex_id]],
-                            constant float2 *gridPoints [[buffer(kGridPoints)]],
+                            constant PointCloudUniforms &uniforms [[buffer(0)]],
+                            constant float2 *gridPoints [[buffer(1)]],
                             texture2d<float, access::sample> capturedImageTextureY [[texture(0)]],
                             texture2d<float, access::sample> capturedImageTextureCbCr [[texture(1)]],
                             texture2d<float, access::sample> depthTexture [[texture(2)]],
