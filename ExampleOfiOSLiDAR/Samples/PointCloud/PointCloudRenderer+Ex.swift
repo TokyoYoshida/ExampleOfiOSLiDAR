@@ -30,6 +30,9 @@ class PointCloudRenderer {
     private let confidenceThreshold = 1
 
     private lazy var semaphore = DispatchSemaphore(value: maxBuffers)
+    private let orientation = UIInterfaceOrientation.landscapeRight
+    private var viewportSize = CGSize()
+    private lazy var rotateToARCamera = Self.makeRotateToARCameraMatrix(orientation: orientation)
 
     private lazy var pointCloudUniforms: PointCloudUniforms = {
         var uniforms = PointCloudUniforms()
@@ -70,6 +73,9 @@ class PointCloudRenderer {
             let relaxedStateDescriptor = MTLDepthStencilDescriptor()
             relaxedStencilState = device.makeDepthStencilState(descriptor: relaxedStateDescriptor)!
         }
+        func initViewPortSize() {
+            viewportSize = mtkView.bounds.size
+        }
 
         self.device = device
         self.session = session
@@ -77,9 +83,10 @@ class PointCloudRenderer {
 
         buildBuffer()
         buildStencilState()
+        initViewPortSize()
     }
     
-    func makeUnprojectionPipelineState() -> MTLRenderPipelineState? {
+    private func makeUnprojectionPipelineState() -> MTLRenderPipelineState? {
         guard let vertexFunction = library.makeFunction(name: "unprojectVertex"),
               let fragmentFunction = library.makeFunction(name: "simpleFragmentShader2")
         else {
@@ -97,7 +104,22 @@ class PointCloudRenderer {
         return try? device.makeRenderPipelineState(descriptor: descriptor)
     }
     
+    func drawRectResized(size: CGSize) {
+        viewportSize = size
+    }
+
     func update(_ commandBuffer: MTLCommandBuffer, renderEncoder: MTLRenderCommandEncoder, capturedImageTextureY: CVMetalTexture, capturedImageTextureCbCr: CVMetalTexture, depthTexture: CVMetalTexture, confidenceTexture: CVMetalTexture) {
+        func updateUniforms() {
+            guard let frame = session.currentFrame else {return}
+            let camera = frame.camera
+            let cameraIntrinsicsInversed = camera.intrinsics.inverse
+            let viewMatrix = camera.viewMatrix(for: orientation)
+            let viewMatrixInversed = viewMatrix.inverse
+            let projectionMatrix = camera.projectionMatrix(for: orientation, viewportSize: viewportSize, zNear: 0.001, zFar: 0)
+            pointCloudUniforms.viewProjectionMatrix = projectionMatrix * viewMatrix
+            pointCloudUniforms.localToWorld = viewMatrixInversed * rotateToARCamera
+            pointCloudUniforms.cameraIntrinsicsInversed = cameraIntrinsicsInversed
+        }
         _ = semaphore.wait(timeout: DispatchTime.distantFuture)
         commandBuffer.addCompletedHandler { [weak self] commandBuffer in
             if let self = self {
@@ -120,5 +142,28 @@ class PointCloudRenderer {
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(confidenceTexture), index: 3)
         renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: numGridPoints)
         renderEncoder.endEncoding()
+    }
+
+    static func makeRotateToARCameraMatrix(orientation: UIInterfaceOrientation) -> matrix_float4x4 {
+        func cameraToDisplayRotation(orientation: UIInterfaceOrientation) -> Int {
+            switch orientation {
+            case .landscapeLeft:
+                return 180
+            case .portrait:
+                return 90
+            case .portraitUpsideDown:
+                return -90
+            default:
+                return 0
+            }
+        }
+        let flipYZ = matrix_float4x4(
+            [1, 0, 0, 0],
+            [0, -1, 0, 0],
+            [0, 0, -1, 0],
+            [0, 0, 0, 1] )
+
+        let rotationAngle = Float(cameraToDisplayRotation(orientation: orientation)) * .degreesToRadian
+        return flipYZ * matrix_float4x4(simd_quaternion(rotationAngle, Float3(0, 0, 1)))
     }
 }

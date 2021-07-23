@@ -85,8 +85,9 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension PointCloudViewController: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        renderer.drawRectResized(size: size)
     }
-    
+
     func draw(in view: MTKView) {
         func getAlphaTexture(_ commandBuffer: MTLCommandBuffer) -> MTLTexture? {
             guard let currentFrame = session.currentFrame else {
