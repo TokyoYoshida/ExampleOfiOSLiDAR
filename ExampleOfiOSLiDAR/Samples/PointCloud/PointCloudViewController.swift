@@ -85,6 +85,7 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
 
 extension PointCloudViewController: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        guard session.currentFrame != nil else {return}
         renderer.drawRectResized(size: size)
     }
 
