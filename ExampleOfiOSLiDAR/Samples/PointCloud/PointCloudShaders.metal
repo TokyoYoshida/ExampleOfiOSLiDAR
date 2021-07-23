@@ -49,7 +49,6 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
                             texture2d<float, access::sample> capturedImageTextureCbCr [[texture(1)]],
                             texture2d<float, access::sample> depthTexture [[texture(2)]],
                             texture2d<unsigned int, access::sample> confidenceTexture [[texture(3)]]) {
-    ParticleVertexOut out;
     // いわゆる普通のカメラ画像についての情報
     const auto gridPoint = gridPoints[vertexID];
     // カメラ映像から色を取り出すために、その位置をテクスチャ画像として取得する
@@ -71,9 +70,16 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     
     const auto visibility = confidence >= uniforms.confidenceThreshold;
 
-    out.position = position;
+    float4 projectedPosition = uniforms.viewProjectionMatrix * float4(position.xyz, 1.0);
+    // 円の大きさを決定
+    const float pointSize = max(uniforms.particleSize / max(1.0, projectedPosition.z), 2.0);
+    projectedPosition /= projectedPosition.w;
+
+    ParticleVertexOut out;
+
+    out.position = projectedPosition;
     out.color = float4(sampledColor, 1);
-    out.pointSize = uniforms.particleSize;
+    out.pointSize = pointSize;
     
     return out;
 }
@@ -142,6 +148,13 @@ fragment float4 particleFragment(ParticleVertexOut in [[stage_in]],
     return in.color;
 }
 
-fragment float4 simpleFragmentShader2(ParticleVertexOut in [[ stage_in ]]) {
+fragment float4 simpleFragmentShader2(ParticleVertexOut in [[ stage_in ]],
+                                      const float2 coords [[point_coord]]) {
+    // we draw within a circle
+    const float distSquared = length_squared(coords - float2(0.5));
+    if (in.color.a == 0 || distSquared > 0.25) {
+        discard_fragment();
+    }
+    
     return in.color;
 }
