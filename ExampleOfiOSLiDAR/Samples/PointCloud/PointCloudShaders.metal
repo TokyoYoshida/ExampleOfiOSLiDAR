@@ -43,17 +43,13 @@ static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float
 ///  Vertex shader that takes in a 2D grid-point and infers its 3D position in world-space, along with RGB and confidence
 // 2Dグリッドポイントを取り込み、RGBと信頼性とともに、ワールド空間での3D位置を推測する頂点シェーダー
 vertex void unprojectVertex(uint vertexID [[vertex_id]],
-                            constant PointCloudUniforms &uniforms [[buffer(kPointCloudUniforms)]],
-                            device ParticleUniforms *particleUniforms [[buffer(kParticleUniforms)]],
                             constant float2 *gridPoints [[buffer(kGridPoints)]],
-                            texture2d<float, access::sample> capturedImageTextureY [[texture(kTextureY)]],
-                            texture2d<float, access::sample> capturedImageTextureCbCr [[texture(kTextureCbCr)]],
-                            texture2d<float, access::sample> depthTexture [[texture(kTextureDepth)]],
-                            texture2d<unsigned int, access::sample> confidenceTexture [[texture(kTextureConfidence)]]) {
+                            texture2d<float, access::sample> capturedImageTextureY [[texture(0)]],
+                            texture2d<float, access::sample> capturedImageTextureCbCr [[texture(1)]],
+                            texture2d<float, access::sample> depthTexture [[texture(2)]],
+                            texture2d<unsigned int, access::sample> confidenceTexture [[texture(3)]]) {
     // いわゆる普通のカメラ画像についての情報
     const auto gridPoint = gridPoints[vertexID];
-    // 現在の点のインデックス
-    const auto currentPointIndex = (uniforms.pointCloudCurrentIndex + vertexID) % uniforms.maxPoints;
     // カメラ映像から色を取り出すために、その位置をテクスチャ画像として取得する
     const auto texCoord = gridPoint / uniforms.cameraResolution;
     // デプス値を取得する。デプスマップをテクスチャ画像として、サンプラーによって取得している。
@@ -71,10 +67,6 @@ vertex void unprojectVertex(uint vertexID [[vertex_id]],
     // Sample the confidence map to get the confidence value
     const auto confidence = confidenceTexture.sample(colorSampler, texCoord).r;
     
-    // Write the data to the buffer
-    particleUniforms[currentPointIndex].position = position.xyz;
-    particleUniforms[currentPointIndex].color = sampledColor;
-    particleUniforms[currentPointIndex].confidence = confidence;
 }
 
 vertex RGBVertexOut rgbVertex(uint vertexID [[vertex_id]],
