@@ -24,6 +24,25 @@ struct ParticleVertexOut {
     float4 color;
 };
 
+float3 rotate(float3 p, float angle, float3 axis){
+    float3 a = normalize(axis);
+    float s = sin(angle);
+    float c = cos(angle);
+    float r = 1.0 - c;
+    float3x3 m = float3x3(
+        a.x * a.x * r + c,
+        a.y * a.x * r + a.z * s,
+        a.z * a.x * r - a.y * s,
+        a.x * a.y * r - a.z * s,
+        a.y * a.y * r + c,
+        a.z * a.y * r + a.x * s,
+        a.x * a.z * r + a.y * s,
+        a.y * a.z * r - a.x * s,
+        a.z * a.z * r + c
+    );
+    return m * p;
+}
+
 constexpr sampler colorSampler(mip_filter::linear, mag_filter::linear, min_filter::linear);
 constant auto yCbCrToRGB = float4x4(float4(+1.0000f, +1.0000f, +1.0000f, +0.0000f),
                                     float4(+0.0000f, -0.3441f, +1.7720f, +0.0000f),
@@ -35,8 +54,9 @@ constant float2 viewTexCoords[] = { float2(0, 0), float2(0, 1), float2(1, 0), fl
 /// Retrieves the world position of a specified camera point with depth
 static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld) {
     const auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
-    const auto worldPoint = localToWorld * simd_float4(localPoint, 1);
-    
+    const auto worldPoint1 = localToWorld * simd_float4(localPoint, 1);
+    const auto worldPoint = float4(rotate(worldPoint1.xyz, 0.5, float3(0.0, 1, 0.0)),worldPoint1.w);
+
     return worldPoint / worldPoint.w;
 }
 
