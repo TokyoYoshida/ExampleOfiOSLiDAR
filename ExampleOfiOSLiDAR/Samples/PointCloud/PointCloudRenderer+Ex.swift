@@ -13,6 +13,7 @@ class PointCloudRenderer {
     private let maxPoints = 500_000
     private let numGridPoints = 500
     private let particleSize: Float = 10
+    private let maxBuffers = 1
 
     private let device: MTLDevice
     private lazy var library: MTLLibrary = device.makeDefaultLibrary()!
@@ -26,7 +27,9 @@ class PointCloudRenderer {
 
     private var relaxedStencilState: MTLDepthStencilState!
     private lazy var unprojectPipelineState = makeUnprojectionPipelineState()!
-    let confidenceThreshold = 1
+    private let confidenceThreshold = 1
+
+    private lazy var semaphore = DispatchSemaphore(value: maxBuffers)
 
     private lazy var pointCloudUniforms: PointCloudUniforms = {
         var uniforms = PointCloudUniforms()
@@ -77,13 +80,17 @@ class PointCloudRenderer {
     }
     
     func makeUnprojectionPipelineState() -> MTLRenderPipelineState? {
-        guard let vertexFunction = library.makeFunction(name: "unprojectVertex") else {
+        guard let vertexFunction = library.makeFunction(name: "unprojectVertex"),
+              let fragmentFunction = library.makeFunction(name: "simpleFragmentShader2")
+        else {
                 return nil
         }
         
         let descriptor = MTLRenderPipelineDescriptor()
         descriptor.vertexFunction = vertexFunction
-        descriptor.isRasterizationEnabled = false
+        descriptor.fragmentFunction = fragmentFunction
+//        descriptor.sampleCount = mtkView.sampleCount
+//        descriptor.isRasterizationEnabled = false
         descriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
         descriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
         
@@ -91,6 +98,13 @@ class PointCloudRenderer {
     }
     
     func update(_ commandBuffer: MTLCommandBuffer, renderEncoder: MTLRenderCommandEncoder, capturedImageTextureY: CVMetalTexture, capturedImageTextureCbCr: CVMetalTexture, depthTexture: CVMetalTexture, confidenceTexture: CVMetalTexture) {
+        _ = semaphore.wait(timeout: DispatchTime.distantFuture)
+        commandBuffer.addCompletedHandler { [weak self] commandBuffer in
+            if let self = self {
+                self.semaphore.signal()
+            }
+        }
+
         var retainingTextures = [capturedImageTextureY, capturedImageTextureCbCr, depthTexture, confidenceTexture]
         commandBuffer.addCompletedHandler { buffer in
             retainingTextures.removeAll()
