@@ -69,7 +69,10 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     // Sample the confidence map to get the confidence value
     const auto confidence = confidenceTexture.sample(colorSampler, texCoord).r;
     
-    out.position = float4(0,0,0,0);
+    const auto visibility = confidence >= uniforms.confidenceThreshold;
+
+    out.position = position;
+    out.color = float4(sampledColor, visibility);
     
     return out;
 }
@@ -139,5 +142,5 @@ fragment float4 particleFragment(ParticleVertexOut in [[stage_in]],
 }
 
 fragment float4 simpleFragmentShader2(ParticleVertexOut in [[ stage_in ]]) {
-    return float4(1,0,0,1);
+    return in.color;
 }
