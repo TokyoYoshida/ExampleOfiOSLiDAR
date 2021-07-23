@@ -42,23 +42,24 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
         func initMatteGenerator() {
             matteGenerator = ARMatteGenerator(device: device, matteResolution: .half)
         }
-        func loadTexture() {
-            let textureLoader = MTKTextureLoader(device: device)
-            texture = try! textureLoader.newTexture(name: "fuji", scaleFactor: view.contentScaleFactor, bundle: nil)
-            mtkView.colorPixelFormat = texture.pixelFormat
-            mtkView.framebufferOnly = false
-        }
         func initMetal() {
             commandQueue = device.makeCommandQueue()
             mtkView.device = device
             mtkView.framebufferOnly = false
             mtkView.delegate = self
         }
-        func runARSession() {
+        func buildConfigure() -> ARWorldTrackingConfiguration {
             let configuration = ARWorldTrackingConfiguration()
 
-            configuration.frameSemantics = .personSegmentationWithDepth
+            configuration.environmentTexturing = .automatic
+            if type(of: configuration).supportsFrameSemantics(.sceneDepth) {
+               configuration.frameSemantics = .sceneDepth
+            }
 
+            return configuration
+        }
+        func runARSession() {
+            let configuration = buildConfigure()
             session.run(configuration)
         }
         func initARSession() {
