@@ -28,7 +28,7 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
 
     private var texture: MTLTexture!
-    lazy private var renderer = PointCloudRenderer(device: device)
+    lazy private var renderer = PointCloudRenderer(device: device,session: session, mtkView: mtkView)
 
 
     var orientation: UIInterfaceOrientation {
@@ -104,8 +104,10 @@ extension PointCloudViewController: MTKViewDelegate {
         guard let drawable = view.currentDrawable else {return}
         
         let commandBuffer = commandQueue.makeCommandBuffer()!
+        
+        let encoder = buildRenderEncoder(commandBuffer)
 
-        renderer.update(commandBuffer, drawable: drawable)
+        renderer.update(commandBuffer, renderEncoder: encoder, capturedImageTextureY: <#T##CVMetalTexture#>, capturedImageTextureCbCr: <#T##CVMetalTexture#>, depthTexture: <#T##CVMetalTexture#>, confidenceTexture: <#T##CVMetalTexture#>)
                 
         commandBuffer.present(drawable)
         

@@ -19,6 +19,7 @@
 		1E758FBC25D7412F001F6BA2 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */; };
 		1E9A572226AAA0990083CFDD /* PointCloudRenderer+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */; };
 		1E9A572426AAA1180083CFDD /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572326AAA1180083CFDD /* Helpers.swift */; };
+		1E9A572626AAA5A80083CFDD /* PointCloudShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */; };
 		1ED25C3B25C7EC6500CDB5AE /* Collision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */; };
 		1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */; };
 		1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE225925A7039B00706DE8 /* AppDelegate.swift */; };
@@ -69,6 +70,8 @@
 		1E758FBB25D7412F001F6BA2 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PointCloudRenderer+Ex.swift"; sourceTree = "<group>"; };
 		1E9A572326AAA1180083CFDD /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PointCloudShaders.metal; sourceTree = "<group>"; };
+		1E9A572726AAA5B40083CFDD /* PointCloudShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PointCloudShaderTypes.h; sourceTree = "<group>"; };
 		1ED25C3A25C7EC6500CDB5AE /* Collision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Collision.storyboard; sourceTree = "<group>"; };
 		1ED25C3F25C7EC7800CDB5AE /* CollisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionViewController.swift; sourceTree = "<group>"; };
 		1EEE225625A7039B00706DE8 /* ExampleOfiOSLiDAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleOfiOSLiDAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,10 +154,12 @@
 			isa = PBXGroup;
 			children = (
 				1EF5A0CF26AA1D6600E49415 /* PointCloud.storyboard */,
+				1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */,
 				1EF5A0D226AA1DA800E49415 /* PointCloudRenderer.swift */,
 				1E9A572126AAA0990083CFDD /* PointCloudRenderer+Ex.swift */,
 				1EF5A0D426AA1DAE00E49415 /* SimpleShader.metal */,
-				1EF5A0CE26AA1D6600E49415 /* PointCloudViewController.swift */,
+				1E9A572726AAA5B40083CFDD /* PointCloudShaderTypes.h */,
+				1E9A572526AAA5A80083CFDD /* PointCloudShaders.metal */,
 			);
 			path = PointCloud;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				1E9A572426AAA1180083CFDD /* Helpers.swift in Sources */,
 				1ED25C4025C7EC7800CDB5AE /* CollisionViewController.swift in Sources */,
 				1EEE225C25A7039B00706DE8 /* DepthMapViewController.swift in Sources */,
+				1E9A572626AAA5A80083CFDD /* PointCloudShaders.metal in Sources */,
 				1E12889C25D50CDB00661E0D /* MDLMesh+Ext.swift in Sources */,
 				1EEE225A25A7039B00706DE8 /* AppDelegate.swift in Sources */,
 				1EF5A0D526AA1DAF00E49415 /* SimpleShader.metal in Sources */,
