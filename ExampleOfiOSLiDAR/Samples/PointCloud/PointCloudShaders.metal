@@ -57,9 +57,9 @@ constant float PI = 3.14159;
 static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, float3 modelPosition, float3 modelRotate) {
     auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
     localPoint += modelPosition;
-    auto rotated = rotate(localPoint, PI, modelRotate);
+    auto rotated = rotate(localPoint, modelRotate.x, float3(1,0,0));
+    rotated = rotate(localPoint, modelRotate.y, float3(0,1,0));
     rotated -= modelPosition;
-    
     const auto worldPoint = localToWorld * simd_float4(rotated, 1);
 
     return worldPoint / worldPoint.w;

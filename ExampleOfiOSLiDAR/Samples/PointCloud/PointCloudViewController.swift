@@ -94,6 +94,9 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
         var rotate = renderer.modelRotate
         rotate.x += Float(point.x) * (degress90radian / cameraResolution.x)
         rotate.y += Float(point.y) * (degress90radian / cameraResolution.y)
+        renderer.modelRotate = rotate
+        print(point)
+        print(rotate)
     }
 }
 
