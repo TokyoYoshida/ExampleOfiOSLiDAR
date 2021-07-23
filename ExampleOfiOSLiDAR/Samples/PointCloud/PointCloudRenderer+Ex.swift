@@ -11,7 +11,7 @@ import ARKit
 
 class PointCloudRenderer {
     private let maxPoints = 500_000
-    private let numGridPoints = 500
+    private let numGridPoints = 50_000
     private let particleSize: Float = 10
     private let maxBuffers = 1
 

@@ -99,7 +99,7 @@ extension PointCloudViewController: MTKViewDelegate {
         }
         func buildRenderEncoder(_ commandBuffer: MTLCommandBuffer) -> MTLRenderCommandEncoder? {
             let rpd = view.currentRenderPassDescriptor
-            rpd?.colorAttachments[0].clearColor = MTLClearColorMake(0, 1, 0, 1)
+            rpd?.colorAttachments[0].clearColor = MTLClearColorMake(0, 0, 0, 1)
             rpd?.colorAttachments[0].loadAction = .clear
             rpd?.colorAttachments[0].storeAction = .store
             return commandBuffer.makeRenderCommandEncoder(descriptor: rpd!)
