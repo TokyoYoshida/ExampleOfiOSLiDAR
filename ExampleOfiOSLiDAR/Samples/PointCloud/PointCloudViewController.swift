@@ -88,12 +88,12 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc func swipeScreen(_ sender:UIPanGestureRecognizer){
-        let degress90radian = Float.pi
+        let degress90radian = Float.pi * 0.5
         let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
         let point = sender.translation(in: view)
         var rotate = renderer.modelRotate
-        rotate.x -= Float(point.x) * (degress90radian / cameraResolution.x)
-        rotate.y -= Float(point.y) * (degress90radian / cameraResolution.y)
+        rotate.x -= Float(point.y) * (degress90radian / cameraResolution.y)
+        rotate.y -= Float(point.x) * (degress90radian / cameraResolution.x)
         rotate.x = rotate.x.truncatingRemainder(dividingBy: Float.pi*2)
         rotate.y = rotate.y.truncatingRemainder(dividingBy: Float.pi*2)
         renderer.modelRotate = rotate
