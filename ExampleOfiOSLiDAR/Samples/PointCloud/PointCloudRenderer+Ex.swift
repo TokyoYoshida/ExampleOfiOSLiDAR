@@ -12,13 +12,26 @@ import ARKit
 extension PointCloudRenderer {
     class PointCloudBuider {
         private let numGridPoints = 500
+        private let device: MTLDevice
 
         private let session: ARSession
         private var sampleFrame: ARFrame { session.currentFrame! }
         private lazy var cameraResolution = Float2(Float(sampleFrame.camera.imageResolution.width), Float(sampleFrame.camera.imageResolution.height))
-        
-        init(session: ARSession) {
+        private var gridPointsBuffer: MTLBuffer!
+
+        init(device: MTLDevice, session: ARSession) {
+            func buildBuffer() {
+                let array = makeGridPoints()
+                guard let buffer = device.makeBuffer(bytes: array, length: MemoryLayout<Float2>.stride * array.count, options: .storageModeShared) else {
+                    fatalError("Failed to create MTLBuffer")
+                }
+                gridPointsBuffer = buffer
+            }
+
+            self.device = device
             self.session = session
+
+            buildBuffer()
         }
 
         func makeGridPoints() -> [Float2] {
