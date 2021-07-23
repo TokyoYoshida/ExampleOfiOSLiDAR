@@ -29,8 +29,7 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
 
     private var texture: MTLTexture!
     lazy private var renderer = PointCloudRenderer(device: device,session: session, mtkView: mtkView)
-
-
+    
     var orientation: UIInterfaceOrientation {
         guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else {
             fatalError()
@@ -75,13 +74,28 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
             colorDesc.usage = MTLTextureUsage(rawValue: MTLTextureUsage.renderTarget.rawValue | MTLTextureUsage.shaderRead.rawValue)
 
         }
+        func initGesture() {
+            let tapGesture = UIPanGestureRecognizer(target: self, action: #selector(swipeScreen(_:)))
+            tapGesture.delegate = self
+            self.view.addGestureRecognizer(tapGesture)
+        }
         super.viewDidLoad()
         initARSession()
         initMatteGenerator()
         initMetal()
         createTexture()
+        initGesture()
     }
+
+    @objc func swipeScreen(_ sender:UIPanGestureRecognizer){
+        let degress90radian = Float.pi
+        let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
+        let point = sender.translation(in: view)
+        var rotate = renderer.modelRotate
+        rotate.x += Float(point.x) * (degress90radian / cameraResolution.x)
+        rotate.y += Float(point.y) * (degress90radian / cameraResolution.y)
     }
+}
 
 extension PointCloudViewController: MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {

@@ -40,8 +40,28 @@ class PointCloudRenderer {
         uniforms.confidenceThreshold = Int32(confidenceThreshold)
         uniforms.particleSize = particleSize
         uniforms.cameraResolution = cameraResolution
+        uniforms.modelPosition = Float3(0, 0, -1)
+        uniforms.modelRotate = Float3(0, 0, 0)
         return uniforms
     }()
+    
+    var modelPosition: Float3 {
+        get {
+            return pointCloudUniforms.modelPosition
+        }
+        set(value) {
+            pointCloudUniforms.modelPosition = value
+        }
+    }
+
+    var modelRotate: Float3 {
+        get {
+            return pointCloudUniforms.modelRotate
+        }
+        set(value) {
+            pointCloudUniforms.modelRotate = value
+        }
+    }
 
     init(device: MTLDevice, session: ARSession, mtkView: MTKView) {
         func makeGridPoints() -> [Float2] {

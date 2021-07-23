@@ -51,11 +51,16 @@ constant auto yCbCrToRGB = float4x4(float4(+1.0000f, +1.0000f, +1.0000f, +0.0000
 constant float2 viewVertices[] = { float2(-1, 1), float2(-1, -1), float2(1, 1), float2(1, -1) };
 constant float2 viewTexCoords[] = { float2(0, 0), float2(0, 1), float2(1, 0), float2(1, 1) };
 
+constant float PI = 3.14159;
+
 /// Retrieves the world position of a specified camera point with depth
-static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld) {
-    const auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
-    const auto worldPoint1 = localToWorld * simd_float4(localPoint, 1);
-    const auto worldPoint = float4(rotate(worldPoint1.xyz, 0.5, float3(0.0, 1, 0.0)),worldPoint1.w);
+static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, float3 modelPosition, float3 modelRotate) {
+    auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
+    localPoint += modelPosition;
+    auto rotated = rotate(localPoint, PI, modelRotate);
+    rotated -= modelPosition;
+    
+    const auto worldPoint = localToWorld * simd_float4(rotated, 1);
 
     return worldPoint / worldPoint.w;
 }
@@ -78,7 +83,7 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     const auto depth = depthTexture.sample(colorSampler, texCoord).r;
     // 位置を取得する。ワールド座標系から、デプスを加味して取得している。
     // With a 2D point plus depth, we can now get its 3D position
-    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld);
+    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld, uniforms.modelPosition, uniforms.modelRotate);
     
     // YCbCr = カラー画像の色を表現する方式(色空間)の一つ
     // Yは輝度で、CrCbは、Cbが青系統、Crが赤系統のそれぞれの色の色相と彩度を表す。

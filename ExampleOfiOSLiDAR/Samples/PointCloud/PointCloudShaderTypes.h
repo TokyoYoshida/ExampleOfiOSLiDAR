@@ -40,6 +40,9 @@ struct PointCloudUniforms {
     int maxPoints; // 🤓点の最大数
     int pointCloudCurrentIndex; // 🤓現在のインデックスう
     int confidenceThreshold; // 🤓信頼性のしきい値
+    
+    simd_float3 modelPosition;
+    simd_float3 modelRotate;
 };
 
 // 🤓パーティクル１つ１つについての情報
