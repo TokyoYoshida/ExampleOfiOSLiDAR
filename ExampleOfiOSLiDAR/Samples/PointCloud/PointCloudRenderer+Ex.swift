@@ -119,5 +119,6 @@ class PointCloudRenderer {
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(depthTexture), index: 2)
         renderEncoder.setVertexTexture(CVMetalTextureGetTexture(confidenceTexture), index: 3)
         renderEncoder.drawPrimitives(type: .point, vertexStart: 0, vertexCount: numGridPoints)
+        renderEncoder.endEncoding()
     }
 }
