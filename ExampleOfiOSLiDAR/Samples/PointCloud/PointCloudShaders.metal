@@ -73,6 +73,7 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
 
     out.position = position;
     out.color = float4(sampledColor, visibility);
+    out.pointSize = uniforms.particleSize;
     
     return out;
 }
