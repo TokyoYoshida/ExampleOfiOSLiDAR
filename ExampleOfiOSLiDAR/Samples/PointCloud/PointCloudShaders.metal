@@ -72,7 +72,7 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     const auto visibility = confidence >= uniforms.confidenceThreshold;
 
     out.position = position;
-    out.color = float4(sampledColor, visibility);
+    out.color = float4(sampledColor, 1);
     out.pointSize = uniforms.particleSize;
     
     return out;
