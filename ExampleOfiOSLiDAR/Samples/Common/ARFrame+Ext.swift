@@ -85,4 +85,18 @@ extension ARFrame {
         
         return (textureY: capturedImageTextureY, textureCbCr: capturedImageTextureCbCr)
     }
+
+    func buildDepthTextures(textureCache: CVMetalTextureCache) -> (depthTexture: CVMetalTexture, confidenceTexture: CVMetalTexture)? {
+        guard let depthMap = self.sceneDepth?.depthMap,
+            let confidenceMap = self.sceneDepth?.confidenceMap else {
+                return nil
+        }
+        
+        guard let depthTexture = createTexture(fromPixelBuffer: depthMap, pixelFormat: .r32Float, planeIndex: 0, textureCache: textureCache),
+              let confidenceTexture = createTexture(fromPixelBuffer: confidenceMap, pixelFormat: .r8Uint, planeIndex: 0, textureCache: textureCache) else {
+            return nil
+        }
+        
+        return (depthTexture: depthTexture, confidenceTexture: confidenceTexture)
+    }
 }
