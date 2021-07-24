@@ -32,6 +32,11 @@ Scan object with color texture.<BR>
 [(Document)](ExampleOfiOSLiDAR/Samples/Scan/Scan.md)<BR>
 <img width="400px" src="https://user-images.githubusercontent.com/16970578/107994124-53f82300-701f-11eb-9f21-9251382699df.gif">
 
+### Point Cloud
+Realtime Point Cloud.<BR>
+[(Document)](ExampleOfiOSLiDAR/Samples/PointCloud/PintCloud.md)<BR>
+<img width="400px" src="https://user-images.githubusercontent.com/16970578/126863742-5191acde-d8c2-4f3e-a91a-017e43122836.gif">
+
 ### License
 
 MIT
