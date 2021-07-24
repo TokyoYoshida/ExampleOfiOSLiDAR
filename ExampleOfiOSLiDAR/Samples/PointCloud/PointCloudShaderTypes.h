@@ -33,6 +33,7 @@ struct PointCloudUniforms {
     int pointCloudCurrentIndex;
     int confidenceThreshold;
     
+    simd_float3 modelPosition;
     matrix_float4x4 modelTransform;
 };
 

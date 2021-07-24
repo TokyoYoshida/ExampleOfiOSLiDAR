@@ -88,13 +88,13 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc func swipeScreen(_ sender:UIPanGestureRecognizer){
-        let maxRad = Float.pi * 0.01
+        let maxRad = Float.pi * 0.1
         let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
         let point = sender.translation(in: view)
 
-        let radY = -(maxRad * Float(point.x) / cameraResolution.x).truncatingRemainder(dividingBy: Float.pi)
+        let radY = (maxRad * Float(point.x) / cameraResolution.x).truncatingRemainder(dividingBy: Float.pi)
         let rotateY = matrix_float4x4(
-                simd_float4(cos(radY), 0,  0, -sin(radY)),
+                simd_float4(cos(radY), 0,  -sin(radY), 0 ),
                 simd_float4(0, 1,  0, 0),
                 simd_float4(sin(radY), 0,  cos(radY), 0),
             simd_float4(0, 0, 0, 1))
@@ -106,10 +106,28 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
                 simd_float4(0, -sin(radX), cos(radX), 0),
             simd_float4(0, 0, 0, 1))
 
-        renderer.modelTransform = simd_mul(simd_mul(renderer.modelTransform, rotateY),rotateX)
+        renderer.modelTransform = simd_mul(simd_mul(renderer.modelTransform, rotateX),rotateY)
 
         print(point)
         print(renderer.modelTransform)
+    }
+    
+    @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer) {
+        let velocity: Float = 0.5
+
+        print("pinch scale: \(sender.scale)")
+        print("pinch velocity: \(sender.velocity)")
+        
+        let tz: Float = sender.scale > 1 ? 1 : -1
+        let scaleMatrix = matrix_float4x4(
+            simd_float4(1, 0,  0, 0),
+            simd_float4(0, 1,  0, 0),
+            simd_float4(0, 0,  1, 0),
+            simd_float4(tz, 0,  0, 1))
+        
+//        renderer.modelPosition.x -= 0.1
+
+//        renderer.modelTransform = simd_mul(renderer.modelTransform, scaleMatrix)
     }
 }
 

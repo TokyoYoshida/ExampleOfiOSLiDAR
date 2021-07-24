@@ -40,6 +40,7 @@ class PointCloudRenderer {
         uniforms.confidenceThreshold = Int32(confidenceThreshold)
         uniforms.particleSize = particleSize
         uniforms.cameraResolution = cameraResolution
+        uniforms.modelPosition = float3(0,0,-1)
         uniforms.modelTransform = matrix_float4x4(
             simd_float4(1, 0,  0, 0),
             simd_float4(0, 1,  0, 0),
@@ -54,6 +55,15 @@ class PointCloudRenderer {
         }
         set(value) {
             pointCloudUniforms.modelTransform = value
+        }
+    }
+
+    var modelPosition: simd_float3 {
+        get {
+            return pointCloudUniforms.modelPosition
+        }
+        set(value) {
+            pointCloudUniforms.modelPosition = value
         }
     }
 

@@ -42,12 +42,11 @@ constant auto yCbCrToRGB = float4x4(float4(+1.0000f, +1.0000f, +1.0000f, +0.0000
 constant float2 viewVertices[] = { float2(-1, 1), float2(-1, -1), float2(1, 1), float2(1, -1) };
 constant float2 viewTexCoords[] = { float2(0, 0), float2(0, 1), float2(1, 0), float2(1, 1) };
 
-static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, matrix_float4x4 modelTransform) {
+static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, simd_float3 modelPosition, matrix_float4x4 modelTransform) {
     auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
-//    localPoint.z -= 0.3;
-    localPoint = (simd_float4(localPoint, 1) * modelTransform).xyz;
-//    localPoint.z += 0.3;
-    const auto worldPoint = localToWorld * simd_float4(localPoint, 1);
+    localPoint = (simd_float4(localPoint + float3(0, 0, -0.5), 1) * modelTransform).xyz + float3(0, 0, 1.5);
+    auto worldPoint = localToWorld * simd_float4(localPoint, 1);
+//    worldPoint.y -= 0.5;
 
     return worldPoint / worldPoint.w;
 }
@@ -62,7 +61,7 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     const auto gridPoint = gridPoints[vertexID];
     const auto texCoord = gridPoint / uniforms.cameraResolution;
     const auto depth = depthTexture.sample(colorSampler, texCoord).r;
-    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld, uniforms.modelTransform);
+    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld, uniforms.modelPosition, uniforms.modelTransform);
     
     const auto ycbcr = float4(capturedImageTextureY.sample(colorSampler, texCoord).r, capturedImageTextureCbCr.sample(colorSampler, texCoord.xy).rg, 1);
     const auto sampledColor = (yCbCrToRGB * ycbcr).rgb;
