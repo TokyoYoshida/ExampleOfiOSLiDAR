@@ -20,7 +20,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="zXI-vJ-pJN" appends="YES" id="7tD-3e-DOX"/>
                                     <outletCollection property="gestureRecognizers" destination="n5C-ES-5eu" appends="YES" id="Yj9-mX-rD9"/>
                                 </connections>
                             </mtkView>
@@ -40,11 +39,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Qa-Ns-GPL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="zXI-vJ-pJN">
-                    <connections>
-                        <action selector="pinchGesture:" destination="jMM-95-Y9l" id="KtD-Tu-B8c"/>
-                    </connections>
-                </pinchGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="n5C-ES-5eu">
                     <connections>
                         <action selector="panGesture:" destination="jMM-95-Y9l" id="Efj-9o-QFh"/>

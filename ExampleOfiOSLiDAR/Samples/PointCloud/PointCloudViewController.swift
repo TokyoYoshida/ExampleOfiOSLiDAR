@@ -82,46 +82,30 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @IBAction func panGesture(_ sender: UIPanGestureRecognizer) {
+        func buildXRotateMatrix() -> matrix_float4x4 {
+            let rad = -(maxRad * Float(point.y) / cameraResolution.y).truncatingRemainder(dividingBy: Float.pi)
+            return matrix_float4x4(
+                    simd_float4(1, 0,  0, 0),
+                    simd_float4(0, cos(rad),  sin(rad), 0),
+                    simd_float4(0, -sin(rad), cos(rad), 0),
+                simd_float4(0, 0, 0, 1))
+        }
+        func buildYRotateMatrix() -> matrix_float4x4 {
+            let rad = (maxRad * Float(point.x) / cameraResolution.x).truncatingRemainder(dividingBy: Float.pi)
+            return matrix_float4x4(
+                    simd_float4(cos(rad), 0,  -sin(rad), 0 ),
+                    simd_float4(0, 1,  0, 0),
+                    simd_float4(sin(rad), 0,  cos(rad), 0),
+                simd_float4(0, 0, 0, 1))
+        }
         let maxRad = Float.pi * 0.1
         let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
         let point = sender.translation(in: view)
 
-        let radY = (maxRad * Float(point.x) / cameraResolution.x).truncatingRemainder(dividingBy: Float.pi)
-        let rotateY = matrix_float4x4(
-                simd_float4(cos(radY), 0,  -sin(radY), 0 ),
-                simd_float4(0, 1,  0, 0),
-                simd_float4(sin(radY), 0,  cos(radY), 0),
-            simd_float4(0, 0, 0, 1))
-
-        let radX = -(maxRad * Float(point.y) / cameraResolution.y).truncatingRemainder(dividingBy: Float.pi)
-        let rotateX = matrix_float4x4(
-                simd_float4(1, 0,  0, 0),
-                simd_float4(0, cos(radX),  sin(radX), 0),
-                simd_float4(0, -sin(radX), cos(radX), 0),
-            simd_float4(0, 0, 0, 1))
+        let rotateX = buildXRotateMatrix()
+        let rotateY = buildYRotateMatrix()
 
         renderer.modelTransform = simd_mul(simd_mul(renderer.modelTransform, rotateX),rotateY)
-
-        print(point)
-        print(renderer.modelTransform)
-    }
-    
-    @IBAction func pinchGesture(_ sender: UIPinchGestureRecognizer) {
-        let velocity: Float = 0.5
-
-        print("pinch scale: \(sender.scale)")
-        print("pinch velocity: \(sender.velocity)")
-        
-        let tz: Float = sender.scale > 1 ? 1 : -1
-        let scaleMatrix = matrix_float4x4(
-            simd_float4(1, 0,  0, 0),
-            simd_float4(0, 1,  0, 0),
-            simd_float4(0, 0,  1, 0),
-            simd_float4(tz, 0,  0, 1))
-        
-//        renderer.modelPosition.x -= 0.1
-
-//        renderer.modelTransform = simd_mul(renderer.modelTransform, scaleMatrix)
     }
 }
 
