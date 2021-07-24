@@ -74,20 +74,14 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
             colorDesc.usage = MTLTextureUsage(rawValue: MTLTextureUsage.renderTarget.rawValue | MTLTextureUsage.shaderRead.rawValue)
 
         }
-        func initGesture() {
-            let tapGesture = UIPanGestureRecognizer(target: self, action: #selector(swipeScreen(_:)))
-            tapGesture.delegate = self
-            self.view.addGestureRecognizer(tapGesture)
-        }
         super.viewDidLoad()
         initARSession()
         initMatteGenerator()
         initMetal()
         createTexture()
-        initGesture()
     }
 
-    @objc func swipeScreen(_ sender:UIPanGestureRecognizer){
+    @IBAction func panGesture(_ sender: UIPanGestureRecognizer) {
         let maxRad = Float.pi * 0.1
         let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
         let point = sender.translation(in: view)

@@ -21,6 +21,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zXI-vJ-pJN" appends="YES" id="7tD-3e-DOX"/>
+                                    <outletCollection property="gestureRecognizers" destination="n5C-ES-5eu" appends="YES" id="Yj9-mX-rD9"/>
                                 </connections>
                             </mtkView>
                         </subviews>
@@ -44,6 +45,11 @@
                         <action selector="pinchGesture:" destination="jMM-95-Y9l" id="KtD-Tu-B8c"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="n5C-ES-5eu">
+                    <connections>
+                        <action selector="panGesture:" destination="jMM-95-Y9l" id="Efj-9o-QFh"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1991" y="-520"/>
         </scene>
