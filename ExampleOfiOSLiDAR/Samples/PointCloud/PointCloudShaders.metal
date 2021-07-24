@@ -53,14 +53,20 @@ constant float2 viewTexCoords[] = { float2(0, 0), float2(0, 1), float2(1, 0), fl
 
 constant float PI = 3.14159;
 
+constant auto basePosition = matrix_float4x4(
+                                             simd_float4(0, 0, 0, 0),
+                                             simd_float4(0, 1, 0, 0),
+                                             simd_float4(0, 0, 1, 0),
+                                             simd_float4(0, 0, -1, 1)
+                                             );
+
 /// Retrieves the world position of a specified camera point with depth
-static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, float3 modelPosition, float3 modelRotate) {
+static simd_float4 worldPoint(simd_float2 cameraPoint, float depth, matrix_float3x3 cameraIntrinsicsInversed, matrix_float4x4 localToWorld, matrix_float4x4 modelTransform) {
     auto localPoint = cameraIntrinsicsInversed * simd_float3(cameraPoint, 1) * depth;
-    localPoint += modelPosition;
-    auto rotated = rotate(localPoint, modelRotate.x, float3(1,0,0));
-    rotated = rotate(rotated, -1 * modelRotate.y, float3(0,1,0));
-    rotated -= modelPosition;
-    const auto worldPoint = localToWorld * simd_float4(rotated, 1);
+    localPoint.z += 1;
+    localPoint = (simd_float4(localPoint, 1) * modelTransform).xyz;
+    localPoint.z -= 1;
+    const auto worldPoint = localToWorld * simd_float4(localPoint, 1);
 
     return worldPoint / worldPoint.w;
 }
@@ -83,7 +89,7 @@ vertex ParticleVertexOut unprojectVertex(uint vertexID [[vertex_id]],
     const auto depth = depthTexture.sample(colorSampler, texCoord).r;
     // 位置を取得する。ワールド座標系から、デプスを加味して取得している。
     // With a 2D point plus depth, we can now get its 3D position
-    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld, uniforms.modelPosition, uniforms.modelRotate);
+    const auto position = worldPoint(gridPoint, depth, uniforms.cameraIntrinsicsInversed, uniforms.localToWorld, uniforms.modelTransform);
     
     // YCbCr = カラー画像の色を表現する方式(色空間)の一つ
     // Yは輝度で、CrCbは、Cbが青系統、Crが赤系統のそれぞれの色の色相と彩度を表す。

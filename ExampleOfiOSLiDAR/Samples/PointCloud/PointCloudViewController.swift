@@ -88,17 +88,23 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 
     @objc func swipeScreen(_ sender:UIPanGestureRecognizer){
-        let degress90radian = Float.pi * 0.5
+        let maxRad = Float.pi * 0.25
         let cameraResolution = Float2(Float(session.currentFrame?.camera.imageResolution.width ?? 0), Float(session.currentFrame?.camera.imageResolution.height ?? 0))
         let point = sender.translation(in: view)
-        var rotate = renderer.modelRotate
-        rotate.x -= Float(point.y) * (degress90radian / cameraResolution.y)
-        rotate.y -= Float(point.x) * (degress90radian / cameraResolution.x)
-        rotate.x = rotate.x.truncatingRemainder(dividingBy: Float.pi*2)
-        rotate.y = rotate.y.truncatingRemainder(dividingBy: Float.pi*2)
-        renderer.modelRotate = rotate
+//        var rotate = renderer.modelRotate
+        let radY = (maxRad * Float(point.x) / cameraResolution.x).truncatingRemainder(dividingBy: Float.pi)
+//        rotate.y -= Float(point.x) * (degress90radian / cameraResolution.x)
+//        rotate.x = rotate.x.truncatingRemainder(dividingBy: Float.pi*2)
+//        rotate.y = rotate.y.truncatingRemainder(dividingBy: Float.pi*2)
+//        renderer.modelRotate = rotate
+        let rotateY = matrix_float4x4(
+                simd_float4(cos(radY), 0,  0, -sin(radY)),
+                simd_float4(0, 1,  0, 0),
+                simd_float4(sin(radY), 0,  cos(radY), 0),
+            simd_float4(0, 0, 0, 1))
+        renderer.modelTransform = simd_mul(renderer.modelTransform, rotateY)
         print(point)
-        print(rotate)
+        print(renderer.modelTransform)
     }
 }
 
