@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Types and enums that are shared between shaders and the host app code.
-*/
-
 #ifndef ShaderTypes_h
 #define ShaderTypes_h
 
