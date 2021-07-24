@@ -99,7 +99,7 @@ class PointCloudViewController: UIViewController, UIGestureRecognizerDelegate {
                 simd_float4(sin(radY), 0,  cos(radY), 0),
             simd_float4(0, 0, 0, 1))
 
-        let radX = (maxRad * Float(point.y) / cameraResolution.y).truncatingRemainder(dividingBy: Float.pi)
+        let radX = -(maxRad * Float(point.y) / cameraResolution.y).truncatingRemainder(dividingBy: Float.pi)
         let rotateX = matrix_float4x4(
                 simd_float4(1, 0,  0, 0),
                 simd_float4(0, cos(radX),  sin(radX), 0),

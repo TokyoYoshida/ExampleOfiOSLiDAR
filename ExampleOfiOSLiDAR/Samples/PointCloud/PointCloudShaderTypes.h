@@ -29,26 +29,24 @@ struct RGBUniforms {
     float radius;
 };
 
-// 🤓パーティクルの基礎情報
 struct PointCloudUniforms {
-    matrix_float4x4 viewProjectionMatrix; // 🤓view projctionのマトリクス
-    matrix_float4x4 localToWorld; // 🤓ローカル座標系
-    matrix_float3x3 cameraIntrinsicsInversed; // 🤓カメラの逆転
-    simd_float2 cameraResolution; // 🤓カメラの解像度
+    matrix_float4x4 viewProjectionMatrix;
+    matrix_float4x4 localToWorld;
+    matrix_float3x3 cameraIntrinsicsInversed;
+    simd_float2 cameraResolution;
     
-    float particleSize; // 🤓パーティクルの大きさ
-    int maxPoints; // 🤓点の最大数
-    int pointCloudCurrentIndex; // 🤓現在のインデックスう
-    int confidenceThreshold; // 🤓信頼性のしきい値
+    float particleSize;
+    int maxPoints;
+    int pointCloudCurrentIndex;
+    int confidenceThreshold;
     
     matrix_float4x4 modelTransform;
 };
 
-// 🤓パーティクル１つ１つについての情報
 struct ParticleUniforms {
-    simd_float3 position; // 🤓パーティクルの位置
-    simd_float3 color; // 🤓パーティクルの色
-    float confidence; // 🤓パーティクルの信頼性
+    simd_float3 position;
+    simd_float3 color;
+    float confidence;
 };
 
 #endif /* ShaderTypes_h */
