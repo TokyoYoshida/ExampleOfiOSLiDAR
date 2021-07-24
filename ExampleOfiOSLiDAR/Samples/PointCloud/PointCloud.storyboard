@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jMM-95-Y9l">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Point Cloud View Controller-->
+        <scene sceneID="TTk-6e-xEY">
+            <objects>
+                <viewController id="jMM-95-Y9l" customClass="PointCloudViewController" customModule="ExampleOfiOSLiDAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jaN-Je-vcn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mtkView contentMode="scaleToFill" colorPixelFormat="BGRA8Unorm" depthStencilPixelFormat="Depth32Float" translatesAutoresizingMaskIntoConstraints="NO" id="Q9m-m9-ZwI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="n5C-ES-5eu" appends="YES" id="Yj9-mX-rD9"/>
+                                </connections>
+                            </mtkView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bEC-hm-9tD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Q9m-m9-ZwI" firstAttribute="bottom" secondItem="jaN-Je-vcn" secondAttribute="bottom" id="4md-ES-0Jm"/>
+                            <constraint firstItem="Q9m-m9-ZwI" firstAttribute="top" secondItem="jaN-Je-vcn" secondAttribute="top" id="MeO-Oj-fyf"/>
+                            <constraint firstItem="Q9m-m9-ZwI" firstAttribute="leading" secondItem="jaN-Je-vcn" secondAttribute="leading" id="Yax-P0-fpV"/>
+                            <constraint firstItem="Q9m-m9-ZwI" firstAttribute="trailing" secondItem="jaN-Je-vcn" secondAttribute="trailing" id="ZVx-ym-V6N"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mtkView" destination="Q9m-m9-ZwI" id="7aC-t2-bbP"/>
+                        <outlet property="view" destination="jaN-Je-vcn" id="10F-cc-7PI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qa-Ns-GPL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="n5C-ES-5eu">
+                    <connections>
+                        <action selector="panGesture:" destination="jMM-95-Y9l" id="Efj-9o-QFh"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1991" y="-520"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

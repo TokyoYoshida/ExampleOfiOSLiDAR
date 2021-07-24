@@ -47,6 +47,11 @@ class MenuViewModel {
             title: "Scan with Texture",
             description: "Scan object with color texture.",
             prefix: "Scan"
+        ),
+        MenuItem (
+            title: "Point Cloud",
+            description: "Point cloud.",
+            prefix: "PointCloud"
         )
     ]
     
